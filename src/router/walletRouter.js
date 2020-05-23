@@ -17,6 +17,8 @@ const setPayPass = resolve => require(['@/view/walletView/setPayPass'], resolve)
 const assetsDetail_v2 = resolve => require(['@/view/walletView/assetsDetail_v2'], resolve)
 const rechargeList = resolve => require(['@/view/walletView/rechargeList'], resolve)
 const news = resolve => require(['@/view/walletView/news'], resolve)
+const peopleStock = resolve => require(['@/view/walletView/peopleStock'], resolve)
+const peopleDetail = resolve => require(['@/view/walletView/peopleDetail'], resolve)
 
 
 // 自定义路由
@@ -43,6 +45,8 @@ let routerArr = {
     assetsDetail_v2:assetsDetail_v2,
     rechargeList:rechargeList,
     news:news,
+    peopleStock:peopleStock,
+    peopleDetail:peopleDetail,
     ...business // 非通用路由
 }
 

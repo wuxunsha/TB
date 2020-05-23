@@ -63,7 +63,7 @@
       },//get_data
       // 跳转全民持股
       shareHolding () {
-        console.log("1")
+        this.$router.push('/peopleStock')
       }
     },
     computed: {
