@@ -11,7 +11,7 @@
             <p>全民来持股</p>
           </div>
           <div class="game-box-image">
-            <img src="../../../assets/wallet/home/ＧＯ！按钮@2x.png" alt="">
+            <img src="../../../assets/wallet/home/ＧＯ！按钮@2x.png" alt="" @click="shareHolding">
           </div>
         </div>
       </div>
@@ -61,6 +61,10 @@
             // console.log(this.rankInfo)
         })
       },//get_data
+      // 跳转全民持股
+      shareHolding () {
+        console.log("1")
+      }
     },
     computed: {
       ...mapState(['userInfo']),
