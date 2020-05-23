@@ -32,11 +32,7 @@
         navRouter:[{
           title:'home',
           path:'/home',
-          name:'TB'
-        },{
-          title:'mining',
-          path:'/mining',
-          name:`${this.$t('feature.footer.text_mining')}`
+          name:'首页'
         },{
           title:'assets',
           path:'/assets',

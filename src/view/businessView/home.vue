@@ -9,7 +9,7 @@
     </div>
 
     <home_banner/>
-    <home_menu/>
+    <!-- <home_menu/> -->
 
     <div class="bg_color_gray space10"></div>
 
@@ -34,7 +34,7 @@
   } from '../../data/wallet';
   import myFooter from "../../components/wallet/footer.vue";
   import home_banner from "../../components/business/home/home_banner.vue";
-  import home_menu from "../../components/business/home/home_menu.vue";
+  // import home_menu from "../../components/business/home/home_menu.vue";
   import home_quote from "../../components/business/home/home_quote.vue";
   
 
@@ -46,7 +46,7 @@
       }
     },
     components: {
-      myFooter,home_banner,home_menu,home_quote
+      myFooter,home_banner,home_quote
     },
     computed: {
       ...mapState(['userInfo'])

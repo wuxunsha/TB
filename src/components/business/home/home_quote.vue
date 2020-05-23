@@ -1,39 +1,35 @@
 <template>
   <div class="quote">
-      <table>
-        <thead>
-          <tr>
-            <th class="textLeft">{{$t('feature.home.text_currency')}}</th>
-            <th class="textCenter">{{$t('feature.home.text_price')}}</th>
-            <th class="textRight">{{$t('feature.home.text_change')}}</th>
-          </tr>
-        </thead>
-        <tbody v-if="rankInfo.length">
-          <tr class=" animated fadeIn" v-for="(item,index) in rankInfo" :key="index">
-            <td class="textLeft font14"><b>{{item.currency}}</b><span class="color-gray2">&nbsp;/&nbsp;USDT</span></td>
-            <td class="textCenter font15"><b>$ {{toFixed_4 ( item.price / USDT_price ) }}</b></td>
-            <td class="textRight font13">
-              <van-tag type="danger" size="large" v-if="item.change>=0">{{item.change}}%</van-tag>
-              <van-tag type="success" size="large" v-else>{{item.change}}%</van-tag>
-            </td>
-          </tr>
+    <h3>推荐游戏</h3>
+    <div class="game-type">
+      <div>
+        <div class="game-image">
+          <img src="../../../assets/wallet/home/全民来持股@2x.png" alt="">
+        </div>
+        <div class="game-box">
+          <div class="game-name">
+            <p>全民来持股</p>
+          </div>
+          <div class="game-box-image">
+            <img src="../../../assets/wallet/home/ＧＯ！按钮@2x.png" alt="">
+          </div>
+        </div>
+      </div>
 
-          <tr class=" animated fadeIn" v-if="userInfo">
-            <td class="textLeft font14"><b>TB</b><span class="color-gray2">&nbsp;/&nbsp;USDT</span></td>
-            <!-- <td class="textCenter font15"><b>$ {{toFixed_4 ( TB_price * USDT_price ) }}</b></td> -->
-            <td class="textCenter font15"><b>$ {{toFixed_4 ( TB_price ) }}</b></td>
-            <td class="textRight font13">
-              <van-tag type="success" size="large">0.00%</van-tag>
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-      <div class="space20"></div>
-
-      <van-skeleton title :row="3" v-if="!rankInfo.length"/>
-
-
+      <div>
+        <div class="game-image">
+          <img src="../../../assets/wallet/home/全民猜涨跌@2x.png" alt="">
+        </div>
+        <div class="game-box">
+          <div class="game-name">
+            <p>全民猜涨跌</p>
+          </div>
+          <div class="game-box-image">
+            <img src="../../../assets/wallet/home/ＧＯ！按钮@2x.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -81,22 +77,55 @@
 </script>
 <style rel="stylesheet/scss" scoped lang="scss">
   @import "../../../styles/walletVal";
+  .quote {
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+    > h3 {
+      font-size: 15px;
+      font-family: PingFang SC;
+      font-weight: bold;
+      color: rgba(53,53,53,1);
+    }
 
-  .quote{
-    table{
+    .game-type {
       width: 100%;
-      th{
-        font-size: 12px;
-        color: $them_color_gray;
-        font-weight: normal;
-        padding: 15px;
-        padding-bottom: 0px;
-      }
-      td{
-        padding: 20px 15px;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
+      margin-top: 18px;
+      > div {
+        display: flex;
+        width: 100%;
+        height: 82px;
+        line-height: 82px;
+        background: #fff;
+        margin-bottom: 10px;
+        text-align: center;
+        .game-image {
+          width: 82px;
+          border-right: 1px solid #EBEBEB;
+          img {
+            width: 65%;
+          }
+        }
+        .game-box {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          padding: 0 22px 0 15px;
+          .game-name {
+            p {
+              font-size: 14px;
+              font-family: PingFang SC;
+              font-weight: bold;
+              color: #353535;
+            }
+          }
+          .game-box-image {
+            img {
+              width: 90px;
+            }
+          }
+        }
       }
     }
   }
-
 </style>
