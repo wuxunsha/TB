@@ -2,8 +2,12 @@
   <div id="home" class="full-height">
 
     <div class="navBox">
-      <van-nav-bar
+      <!-- <van-nav-bar
         :title="`${$t('feature.home.nav_title_home')}`"
+        fixed=""
+      /> -->
+      <van-nav-bar
+        title="TB GAME"
         fixed=""
       />
     </div>

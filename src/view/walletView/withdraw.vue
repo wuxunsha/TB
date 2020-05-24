@@ -38,20 +38,24 @@
         <div class="withdraw_form">
 
           <div class="input_group">
-            <div class="input flex align">
-              <input type="text" placeholder="请输入提币地址" v-model="withrawInfo.address" @blur="blur_event()">
-              <!-- <div class="do" @click="get_copy_text()">{{$t('lang.withdraw.text_paste')}}</div> -->
-              <hr>
-            </div>
+            <input type="text" placeholder="请输入提币地址" v-model="withrawInfo.address" @blur="blur_event()">
           </div>
 
           <div class="input_group">
-            <div class="input flex align">
-              <input type="text" placeholder="请输入提币数量" v-model="withrawInfo.address" @blur="blur_event()">
-              <!-- <div class="do" @click="get_copy_text()">{{$t('lang.withdraw.text_paste')}}</div> -->
-              <hr>
-            </div>
+            <input type="text" placeholder="请输入提币数量" v-model="withrawInfo.address" @blur="blur_event()">
           </div>
+
+          <div class="extract-state">
+            <div>
+              <span>手续费：*** USDT</span>
+            </div>
+            <div>全部</div>
+          </div>
+
+          <ul class="withdraw-detail">
+            <li>手续费:    2%/笔</li>
+            <li>实际到账：--USDT</li>
+          </ul>
 
           <!-- <div class="input_group" v-if="currCoinInfo">
             <div class="lable font12 text_color_dark">{{$t('feature.withdraw.text_num')}}</div>
@@ -331,12 +335,10 @@ import { Toast } from 'vant'
 
   .withdraw_form {
     .input_group {
-      padding: 0px 0;
-      position: relative;
-    }
-
-    .input {
-        position: relative;
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 1px solid #EBEBEB;
       input {
         flex: 1;
         outline: none;
@@ -358,30 +360,44 @@ import { Toast } from 'vant'
             background: $them_color;
         }
         &::-webkit-input-placeholder{
-         font-weight: normal;
-         font-size: 12px;
-         color: #AFAFAF;
+          font-weight: normal;
+          font-size: 12px;
+          color: #AFAFAF;
         }
         &:disabled{
           opacity: 1;
           color:black;
         }
       }
+    }
 
-      hr {
-        border: none;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: $them_color_bgGray;
+    .extract-state {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      margin-top: 16px;
+      > div {
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba(175,175,175,1);
       }
+      > div:nth-child(2) {
+        color: #DE4D49;
+      }
+    }
 
-      .do {
-        margin-left: 10px;
-        border-left: 1px solid $them_color_gray_light;
-        padding-left: 10px;
+    .withdraw-detail {
+      padding: 0 20px;
+      margin-top: 26px;
+      > li {
+        line-height: 28px;
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba(52,59,58,1);
+      }
+      li::before {
+        content:"●";
+        margin-right: 10px;
       }
     }
 
