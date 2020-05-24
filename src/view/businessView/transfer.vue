@@ -11,7 +11,7 @@
 
     <div class="actionForm">
 
-        <div class="formGroup currency" v-if="currCoin">
+      <div class="formGroup currency" v-if="currCoin">
         <div class="title">{{$t('feature.transfer.text_coin')}}</div>
         <div class="inputItem currency-bg">
             <div class="selecteBox" @click="show=true"></div>

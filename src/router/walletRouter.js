@@ -19,6 +19,7 @@ const rechargeList = resolve => require(['@/view/walletView/rechargeList'], reso
 const news = resolve => require(['@/view/walletView/news'], resolve)
 const peopleStock = resolve => require(['@/view/walletView/peopleStock'], resolve)
 const peopleDetail = resolve => require(['@/view/walletView/peopleDetail'], resolve)
+const myProperty = resolve => require(['@/view/walletView/myProperty'], resolve)
 
 
 // 自定义路由
@@ -41,19 +42,20 @@ let routerArr = {
     hisDetail: hisDetail,
     assetsDetail: assetsDetail,
     newsDetail: newsDetail,
-    setPayPass:setPayPass,
-    assetsDetail_v2:assetsDetail_v2,
-    rechargeList:rechargeList,
-    news:news,
-    peopleStock:peopleStock,
-    peopleDetail:peopleDetail,
+    setPayPass: setPayPass,
+    assetsDetail_v2: assetsDetail_v2,
+    rechargeList: rechargeList,
+    news: news,
+    peopleStock: peopleStock,
+    peopleDetail: peopleDetail,
+    myProperty: myProperty,
     ...business // 非通用路由
 }
 
 
 let parent = [];
 
-let aliveRouter = ['home','assets','bankUser','mining']; //需要缓存路由
+let aliveRouter = ['home', 'assets', 'bankUser', 'mining']; //需要缓存路由
 for (let key in routerArr) {
     let item = {
         path: `/${key}`,

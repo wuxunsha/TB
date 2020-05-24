@@ -9,8 +9,8 @@
         <div class="people-header">
             <img src="../../assets/wallet/people/p-header.png">
             <div class="tip">
-                <img src="../../assets/wallet/people/changye.png">
-                <img src="../../assets/wallet/people/rule.png">
+                <div @click="$router.push('/myProperty')"><img src="../../assets/wallet/people/changye.png"></div>
+                <div><img src="../../assets/wallet/people/rule.png"></div>
             </div>
         </div>
         <div class="main"
@@ -126,6 +126,7 @@ export default {
 .people-stock {
     width: 100%;
     height: 100%;
+    background-color: #fff;
 }
 .people-header {
     width: 100%;

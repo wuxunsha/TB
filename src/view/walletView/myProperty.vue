@@ -1,40 +1,14 @@
 <template>
-    <div class="people-detail">
+    <div class="myProperty">
         <div class="navBox">
-            <van-nav-bar :title="`详情`"
+            <van-nav-bar :title="`我的产业`"
                          fixed
                          left-arrow
                          @click-left="goback()" />
         </div>
-        <div class="main">
-            <div class="people-main">
-                <div class="left-main">
-                    <img src="../../assets/wallet/people/left-main.png">
-                </div>
-                <div class="right-main">
-                    <h3>农业</h3>
-                    <p>
-                        <span>产业价值(USDT)</span>
-                        <span>50-10</span>
-                    </p>
-                    <p>
-                        <span>持股时间</span>
-                        <span>14:00</span>
-                    </p>
-                    <p>
-                        <span>产业收益</span>
-                        <span>1天/5%</span>
-                    </p>
-                    <p>
-                        <span>产业数量</span>
-                        <span>0</span>
-                    </p>
-                    <div class="btn">
-                        股权交接中
-                    </div>
-                </div>
-            </div>
-            <div class="line"></div>
+        <div class="people-header">
+            <img src="../../assets/wallet/people/p-header.png">
+
         </div>
         <div class="content">
             <div class="detail-tab">
@@ -50,70 +24,9 @@
         <div v-if="tabNum == 0">
             <div class="content-line">
                 <div class="order"
-                     @click="showPop =true">
-                    <h3>农业</h3>
-                    <div class="order-walth">
-                        <p>
-                            <span>产业价值:</span>
-                            <span>50-10</span>
-                        </p>
-                        <p>
-                            <span>状态:</span>
-                            <span class="status">预约中</span>
-                        </p>
-                    </div>
-                    <p>
-                        <span>产业收益:</span>
-                        <span>1天/5%</span>
-                    </p>
-                    <div class="order-walth">
-                        <p>
-                            <span>持股时间:</span>
-                            <span>14:00</span>
-                        </p>
-                        <p>
-                            <span>2020/04/09</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="content-line">
-                <div class="order">
-                    <h3>农业</h3>
-                    <div class="order-walth">
-                        <p>
-                            <span>产业价值:</span>
-                            <span>50-10</span>
-                        </p>
-                        <p>
-                            <span>状态:</span>
-                            <span class="status">预约中</span>
-                        </p>
-                    </div>
-                    <p>
-                        <span>产业收益:</span>
-                        <span>1天/5%</span>
-                    </p>
-                    <div class="order-walth">
-                        <p>
-                            <span>持股时间:</span>
-                            <span>14:00</span>
-                        </p>
-                        <p>
-                            <span>2020/04/09</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div v-if="tabNum== 1">
-            <div class="content-line">
-                <div class="order">
+                     style="margin:10px 0 0 0">
                     <h3>
-                        <img src="../../assets/wallet/people/time.png">
+                        <img src="../../assets/wallet/people/time-lv.png">
                         <span>付款倒计时56:30</span>
                     </h3>
                     <div class="order-center">
@@ -151,77 +64,266 @@
                             <span>TGB:</span>
                             <span>5*1.1%=0.055</span>
                         </p>
+                        <p>
+                            <span>到期时间:</span>
+                            <span>2020/04/12</span>
+                        </p>
                     </div>
-                    <div class="go-buy"
-                         @click="showPopup">
-                        预约成功,去付款
-                    </div>
+
                 </div>
             </div>
-            <div class="pop">
-                <van-popup v-model="show"
-                           :class="'popPop'">
-                    <div class="pop-main">
-                        <h3>支付产业股权转入费</h3>
-                        <div class="pop-content">
-                            <div class="pop-left">
-                                <p>持股者：</p>
-                                <p>转让金额：
-                                    <span>50USDT</span>
-                                </p>
-                            </div>
-                            <div class="pop-right">
-                                <img src="../../assets/wallet/people/time.png">
-                                <p>付款倒计时56:30</p>
-                            </div>
-                        </div>
-                        <div class="input-focus">
-                            <input ref="setPsd"
-                                   v-model="password"
-                                   type="number"
-                                   v-focus="true" />
-                        </div>
-
-                        <div class="box">
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>0"
-                                   class="dot"></p>
-                            </div>
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>1"
-                                   class="dot"></p>
-                            </div>
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>2"
-                                   class="dot"></p>
-                            </div>
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>3"
-                                   class="dot"></p>
-                            </div>
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>4"
-                                   class="dot"></p>
-                            </div>
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>5"
-                                   class="dot"></p>
-                            </div>
-                        </div>
-
-                        <div class="config">
-                            <div class="cancel"
-                                 @click="show=false">取消</div>
-                            <div class="config-on">确定</div>
-                        </div>
+            <div class="content-line">
+                <div class="order"
+                     style="margin:10px 0 0 0">
+                    <h3>
+                        <img src="../../assets/wallet/people/error.png">
+                        <span>付款倒计时56:30</span>
+                    </h3>
+                    <div class="order-center">
+                        <p>
+                            <span>股权编号:</span>
+                            <span>202000132456</span>
+                        </p>
+                        <p>
+                            <span>周期:</span>
+                            <span>1天</span>
+                        </p>
                     </div>
-                </van-popup>
+                    <div class="order-center">
+                        <p>
+                            <span>产业价值:</span>
+                            <span>50-100U</span>
+                        </p>
+                        <p>
+                            <span>股份金额:</span>
+                            <span>50U</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>产业收益:</span>
+                            <span>1天/5%</span>
+                        </p>
+                        <p>
+                            <span>到期收益:</span>
+                            <span>55U</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>TGB:</span>
+                            <span>5*1.1%=0.055</span>
+                        </p>
+                        <p>
+                            <span>到期时间:</span>
+                            <span>2020/04/12</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="content-line">
+                <div class="order"
+                     style="margin:10px 0 0 0">
+                    <h3>
+                        <img src="../../assets/wallet/people/seccess.png">
+                        <span>付款倒计时56:30</span>
+                    </h3>
+                    <div class="order-center">
+                        <p>
+                            <span>股权编号:</span>
+                            <span>202000132456</span>
+                        </p>
+                        <p>
+                            <span>周期:</span>
+                            <span>1天</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>产业价值:</span>
+                            <span>50-100U</span>
+                        </p>
+                        <p>
+                            <span>股份金额:</span>
+                            <span>50U</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>产业收益:</span>
+                            <span>1天/5%</span>
+                        </p>
+                        <p>
+                            <span>到期收益:</span>
+                            <span>55U</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>TGB:</span>
+                            <span>5*1.1%=0.055</span>
+                        </p>
+                        <p>
+                            <span>到期时间:</span>
+                            <span>2020/04/12</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div v-if="tabNum== 1">
+            <div class="content-line">
+                <div class="order"
+                     style="margin:10px 0 0 0">
+                    <h3>
+                        <img src="../../assets/wallet/people/time-lv.png">
+                        <span>付款倒计时56:30</span>
+                    </h3>
+                    <div class="order-center">
+                        <p>
+                            <span>股权编号:</span>
+                            <span>202000132456</span>
+                        </p>
+                        <p>
+                            <span>周期:</span>
+                            <span>1天</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>产业价值:</span>
+                            <span>50-100U</span>
+                        </p>
+                        <p>
+                            <span>股份金额:</span>
+                            <span>50U</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>产业收益:</span>
+                            <span>1天/5%</span>
+                        </p>
+                        <p>
+                            <span>到期收益:</span>
+                            <span>55U</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>TGB:</span>
+                            <span>5*1.1%=0.055</span>
+                        </p>
+                        <p>
+                            <span>到期时间:</span>
+                            <span>2020/04/12</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="content-line">
+                <div class="order"
+                     style="margin:10px 0 0 0">
+                    <h3>
+                        <img src="../../assets/wallet/people/error.png">
+                        <span>付款倒计时56:30</span>
+                    </h3>
+                    <div class="order-center">
+                        <p>
+                            <span>股权编号:</span>
+                            <span>202000132456</span>
+                        </p>
+                        <p>
+                            <span>周期:</span>
+                            <span>1天</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>产业价值:</span>
+                            <span>50-100U</span>
+                        </p>
+                        <p>
+                            <span>股份金额:</span>
+                            <span>50U</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>产业收益:</span>
+                            <span>1天/5%</span>
+                        </p>
+                        <p>
+                            <span>到期收益:</span>
+                            <span>55U</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>TGB:</span>
+                            <span>5*1.1%=0.055</span>
+                        </p>
+                        <p>
+                            <span>到期时间:</span>
+                            <span>2020/04/12</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="content-line">
+                <div class="order"
+                     style="margin:10px 0 0 0">
+                    <h3>
+                        <img src="../../assets/wallet/people/seccess.png">
+                        <span>付款倒计时56:30</span>
+                    </h3>
+                    <div class="order-center">
+                        <p>
+                            <span>股权编号:</span>
+                            <span>202000132456</span>
+                        </p>
+                        <p>
+                            <span>周期:</span>
+                            <span>1天</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>产业价值:</span>
+                            <span>50-100U</span>
+                        </p>
+                        <p>
+                            <span>股份金额:</span>
+                            <span>50U</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>产业收益:</span>
+                            <span>1天/5%</span>
+                        </p>
+                        <p>
+                            <span>到期收益:</span>
+                            <span>55U</span>
+                        </p>
+                    </div>
+                    <div class="order-center">
+                        <p>
+                            <span>TGB:</span>
+                            <span>5*1.1%=0.055</span>
+                        </p>
+                        <p>
+                            <span>到期时间:</span>
+                            <span>2020/04/12</span>
+                        </p>
+                    </div>
+
+                </div>
             </div>
         </div>
         <div v-if="tabNum== 2">
@@ -429,218 +531,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="tabNum== 4">
-            <div class="content-line">
-                <div class="order"
-                     style="margin:10px 0 0 0">
-                    <h3>
-                        <img src="../../assets/wallet/people/time-lv.png">
-                        <span>已转出</span>
-                    </h3>
-                    <div class="order-center">
-                        <p>
-                            <span>股权编号:</span>
-                            <span>202000132456</span>
-                        </p>
-                        <p>
-                            <span>周期:</span>
-                            <span>1天</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>产业价值:</span>
-                            <span>50-100U</span>
-                        </p>
-                        <p>
-                            <span>股份金额:</span>
-                            <span>50U</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>产业收益:</span>
-                            <span>1天/5%</span>
-                        </p>
-                        <p>
-                            <span>到期收益:</span>
-                            <span>55U</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>TGB:</span>
-                            <span>5*1.1%=0.055</span>
-                        </p>
-                        <p>
-                            <span>到期时间:</span>
-                            <span>2020/04/12</span>
-                        </p>
-                    </div>
 
-                </div>
-            </div>
-            <div class="content-line">
-                <div class="order"
-                     style="margin:10px 0 0 0">
-                    <h3>
-                        <img src="../../assets/wallet/people/time-lv.png">
-                        <span>已转出</span>
-                    </h3>
-                    <div class="order-center">
-                        <p>
-                            <span>股权编号:</span>
-                            <span>202000132456</span>
-                        </p>
-                        <p>
-                            <span>周期:</span>
-                            <span>1天</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>产业价值:</span>
-                            <span>50-100U</span>
-                        </p>
-                        <p>
-                            <span>股份金额:</span>
-                            <span>50U</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>产业收益:</span>
-                            <span>1天/5%</span>
-                        </p>
-                        <p>
-                            <span>到期收益:</span>
-                            <span>55U</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>TGB:</span>
-                            <span>5*1.1%=0.055</span>
-                        </p>
-                        <p>
-                            <span>到期时间:</span>
-                            <span>2020/04/12</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="content-line">
-                <div class="order"
-                     style="margin:10px 0 0 0">
-                    <h3>
-                        <img src="../../assets/wallet/people/seccess.png">
-                        <span>转让中</span>
-                    </h3>
-                    <div class="order-center">
-                        <p>
-                            <span>股权编号:</span>
-                            <span>202000132456</span>
-                        </p>
-                        <p>
-                            <span>周期:</span>
-                            <span>1天</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>产业价值:</span>
-                            <span>50-100U</span>
-                        </p>
-                        <p>
-                            <span>股份金额:</span>
-                            <span>50U</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>产业收益:</span>
-                            <span>1天/5%</span>
-                        </p>
-                        <p>
-                            <span>到期收益:</span>
-                            <span>55U</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>TGB:</span>
-                            <span>5*1.1%=0.055</span>
-                        </p>
-                        <p>
-                            <span>到期时间:</span>
-                            <span>2020/04/12</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="pop">
-            <van-popup v-model="showPop"
-                       :class="'popPop'">
-                <div class="pop-main">
-                    <h3>支付产业押金</h3>
-                    <div class="pop-content">
-                        <div class="pop-left">
-                            <p>类型：<span style="color:#343B3A;margin: 0 0 0 15px">农业</span></p>
-                            <p>金额：<span style="margin: 0 0 0 15px">28TB(10U)</span></p>
-                        </div>
-                    </div>
-                    <div class="input-focus">
-                        <input ref="newPsd"
-                               v-model="newPassword"
-                               type="number"
-                               v-focus="true" />
-                    </div>
-
-                    <div class="box">
-                        <div class="pop-box"
-                             @click="passwordFocus">
-                            <p v-if="newPassword.length>0"
-                               class="dot"></p>
-                        </div>
-                        <div class="pop-box"
-                             @click="passwordFocus">
-                            <p v-if="newPassword.length>1"
-                               class="dot"></p>
-                        </div>
-                        <div class="pop-box"
-                             @click="passwordFocus">
-                            <p v-if="newPassword.length>2"
-                               class="dot"></p>
-                        </div>
-                        <div class="pop-box"
-                             @click="passwordFocus">
-                            <p v-if="newPassword.length>3"
-                               class="dot"></p>
-                        </div>
-                        <div class="pop-box"
-                             @click="passwordFocus">
-                            <p v-if="newPassword.length>4"
-                               class="dot"></p>
-                        </div>
-                        <div class="pop-box"
-                             @click="passwordFocus">
-                            <p v-if="newPassword.length>5"
-                               class="dot"></p>
-                        </div>
-                    </div>
-
-                    <div class="config">
-                        <div class="cancel"
-                             @click="showPop=false">取消</div>
-                        <div class="config-on">确定</div>
-                    </div>
-                </div>
-            </van-popup>
-        </div>
     </div>
 </template>
 
@@ -650,30 +541,12 @@ import { log } from '../../data/wallet';
 export default {
     data() {
         return {
-            tab: ["预约", "交接中", "量产中", "众筹", "转让"],
+            tab: ["农业", "水产业", "建筑业", "运输业"],
             tabNum: 0,
-            show: false,
-            showPop: false,
-            password: '',
-            newPassword: ''
-        }
-    },
-    directives: {
-        focus: {
-            inserted: function (el, { value }) {
-                console.log(el, { value })
-
-                if (value) {
-
-                    el.focus();
-
-                }
-
-            }
 
         }
-
     },
+
     mounted() {
 
     },
@@ -681,43 +554,10 @@ export default {
         demoClick: function (index) {
             this.tabNum = index;
         },
-        goBuy() {
 
-        },
-        showPopup() {
-            this.show = true
-        },
-        passwordFocus() {
-            this.$refs.newPsd.focus();
-        },
-        password1GetFocus() {
-            this.$refs.setPsd.focus();
-        },
     },
     watch: {
-        password: function (newV, oldV) {
-            if (newV.length == 6) {
 
-            }
-        },
-        show: function (newV, oldV) {
-            if (newV == true) {
-                this.$nextTick(function () {
-                    this.$refs.setPsd.focus();
-                })
-            } else {
-                this.password = ''
-            }
-        },
-        showPop: function (newV, oldV) {
-            if (newV == true) {
-                this.$nextTick(function () {
-                    this.$refs.newPsd.focus();
-                })
-            } else {
-                this.newPassword = ''
-            }
-        },
     }
 }
 
@@ -728,43 +568,13 @@ export default {
     height: 100%;
     background-color: #fff;
 }
-.people-main {
-    display: flex;
-    align-items: flex-end;
-    padding: 15px;
-    .left-main {
-        width: 159px;
-        height: 159px;
-        img {
-            width: 100%;
-            height: 100%;
-        }
-    }
-    .right-main {
-        width: 50%;
-        margin-left: 18px;
-        p {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin: 0 0 8px 0;
-            span:nth-child(1) {
-                // float: left;
-                color: #c8cdd3;
-            }
-            span:nth-child(2) {
-                // float: right;
-                color: #353535;
-            }
-        }
-        .btn {
-            float: right;
-            font-size: 12px;
-            display: inline;
-            padding: 4px 22px;
-            color: #fff;
-            background-color: #de4d49;
-        }
+.people-header {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    img {
+        width: 100%;
+        height: 100%;
     }
 }
 .line {
@@ -864,7 +674,7 @@ export default {
     }
 }
 .popPop {
-    height: 38%;
+    height: 37%;
     width: 90%;
     border-radius: 10px;
 }
@@ -929,8 +739,6 @@ export default {
         }
     }
     .config {
-        border-top: 1px solid #ebebeb;
-        padding: 10px 0 0 0;
         margin-top: 35px;
         display: flex;
         justify-content: center;

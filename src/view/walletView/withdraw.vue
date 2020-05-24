@@ -9,59 +9,78 @@
 
     <div class="item_box">
 
-      <p class="remind">您的提币操作完成后对应的资产所有权将转移，请谨慎操作！</p>
-
-      <chooseCoins v-on:chooseCoin="chooseCoin" :defaultId="$route.query.coinId"/>
-
-      <div class="space10"></div>
-
-      <div class="withdraw_form">
-
-
-         <div class="input_group">
-          <div class="lable font12 text_color_dark">{{$t('wallet.withdraw.text_addr')}}</div>
-          <div class="input flex align">
-            <input type="text" :placeholder="`${$t('feature.withdraw.text_copy')}`" v-model="withrawInfo.address" @blur="blur_event()">
-            <!-- <div class="do" @click="get_copy_text()">{{$t('lang.withdraw.text_paste')}}</div> -->
-            <hr>
-          </div>
-        </div>
-        <!-- input_group -->
-
-        <div class="input_group" v-if="currCoinInfo">
-          <div class="lable font12 text_color_dark">{{$t('feature.withdraw.text_num')}}</div>
-          <div class="input flex align">
-            <input type="number" :placeholder="`${$t('feature.withdraw.text_min')}${currCoinInfo.coin.minWithdraw}`" v-model="withrawInfo.amount"  @blur="blur_event()">
-            <div class="unit font-bold them_color_gray font15">{{currCoinInfo.coin.coinName}}</div>
-            <div class="do font-bold text_color_dark textRight" @click="withrawInfo.amount = currCoinInfo.balance.amount">{{$t('wallet.withdraw.text_allin')}}</div>
-            <hr>
-          </div>
-
-          <div class="lable font12 text_color_dark"><span class="them_color_gray"> {{$t('wallet.withdraw.text_able')}} {{currCoinInfo.balance.amount}} {{currCoinInfo.coin.coinName}}</span></div>
-
-        </div>
-        <!-- input_group -->
-
-        <div class="input_group" v-if="currCoinInfo">
-          <div class="lable font12 text_color_dark">{{$t('feature.withdraw.text_fee')}}</div>
-          <div class="input flex align">
-            <input type="number" v-model="currCoinInfo.coin.withdrawFree" disabled  @blur="blur_event()">
-            <div class="unit font-bold them_color_gray font15">{{currCoinInfo.coin.coinName}}</div>
-            <hr>
-          </div>
-        </div>
-        <!-- input_group -->
-
-        <div class="space10"></div>
-
-       
-        <van-button class="submit" type="info" @click="next()">{{$t('wallet.withdraw.text_next')}}</van-button>
-
+      <div class="remind-box">
+        <p class="remind">您的提币操作完成后对应的资产所有权将转移，请谨慎操作！</p>
       </div>
-      <!-- withdraw_form -->
+
+      <div class="currency-select">
+        <div class="currency-select-left">
+          <img src="../../assets/wallet/asstes/USDT@2x.png" alt="">
+          <span>
+            USDT
+          </span>
+        </div>
+        <div>
+          <van-icon name="arrow" />
+        </div>
+      </div>
+
+      <div class="content-box">
+
+        <!-- 可用数量 -->
+        <div class="available-quantity">
+          <p>
+            <span>可用数量</span>
+            <span>0000 USDT</span>
+          </p>
+        </div>
+
+        <div class="withdraw_form">
+
+          <div class="input_group">
+            <div class="input flex align">
+              <input type="text" placeholder="请输入提币地址" v-model="withrawInfo.address" @blur="blur_event()">
+              <!-- <div class="do" @click="get_copy_text()">{{$t('lang.withdraw.text_paste')}}</div> -->
+              <hr>
+            </div>
+          </div>
+
+          <div class="input_group">
+            <div class="input flex align">
+              <input type="text" placeholder="请输入提币数量" v-model="withrawInfo.address" @blur="blur_event()">
+              <!-- <div class="do" @click="get_copy_text()">{{$t('lang.withdraw.text_paste')}}</div> -->
+              <hr>
+            </div>
+          </div>
+
+          <!-- <div class="input_group" v-if="currCoinInfo">
+            <div class="lable font12 text_color_dark">{{$t('feature.withdraw.text_num')}}</div>
+            <div class="input flex align">
+              <input type="number" :placeholder="`${$t('feature.withdraw.text_min')}${currCoinInfo.coin.minWithdraw}`" v-model="withrawInfo.amount"  @blur="blur_event()">
+              <div class="unit font-bold them_color_gray font15">{{currCoinInfo.coin.coinName}}</div>
+              <div class="do font-bold text_color_dark textRight" @click="withrawInfo.amount = currCoinInfo.balance.amount">{{$t('wallet.withdraw.text_allin')}}</div>
+              <hr>
+            </div>
+
+            <div class="lable font12 text_color_dark"><span class="them_color_gray"> {{$t('wallet.withdraw.text_able')}} {{currCoinInfo.balance.amount}} {{currCoinInfo.coin.coinName}}</span></div>
+
+          </div>
+
+          <div class="input_group" v-if="currCoinInfo">
+            <div class="lable font12 text_color_dark">{{$t('feature.withdraw.text_fee')}}</div>
+            <div class="input flex align">
+              <input type="number" v-model="currCoinInfo.coin.withdrawFree" disabled  @blur="blur_event()">
+              <div class="unit font-bold them_color_gray font15">{{currCoinInfo.coin.coinName}}</div>
+              <hr>
+            </div>
+          </div> -->
+
+          <van-button class="submit" type="info" @click="next()">{{$t('wallet.withdraw.text_next')}}</van-button>
+
+        </div>
+      </div>
 
     </div>
-    <!-- item_box -->
 
     <div class="space10"></div>
 
@@ -198,66 +217,113 @@ import { Toast } from 'vant'
   #funds {
     .item_box {
       margin-top: 46px;
-      .remind {
-        width: 100%;
-        height: 28px;
-        line-height: 28px;
-        font-size: 12px;
-        font-weight: 500;
-        color: rgba(222,77,73,1);
+      .remind-box {
         background: #FEF6F4;
-      }
-      .token_choose {
-        margin-bottom: 20px;
-
-        &>div {
-          background: $them_color_bgGray;
-          padding: 10px 10px;
-          border-radius: 2px;
-          -webkit-border-radius: 2px;
-          color: $text_color_dark;
-          font-size: 14px;
-          font-weight: bold;
+        .remind {
+          width: 100%;
+          height: 28px;
+          line-height: 28px;
+          font-size: 12px;
+          font-weight: 500;
+          color: rgba(222,77,73,1);
+          padding: 0 20px;
         }
+      }
 
-        .token_name {
-          flex: 1;
-          margin-left: 15px;
-
-          small {
-            .van-icon {
-              margin-top: -2px;
-              display: inline-block;
-              vertical-align: middle;
-            }
+      .currency-select {
+        display: flex;
+        width: 100%;
+        height: 48px;
+        line-height: 48px;
+        background: #F7F6FB;
+        padding: 0 20px;
+        justify-content: space-between;
+        .currency-select-left {
+          img {
+            width: 24px;
+            vertical-align: sub;
+          }
+          span {
+            font-size: 16px;
+            font-weight:bold;
+            color:rgba(53,53,53,1);
+            margin-left: 6px;
           }
         }
       }
 
-      .code_box {
-        background: $them_color_bgGray;
-        padding: 20px;
-        border-radius: 2px;
+      .content-box {
 
-        .qrcode {
-          width: 180px;
-          margin: 10px auto;
-          background: white;
-          padding: 10px;
+        .available-quantity {
+          width: 100%;
+          height: 40px;
+          line-height: 40px;
+          border-bottom: 1px solid #EBEBEB;
+          p {
+            padding: 0 20px;
+            font-size: 12px;
+            font-weight: 500;
+            > span:nth-child(1) {
+              color: rgba(175,175,175,1);
+            }
+            > span:nth-child(2) {
+              margin-left: 18px;
+              color: #DE4D49;
+            }
+          }
+        }
+        .token_choose {
+          margin-bottom: 20px;
+
+          &>div {
+            background: $them_color_bgGray;
+            padding: 10px 10px;
+            border-radius: 2px;
+            -webkit-border-radius: 2px;
+            color: $text_color_dark;
+            font-size: 14px;
+            font-weight: bold;
+          }
+
+          .token_name {
+            flex: 1;
+            margin-left: 15px;
+
+            small {
+              .van-icon {
+                margin-top: -2px;
+                display: inline-block;
+                vertical-align: middle;
+              }
+            }
+          }
         }
 
-        .copy {
-          display: inline-block;
-          margin: 20px auto;
-          padding: 5px 10px;
-          background: rgba(255, 255, 255, 0.1);
+        .code_box {
+          background: $them_color_bgGray;
+          padding: 20px;
           border-radius: 2px;
-        }
 
-        p {
-          font-size: 12px;
-          line-height: 1.8em;
-          text-align: center;
+          .qrcode {
+            width: 180px;
+            margin: 10px auto;
+            background: white;
+            padding: 10px;
+          }
+
+          .copy {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+          }
+
+          p {
+            font-size: 12px;
+            line-height: 1.8em;
+            text-align: center;
+          }
         }
       }
     }
@@ -266,11 +332,7 @@ import { Toast } from 'vant'
   .withdraw_form {
     .input_group {
       padding: 0px 0;
-      margin-bottom: 25px;
       position: relative;
-      .lable {
-        margin-bottom: 5px;
-      }
     }
 
     .input {
@@ -281,7 +343,7 @@ import { Toast } from 'vant'
         border-radius: 0;
         background: none;
         border: none;
-        padding: 15px 0;
+        padding: 15px 0 15px 20px;
         font-size: 15px;
         padding-right: 10px;
         font-weight: bold;
@@ -297,6 +359,8 @@ import { Toast } from 'vant'
         }
         &::-webkit-input-placeholder{
          font-weight: normal;
+         font-size: 12px;
+         color: #AFAFAF;
         }
         &:disabled{
           opacity: 1;
