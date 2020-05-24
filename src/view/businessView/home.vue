@@ -9,15 +9,10 @@
     </div>
 
     <home_banner/>
-    <!-- <home_menu/> -->
-
-    <div class="bg_color_gray space10"></div>
 
     <home_quote/>
 
     <myFooter :footerNavActive="activeType"></myFooter>
-
-   
 
   </div>
   <!-- index -->

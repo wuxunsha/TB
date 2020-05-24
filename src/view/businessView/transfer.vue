@@ -1,5 +1,5 @@
 <template>
-  <div class="full-height bg_color_gray">
+  <div class="full-height">
 
     <div class="navBox">
       <van-nav-bar
@@ -11,9 +11,9 @@
 
     <div class="actionForm">
 
-        <div class="formGroup" v-if="currCoin">
+        <div class="formGroup currency" v-if="currCoin">
         <div class="title">{{$t('feature.transfer.text_coin')}}</div>
-        <div class="inputItem">
+        <div class="inputItem currency-bg">
             <div class="selecteBox" @click="show=true"></div>
             <input type="text" :placeholder="`${$t('feature.transfer.input_chooseCoin')}`"  v-model="currCoin.coin.coinName" @blur="blur_event()">
         </div>
@@ -22,7 +22,7 @@
 
       <div class="formGroup">
         <div class="title">{{$t('feature.transfer.text_id')}}</div>
-        <div class="inputItem">
+        <div class="inputItem inputItemButton">
           <input type="text" :placeholder="`${$t('feature.transfer.input_id')}`" v-model="reqParams.toId" @blur="blur_event()" @change="getName()">
         </div>
         <div class="info" :class="idName==='UIDNULL'?'color-red':''" v-if="idName" style="margin-top:10px;">{{$t('feature.transfer.text_nameTitle')}}：
@@ -34,9 +34,17 @@
       <!-- formGroup -->
 
       <div class="formGroup">
-        <div class="title">{{$t('feature.transfer.text_number')}} <small v-if="currCoin">( {{$t('feature.transfer.text_able')}}{{currCoin.amount}} {{currCoin.coin.coinName}} )</small></div>
-        <div class="inputItem">
+        <!-- <div class="title">{{$t('feature.transfer.text_number')}} <small v-if="currCoin">( {{$t('feature.transfer.text_able')}}{{currCoin.amount}} {{currCoin.coin.coinName}} )</small></div> -->
+        <div class="title">{{$t('feature.transfer.text_number')}}</div>
+        <div class="inputItem inputItemButton transfer-amount">
           <input type="number" :placeholder="`${$t('feature.transfer.input_number')}`" v-model="reqParams.number" @blur="blur_event()" @change="getFee()">
+          <span class="money-type" v-if="currCoin">{{currCoin.coin.coinName}}</span>
+          <span>|</span>
+          <span @click="allSum">全部</span>
+        </div>
+        <div class="balance">
+          <span>可用余额：</span>
+          <span v-if="currCoin">{{currCoin.amount}}&nbsp;{{currCoin.coin.coinName}}</span>
         </div>
         <div class="info" v-if="fee" style="margin-top:10px;">手续费：{{fee}} {{currCoin.coin.coinName}}</div>
       </div>
@@ -44,7 +52,7 @@
 
       <div class="formGroup">
         <div class="title">{{$t('feature.transfer.text_code')}}</div>
-        <div class="inputItem flex align">
+        <div class="inputItem flex align inputItemButton">
             <input type="number" :placeholder="`${$t('feature.transfer.input_code')}`" v-model="reqParams.code" @blur="blur_event()">
             <div class="getCode"> <getCode :codeData="{type:'transfer',phone:userInfo.user.id}"/></div>
         </div>
@@ -53,7 +61,7 @@
 
       <div class="formGroup">
         <div class="title">{{$t('feature.transfer.text_pass')}}</div>
-        <div class="inputItem">
+        <div class="inputItem inputItemButton">
           <input type="number" style="-webkit-text-security:disc" :placeholder="`${$t('feature.transfer.input_pass')}`" v-model="reqParams.transactionPwd" @blur="blur_event()">
         </div>
       </div>
@@ -61,7 +69,7 @@
 
       <div class="space20"></div>
 
-      <div class="submit_btn red" @click="checkParams()">{{$t('feature.transfer.text_btn')}}</div>
+      <div class="submit_btn red" @click="checkParams()" disabled>{{$t('feature.transfer.text_btn')}}</div>
       {{this.reqParams.coin}}
 
   </div>
@@ -69,7 +77,7 @@
 
 <van-popup position="bottom" v-model="show">
     <van-picker :columns="coins"
-    show-toolbar
+    show-toolbar @change="currencyChange"
     @cancel="show=false"
     @confirm="onChange"
     :title=" `${$t('feature.transfer.text_pickerTitle')}`"
@@ -95,6 +103,7 @@
   } from '../../data/business';
   import getCode from '../../components/wallet/getCode'
 import { Toast } from 'vant';
+import { log } from '../../data/wallet';
 
   export default {
     data() {
@@ -110,7 +119,8 @@ import { Toast } from 'vant';
         currCoin:null,//当前币种
         idName:null,//帐号名称
         fee:null,//手续费
-        scale:null//手续费比例
+        scale:null,//手续费比例
+        submitFlag: false
       }
     },
     components:{getCode},
@@ -137,6 +147,14 @@ import { Toast } from 'vant';
             this.scale = v.data;
           })
         },//getScale
+        // 币种改变
+        currencyChange() {
+          this.reqParams.number = null
+        },
+        // 全部金额
+        allSum () {
+          this.reqParams.number = this.currCoin.amount
+        },
         checkParams(){//确认转账
             if(!this.reqParams.toId){
                 Toast(this.$t('feature.transfer.text_id'))
@@ -197,10 +215,9 @@ import { Toast } from 'vant';
   }
   >>>.getCode{
       white-space: nowrap;
-      background: $them_color;
       padding: 10px 5px;
       border-radius: 4px;
-      color:white;
+      color:#DE4D49;
       margin-left: 10px;
   }
 </style>

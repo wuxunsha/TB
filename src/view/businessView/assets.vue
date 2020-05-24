@@ -1,12 +1,12 @@
 <template>
   <div class="full-height bg_color_gray">
 
-    <div class="navBox">
+    <!-- <div class="navBox">
       <van-nav-bar
         :title="`${$t('feature.assets.nav_title')}`"
         fixed
       />
-    </div>
+    </div> -->
     
     <asstes_header/>
 

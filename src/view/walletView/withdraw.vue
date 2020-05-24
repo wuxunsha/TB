@@ -1,16 +1,15 @@
 <template>
-  <div id="funds" class="padding20">
+  <div id="funds">
 
-    <!-- <van-nav-bar title="提币" left-arrow fixed @click-left="goback()" right-text="提币记录"
-      @click-right="gopage('/wallet/withdrawList')" />
-
-    <div class="space60"></div> -->
+     <van-nav-bar title="提币" left-arrow fixed @click-left="goback()"/>
     
-     <walletNav :title="$t('wallet.withdraw.nav_title')" left-arrow @clickLeft="goback()"/>
+     <!-- <walletNav :title="$t('wallet.withdraw.nav_title')" left-arrow @clickLeft="goback()"/> -->
       <!-- <div class="rightText" @click="gopage(`/wallet/book?type=withdraw`)"><van-icon name="todo-list-o" size="20px"/>{{$t('wallet.withdraw.nav_title_list')}}</div>
     </walletNav> -->
 
     <div class="item_box">
+
+      <p class="remind">您的提币操作完成后对应的资产所有权将转移，请谨慎操作！</p>
 
       <chooseCoins v-on:chooseCoin="chooseCoin" :defaultId="$route.query.coinId"/>
 
@@ -198,6 +197,16 @@ import { Toast } from 'vant'
 
   #funds {
     .item_box {
+      margin-top: 46px;
+      .remind {
+        width: 100%;
+        height: 28px;
+        line-height: 28px;
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba(222,77,73,1);
+        background: #FEF6F4;
+      }
       .token_choose {
         margin-bottom: 20px;
 
@@ -253,7 +262,6 @@ import { Toast } from 'vant'
       }
     }
   }
-
 
   .withdraw_form {
     .input_group {

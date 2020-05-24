@@ -83,8 +83,9 @@
   @import "../../../styles/walletVal";
   .quote {
     width: 100%;
-    height: 100%;
+    min-height: 350px;
     padding: 0 15px;
+    background: #F7F6FB;
     > h3 {
       font-size: 15px;
       font-family: PingFang SC;

@@ -36,7 +36,8 @@
         },{
           title:'assets',
           path:'/assets',
-          name:`${this.$t('feature.footer.text_assets')}`
+          // name:`${this.$t('feature.footer.text_assets')}`
+          name:'钱包'
         },{
           title:'user',
           path:'/bankUser',
@@ -112,23 +113,23 @@
   }
 
   .item .icon.home {
-    background: url(../../assets/business/nav_home.png);
+    background: url(../../assets/business/首页-常态@2x.png);
   }
 
   .item.active .icon.home {
-    background: url(../../assets/business/nav_home_active.png);
+    background: url(../../assets/business/首页－选中@2x.png);
   }
 
-   .item .icon.mining {
-    background: url(../../assets/business/nav_mining.png);
-  }
+  //  .item .icon.mining {
+  //   background: url(../../assets/business/nav_mining.png);
+  // }
 
-  .item.active .icon.mining {
-    background: url(../../assets/business/nav_mining_active.png);
-  }
+  // .item.active .icon.mining {
+  //   background: url(../../assets/business/nav_mining_active.png);
+  // }
   
   .item .icon.assets {
-    background: url(../../assets/business/nav_assets.png);
+    background: url(../../assets/business/钱包@2x.png);
   }
 
   .item.active .icon.assets {
@@ -137,11 +138,11 @@
 
 
   .item .icon.user {
-    background: url(../../assets/business/nav_user.png);
+    background: url(../../assets/business/我的-常态@2x.png);
   }
 
   .item.active .icon.user {
-    background: url(../../assets/business/nav_user_active.png);
+    background: url(../../assets/business/我的－选中@2x.png);
   }
 
 </style>
