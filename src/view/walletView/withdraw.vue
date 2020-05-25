@@ -13,11 +13,11 @@
         <p class="remind">您的提币操作完成后对应的资产所有权将转移，请谨慎操作！</p>
       </div>
 
-      <div class="currency-select">
+      <div class="currency-select" @click="popup = true" v-if="currCoin">
         <div class="currency-select-left">
           <img src="../../assets/wallet/asstes/USDT@2x.png" alt="">
           <span>
-            USDT
+            {{currCoin.coin.coinName}}
           </span>
         </div>
         <div>
@@ -28,10 +28,10 @@
       <div class="content-box">
 
         <!-- 可用数量 -->
-        <div class="available-quantity">
+        <div class="available-quantity" v-if="currCoin">
           <p>
             <span>可用数量</span>
-            <span>0000 USDT</span>
+            <span>0000 {{currCoin.coin.coinName}}</span>
           </p>
         </div>
 
@@ -42,20 +42,30 @@
           </div>
 
           <div class="input_group">
-            <input type="text" placeholder="请输入提币数量" v-model="withrawInfo.address" @blur="blur_event()">
+            <input type="text" placeholder="请输入提币数量" v-model="withrawInfo.amount" @blur="blur_event()">
           </div>
 
-          <div class="extract-state">
+          <div class="extract-state" v-if="currCoin">
             <div>
-              <span>手续费：*** USDT</span>
+              <span>手续费：*** {{currCoin.coin.coinName}}</span>
             </div>
-            <div>全部</div>
+            <div>提取全部</div>
           </div>
 
-          <ul class="withdraw-detail">
+          <ul class="withdraw-detail" v-if="currCoin">
             <li>手续费:    2%/笔</li>
-            <li>实际到账：--USDT</li>
+            <li>实际到账：--{{currCoin.coin.coinName}}</li>
           </ul>
+
+          <!-- 温馨提示 -->
+          <div class="warm-prompt">
+            <p>温馨提示</p>
+            <ul>
+              <li>每日17:00前提现的用户，预计在当天提现到账。</li>
+              <li>每日17:00后提现的用户，预计最晚于次日提现到账。</li>
+              <li>请务必确认电脑及浏览器安全，防止信息被篡改或泄露。</li>
+            </ul>
+          </div>
 
           <!-- <div class="input_group" v-if="currCoinInfo">
             <div class="lable font12 text_color_dark">{{$t('feature.withdraw.text_num')}}</div>
@@ -79,29 +89,21 @@
             </div>
           </div> -->
 
-          <van-button class="submit" type="info" @click="next()">{{$t('wallet.withdraw.text_next')}}</van-button>
+          <div class="submit-box">
+            <van-button class="submit" @click="next()">确认</van-button>
+          </div>
 
         </div>
       </div>
 
     </div>
 
-    <div class="space10"></div>
-
-    <div>
+    <!-- <div>
       <p class="info them_color_gray font12 bg_color_gray padding20 radius2" v-html="$t('feature.withdraw.text_p')">
-        <!-- <span>*为保障您的资金安全，提现申请后请耐心等候系统审核</span>
-        <span>*请务必确认电脑及浏览器安全，防止信息被篡改或泄露</span> -->
       </p>
     </div>
 
-    <div class="space20"></div>
-
-     <van-popup
-      v-model="show_popup"
-      closeable
-      position="bottom"
-    >
+    <van-popup v-model="show_popup" closeable position="bottom">
       <div class="main">
         <div class="popup_title">{{$t('feature.cpopupCode.text_title')}}</div>
 
@@ -114,18 +116,19 @@
             <input type="number" style="-webkit-text-security:disc" :placeholder="`${$t('feature.transfer.input_pass')}`" v-model="withrawInfo.transactionPwd" @blur="blur_event">
           </div>
           <div class="space20"></div>
-          <!-- <van-button class="submit" type="primary" @click="withdraw()">确认提现</van-button> -->
           <van-button class="submit" type="info" @click="submitWithdraw()">{{$t('feature.cpopupCode.text_btn')}}</van-button>
           <div class="space20"></div>
         </div>
-        <!-- them_form -->
 
       </div>
-      <!-- main -->
+    </van-popup> -->
+
+    <!-- 币种选择弹窗 -->
+    <van-popup v-model="popup" position="bottom" :style="{ height: '30%' }">
+      <van-picker :columns="coins" show-toolbar @change="currencyChange" @cancel="popup=false" @confirm="onChange" :title=" `${$t('feature.transfer.text_pickerTitle')}`" :confirm-button-text="`${$t('feature.bankBuy.text_ok')}`" :cancel-button-text="`${$t('feature.bankBuy.text_cancel')}`"/>
     </van-popup>
 
   </div>
-  <!-- index -->
 </template>
 
 <script>
@@ -142,24 +145,34 @@ import { Toast } from 'vant'
   export default {
     data() {
       return {
-        currCoinInfo: null,//当前币种信息
-        inputCode:false,//显示验证码
+        currCoinInfo: null, //当前币种信息
+        currCoin: null, // 当前币种
+        inputCode:false, //显示验证码
         withrawInfo:{
           address: null,
           amount: null,
           code: null,
           coinId: null,
-          transactionPwd:null//支付密码
+          transactionPwd:null //支付密码
         },
-
-        show_popup:false//显示弹窗
+        popup: false, // 币种选择弹窗
+        show_popup:false //显示弹窗
       }
     },
     components:{
       chooseCoins,getCode
     },
     computed: {
-      ...mapState(['userInfo'])
+      ...mapState(['userInfo']),
+      //设置周期
+      coins(){
+        let res = this.userInfo.balanceModels.map(v=>{
+            v.text = `${v.coin.coinName}(${this.$t('feature.transfer.text_balance')}${v.amount})`
+            return v;
+        }).filter(v=>v.coin.transfer=='Y');
+        this.currCoin = res[0];
+        return res;
+      }
     },
     methods:{
       ...mapMutations(['setUserInfo']),
@@ -167,6 +180,16 @@ import { Toast } from 'vant'
         // console.log(item)
         this.currCoinInfo = item;
       },//chooseCoin
+      // 币种改变
+      currencyChange () {
+        this.currCoinInfo = null
+      },
+      onChange (value, index) {
+        console.log(value)
+        console.log(index)
+        this.currCoin = value;
+        this.popup = false;
+      },
       next(){//下一步
         if(!this.withrawInfo.address){
           Toast(this.$t('wallet.withdraw.Toast_address'));
@@ -179,7 +202,7 @@ import { Toast } from 'vant'
         this.withrawInfo.code = null; 
         this.withrawInfo.transactionPwd = null;       
         this.show_popup = true;
-      },//next
+      },
       submitWithdraw(){//申请提现 
 
         if(!this.withrawInfo.code){
@@ -401,11 +424,43 @@ import { Toast } from 'vant'
       }
     }
 
-    .submit {
-      display: block;
-      margin: 20px auto;
-      width: 100%;
+    .warm-prompt {
+      padding: 0 20px;
+      margin-top: 26px;
+      > p {
+        font-size: 14px;
+        font-weight: bold;
+        color: rgba(52,59,58,1);
+      }
+      > ul {
+        margin-top: 10px;
+        li {
+          font-size: 12px;
+          font-weight: 500;
+          color: rgba(175,175,175,1);
+        }
+        li::before {
+          content:"●";
+          margin-right: 10px;
+          color: #AFAFAF;
+        }
+      }
     }
+
+    .submit-box {
+      padding: 0 20px;
+      margin-top: 40px;
+      .submit {
+        display: block;
+        margin: 20px auto;
+        width: 100%;
+        background: #DE4D49;
+        font-size: 14px;
+        font-weight: bold;
+        color: rgba(255,255,255,1);
+      }
+    }
+
   }
 .info{
   >>> span{
@@ -442,4 +497,5 @@ import { Toast } from 'vant'
         }
     }
 }
+
 </style>
