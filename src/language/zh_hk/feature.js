@@ -86,7 +86,10 @@ const lang = {
         text_withdraw: "提現",
         text_currency: "平臺",
         text_price: "實時價格",
-        text_change: "漲跌幅"
+        text_change: "漲跌幅",
+        text_recommend: "推薦遊戲",
+        text_shareHolding: "全民來持股",
+        text_upsAndDowns: "全民猜漲跌"
     },
     mining: {
         nav_title: "TB礦池",
@@ -154,8 +157,8 @@ const lang = {
         text_fee:"手續費"
     },
     footer: {
-        text_mining: "礦池",
-        text_assets: "資產",
+        text_home: "首頁",
+        text_assets: "錢包",
         text_user: "我的"
     },
     register:{

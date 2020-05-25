@@ -1,11 +1,7 @@
 <template>
   <div id="funds">
 
-     <van-nav-bar title="提币" left-arrow fixed @click-left="goback()"/>
-    
-     <!-- <walletNav :title="$t('wallet.withdraw.nav_title')" left-arrow @clickLeft="goback()"/> -->
-      <!-- <div class="rightText" @click="gopage(`/wallet/book?type=withdraw`)"><van-icon name="todo-list-o" size="20px"/>{{$t('wallet.withdraw.nav_title_list')}}</div>
-    </walletNav> -->
+     <van-nav-bar title="提币" left-arrow fixed @click-left="goback()" />
 
     <div class="item_box">
 
@@ -31,7 +27,7 @@
         <div class="available-quantity" v-if="currCoin">
           <p>
             <span>可用数量</span>
-            <span>0000 {{currCoin.coin.coinName}}</span>
+            <span>{{currCoin.amount}} {{currCoin.coin.coinName}}</span>
           </p>
         </div>
 
@@ -47,14 +43,14 @@
 
           <div class="extract-state" v-if="currCoin">
             <div>
-              <span>手续费：*** {{currCoin.coin.coinName}}</span>
+              <span>手续费：{{serviceNumber}} {{currCoin.coin.coinName}}</span>
             </div>
-            <div>提取全部</div>
+            <div @click="extractAll">提取全部</div>
           </div>
 
           <ul class="withdraw-detail" v-if="currCoin">
             <li>手续费:    2%/笔</li>
-            <li>实际到账：--{{currCoin.coin.coinName}}</li>
+            <li>实际到账：{{arrivalAmount}}&nbsp;&nbsp;{{currCoin.coin.coinName}}</li>
           </ul>
 
           <!-- 温馨提示 -->
@@ -137,7 +133,7 @@
     mapState
   } from 'vuex'
   import {
-    withdraw
+    withdraw, log
   } from '../../data/wallet';
   import chooseCoins from '../../components/wallet/chooseCoins'
   import getCode from '../../components/wallet/getCode'
@@ -164,7 +160,7 @@ import { Toast } from 'vant'
     },
     computed: {
       ...mapState(['userInfo']),
-      //设置周期
+      // 设置周期
       coins(){
         let res = this.userInfo.balanceModels.map(v=>{
             v.text = `${v.coin.coinName}(${this.$t('feature.transfer.text_balance')}${v.amount})`
@@ -172,6 +168,19 @@ import { Toast } from 'vant'
         }).filter(v=>v.coin.transfer=='Y');
         this.currCoin = res[0];
         return res;
+      },
+      // 手续费
+      serviceNumber() {
+        if (this.withrawInfo.amount) {
+          return this.withrawInfo.amount * 0.02
+        }
+        return '0.00'
+      },
+      arrivalAmount() {
+        if (this.withrawInfo.amount) {
+          return this.withrawInfo.amount - this.withrawInfo.amount * 0.02
+        }
+        return '0.00'
       }
     },
     methods:{
@@ -187,10 +196,16 @@ import { Toast } from 'vant'
       onChange (value, index) {
         console.log(value)
         console.log(index)
-        this.currCoin = value;
+        this.currCoin = value
+        this.withrawInfo.amount = null
         this.popup = false;
       },
-      next(){//下一步
+      // 提取全部
+      extractAll() {
+        this.withrawInfo.amount = this.currCoin.amount
+      },
+      next(){
+        console.log(this.withrawInfo.amount)
         if(!this.withrawInfo.address){
           Toast(this.$t('wallet.withdraw.Toast_address'));
           return;
@@ -199,11 +214,12 @@ import { Toast } from 'vant'
           Toast(this.$t('wallet.withdraw.Toast_amount'));
           return;
         }
-        this.withrawInfo.code = null; 
-        this.withrawInfo.transactionPwd = null;       
-        this.show_popup = true;
+        // this.withrawInfo.code = null; 
+        // this.withrawInfo.transactionPwd = null;       
+        // this.show_popup = true;
       },
-      submitWithdraw(){//申请提现 
+      // 申请提现
+      submitWithdraw(){ 
 
         if(!this.withrawInfo.code){
           Toast(this.$t('feature.cpopupCode.text_input'));

@@ -97,8 +97,29 @@
 }
 
 .actionForm {
-    padding: 0 10px 10px;
+    .currency-select {
+        display: flex;
+        width: 100%;
+        height: 48px;
+        line-height: 48px;
+        background: #F7F6FB;
+        padding: 0 20px;
+        justify-content: space-between;
+        .currency-select-left {
+          img {
+            width: 24px;
+            vertical-align: sub;
+          }
+          span {
+            font-size: 16px;
+            font-weight:bold;
+            color:rgba(53,53,53,1);
+            margin-left: 6px;
+          }
+        }
+    }
     .formGroup {
+        padding: 0 20px;
         margin-bottom: 10px;
         .title {
             font-weight: bold;
@@ -166,12 +187,18 @@
             }
         }
     }
-    .submit_btn {
-        background: #fa615c;
-        color: white;
-        padding: 10px;
-        border-radius: 8px;
-        text-align: center;
+    .submit-box {
+        padding: 0 20px;
+        margin-top: 40px;
+        .submit {
+          display: block;
+          margin: 20px auto;
+          width: 100%;
+          background: #DE4D49;
+          font-size: 14px;
+          font-weight: bold;
+          color: rgba(255,255,255,1);
+        }
     }
 }
 

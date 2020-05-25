@@ -10,15 +10,17 @@
     </div>
 
     <div class="actionForm">
-
-      <div class="formGroup currency" v-if="currCoin">
-        <div class="title">{{$t('feature.transfer.text_coin')}}</div>
-        <div class="inputItem currency-bg">
-            <div class="selecteBox" @click="show=true"></div>
-            <input type="text" :placeholder="`${$t('feature.transfer.input_chooseCoin')}`"  v-model="currCoin.coin.coinName" @blur="blur_event()">
+      <div class="currency-select" @click="show = true" v-if="currCoin">
+        <div class="currency-select-left">
+          <img src="../../assets/wallet/asstes/USDT@2x.png" alt="">
+          <span>
+            {{currCoin.coin.coinName}}
+          </span>
+        </div>
+        <div>
+          <van-icon name="arrow" />
         </div>
       </div>
-      <!-- formGroup -->
 
       <div class="formGroup">
         <div class="title">{{$t('feature.transfer.text_id')}}</div>
@@ -31,7 +33,6 @@
         </div>
         <!-- info -->
       </div>
-      <!-- formGroup -->
 
       <div class="formGroup">
         <!-- <div class="title">{{$t('feature.transfer.text_number')}} <small v-if="currCoin">( {{$t('feature.transfer.text_able')}}{{currCoin.amount}} {{currCoin.coin.coinName}} )</small></div> -->
@@ -48,7 +49,6 @@
         </div>
         <div class="info" v-if="fee" style="margin-top:10px;">手续费：{{fee}} {{currCoin.coin.coinName}}</div>
       </div>
-      <!-- formGroup -->
 
       <div class="formGroup">
         <div class="title">{{$t('feature.transfer.text_code')}}</div>
@@ -57,7 +57,6 @@
             <div class="getCode"> <getCode :codeData="{type:'transfer',phone:userInfo.user.id}"/></div>
         </div>
       </div>
-      <!-- formGroup -->
 
       <div class="formGroup">
         <div class="title">{{$t('feature.transfer.text_pass')}}</div>
@@ -65,11 +64,10 @@
           <input type="number" style="-webkit-text-security:disc" :placeholder="`${$t('feature.transfer.input_pass')}`" v-model="reqParams.transactionPwd" @blur="blur_event()">
         </div>
       </div>
-      <!-- formGroup -->
 
-      <div class="space20"></div>
-
-      <div class="submit_btn red" @click="checkParams()" disabled>{{$t('feature.transfer.text_btn')}}</div>
+      <div class="submit-box">
+        <van-button class="submit" @click="checkParams()" disabled>确认转账</van-button>
+      </div>
       {{this.reqParams.coin}}
 
   </div>

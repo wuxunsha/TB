@@ -1,6 +1,6 @@
 <template>
   <div class="quote">
-    <h3>推荐游戏</h3>
+    <h3>{{$t('feature.home.text_recommend')}}</h3>
     <div class="game-type">
       <div>
         <div class="game-image">
@@ -8,7 +8,7 @@
         </div>
         <div class="game-box">
           <div class="game-name">
-            <p>全民来持股</p>
+            <p>{{$t('feature.home.text_shareHolding')}}</p>
           </div>
           <div class="game-box-image">
             <img src="../../../assets/wallet/home/ＧＯ！按钮@2x.png" alt="" @click="shareHolding">
@@ -22,7 +22,7 @@
         </div>
         <div class="game-box">
           <div class="game-name">
-            <p>全民猜涨跌</p>
+            <p>{{$t('feature.home.text_upsAndDowns')}}</p>
           </div>
           <div class="game-box-image">
             <img src="../../../assets/wallet/home/ＧＯ！按钮@2x.png" alt="">

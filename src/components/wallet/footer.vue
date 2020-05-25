@@ -32,12 +32,11 @@
         navRouter:[{
           title:'home',
           path:'/home',
-          name:'首页'
+          name:`${this.$t('feature.footer.text_home')}`
         },{
           title:'assets',
           path:'/assets',
-          // name:`${this.$t('feature.footer.text_assets')}`
-          name:'钱包'
+          name:`${this.$t('feature.footer.text_assets')}`
         },{
           title:'user',
           path:'/bankUser',

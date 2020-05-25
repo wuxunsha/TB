@@ -1,8 +1,10 @@
 const lang = {
     recharge: {
-        text_p: ` <span>*请勿向上述地址充值非{coinName}资产，网络节点确认后到账</span>
-        <span>*最小充值数量{minRecharge}，小于最小数量将不会上账且无法退回</span>
-        <span>*请务必确认电脑及浏览器安全，防止信息被篡改或泄露</span>`
+        text_p: `<span>请勿向上述地址充值非{coinName}资产，否则资产将不可找回。</span>
+        <i></i><span>您充值至上述地址后，需要整个网络节点确认，6次网络确认后到帐。</span>
+        <i></i><span>最小充值数量{minRecharge}，小于最小数量将不会上账且无法退回</span>
+        <i></i><span>您的充值地址不会经常改变，可以重复充值；如有更改，我们会尽量通过网站公告或邮件通知您。</span>
+        <i></i><span>请务必确认电脑及浏览器安全，防止信息被篡改或泄露</span>`
     },
     withdraw: {
         text_copy: "输入或长按粘贴地址",
@@ -71,13 +73,13 @@ const lang = {
         text_amount: "团队总业绩",
         text_number: "团队总人数",
         text_amount: "业绩",
-        text_left_amout:"左区业绩",
-        text_left_number:"左区人数",
-        text_right_amout:"右区业绩",
-        text_right_number:"右区人数"
+        text_left_amout: "左区业绩",
+        text_left_number: "左区人数",
+        text_right_amout: "右区业绩",
+        text_right_number: "右区人数"
     },
     home: {
-        nav_title_home:"TB生态",
+        nav_title_home: "TB生态",
         nav_title: "我的团队",
         text_notes: "系统公告",
         text_mining: "矿池",
@@ -86,7 +88,10 @@ const lang = {
         text_withdraw: "提现",
         text_currency: "平台",
         text_price: "实时价格",
-        text_change: "涨跌幅"
+        text_change: "涨跌幅",
+        text_recommend: "推荐游戏",
+        text_shareHolding: "全民来持股",
+        text_upsAndDowns: "全民猜涨跌"
     },
     mining: {
         nav_title: "TB矿池",
@@ -112,7 +117,7 @@ const lang = {
         text_feedback: "在线客服",
         text_news: "公告中心",
         text_lang: "语言切换",
-        text_changePayPass:"重置交易密码"
+        text_changePayPass: "重置交易密码"
     },
     miningBuy: {
         nav_title: "矿池详情",
@@ -149,49 +154,49 @@ const lang = {
     },
     assetsDetail_v2: {
         nav_title: "资金明细",
-        text_in:"收款人",
-        text_out:"转账人",
-        text_fee:"手续费"
+        text_in: "收款人",
+        text_out: "转账人",
+        text_fee: "手续费"
     },
     footer: {
-        text_mining: "矿池",
-        text_assets: "资产",
+        text_home: "首页",
+        text_assets: "钱包",
         text_user: "我的"
     },
-    register:{
-        input_payPass:"请输入6位交易密码",
-        input_payPass_re:"请再次输入交易密码",
-        text_area:"注册区域",
-        text_left:"左区",
-        text_right:"右区",
-        toast_loginPass_fail:"登录密码不一致",
-        toast_payPass_fail:"交易密码不一致",
-        text_download:"下载APP"
+    register: {
+        input_payPass: "请输入6位交易密码",
+        input_payPass_re: "请再次输入交易密码",
+        text_area: "注册区域",
+        text_left: "左区",
+        text_right: "右区",
+        toast_loginPass_fail: "登录密码不一致",
+        toast_payPass_fail: "交易密码不一致",
+        text_download: "下载APP"
     },
-    setPayPass:{
-        text_title:"重置交易密码",
-        input_pass:"请输入交易密码",
-        input_pass_re:"请再次输入交易密码",
-        btn_text:"确认重置"
+    setPayPass: {
+        text_title: "重置交易密码",
+        input_pass: "请输入交易密码",
+        input_pass_re: "请再次输入交易密码",
+        btn_text: "确认重置"
     },
-    transfer:{
-        text_title:"转账",
-        text_coin:"转账币种",
-        input_chooseCoin:"选择转账币种",
-        text_id:"收款人帐号",
-        input_id:"请输入收款人帐号",
-        text_number:"转账金额",
-        text_able:"可用余额",
-        input_number:"请输入转账金额",
-        text_code:"手机/邮箱验证码",
-        input_code:"请输入手机/邮箱验证码",
-        text_pass:"转账密码",
-        input_pass:"请输入支付密码",
-        text_btn:"确认转账",
-        text_pickerTitle:"选择转账币种",
-        text_balance:"余额",
-        text_nameTitle:"收款帐号",
-        text_noName:"暂无此帐号!"
+    transfer: {
+        text_title: "转账",
+        text_coin: "转账币种",
+        input_chooseCoin: "选择转账币种",
+        text_id: "收款人帐号",
+        input_id: "请输入收款人帐号",
+        text_number: "转账金额",
+        text_able: "可用余额",
+        input_number: "请输入转账金额",
+        text_code: "手机/邮箱验证码",
+        input_code: "请输入手机/邮箱验证码",
+        text_pass: "转账密码",
+        input_pass: "请输入支付密码",
+        text_btn: "确认转账",
+        text_pickerTitle: "选择转账币种",
+        text_balance: "余额",
+        text_nameTitle: "收款帐号",
+        text_noName: "暂无此帐号!"
     }
 }
 

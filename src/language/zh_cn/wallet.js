@@ -1,18 +1,18 @@
 const lang = {
     login: {
         text_active: "当前帐号已被限制登录,请联系管理员",
-        title: "TB帐号登录",
-        form_mail: "请输入用户ID",
-        form_pass: "请输入账户密码",
-        form_btn_login: "登录帐号",
+        title: "登录TB",
+        form_mail: "邮箱或手机号码",
+        form_pass: "密码",
+        form_btn_login: "登录",
         form_btn_forget: "忘记密码",
-        none_user: "还有没有平台帐号？",
-        btn_register: "立即注册",
+        none_user: "还没有TB GAME账号？",
+        btn_register: "注册",
         toast_mail: "请输入正确手机号码",
         toast_pass: "请输入密码"
     },
     register: {
-        title: "TB帐号注册",
+        title: "注册TB",
         form_input_userName: "请输入用户名称",
         form_input_email: "请输入邮箱或手机号码",
         form_input_second: "秒后重新发送",
@@ -33,7 +33,7 @@ const lang = {
         Dialog_message: "帐号已注册成功，建议注册下载世纪轮回APP！",
         Dialog_cancel: "直接登录",
         Dialog_confirm: "立即下载",
-        text_id:"您的用户ID为："
+        text_id: "您的用户ID为："
     },
     forgetPass: {
         nav_title: "重置登录密码",
@@ -134,7 +134,9 @@ const lang = {
         text_list: "充币记录",
         text_addr: "充值地址",
         text_copy_addr: "复制充值地址",
-        text_p: "向以上收款地址转入充值金额，等待区块打包完成后即可完成，这可能需要几分钟的时间，请耐心等候。"
+        text_p: "向以上收款地址转入充值金额，等待区块打包完成后即可完成，这可能需要几分钟的时间，请耐心等候。",
+        tip: '温馨提示',
+        list: '最近充值记录'
     },
     share: {
         nav_title: "推荐分享",
@@ -223,7 +225,7 @@ const lang = {
     },
     news: {
         nav_title: "公告中心",
-        nav_title_detial: "详情"
+        nav_title_detial: "详情",
     }
 }
 

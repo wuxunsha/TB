@@ -86,7 +86,10 @@ const lang = {
     text_withdraw: "Withdraw",
     text_currency: "Platform",
     text_price: "Live Price",
-    text_change: "Changes"
+    text_change: "Changes",
+    text_recommend: "recommend games",
+    text_shareHolding: "All the people hold shares",
+    text_upsAndDowns: "Everyone guesses"
   },
   mining: {
     nav_title: "TB Mining Pool",
@@ -154,8 +157,8 @@ const lang = {
     text_fee: "Handling Fee"
   },
   footer: {
-    text_mining: "Mining Pool",
-    text_assets: "Assets",
+    text_home: "Home Page",
+    text_assets: "Wallet",
     text_user: "My"
   },
   register: {
