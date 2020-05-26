@@ -167,10 +167,10 @@ const lang = {
         nav_title: "Apply for withdrawal",
         nav_title_list: "Withdrawal Record",
         text_out: "Number of withdrawals",
-        text_able: "Available",
+        text_able: "Quantity Available",
         input_num: "Please enter the withdrawal amount",
-        text_allin: "All",
-        text_addr: "Withdrawal Address",
+        text_allin: "Extract all",
+        text_addr: "Please enter the withdrawal address",
         input_addr: "Please enter the withdrawal address",
         text_next: "Next",
         text_p: "The system needs to be confirmed after withdrawal. It is expected to be 1-2 working days, please be patient.",
@@ -179,7 +179,17 @@ const lang = {
         btn_comfirm: "Confirm withdrawal",
         Toast_amount: "Please enter the cash withdrawal amount",
         Toast_address: "Please enter the withdrawal address",
-        Toast_code: "Please enter the phone verification code"
+        Toast_code: "Please enter the phone verification code",
+        Toast_prompt: "After the withdrawal operation is completed, the corresponding asset ownership will be transferred, please be careful!",
+        Toast_Handling: "Handling fee",
+        Actually_Arrived: "Actually arrived",
+        Tips: "Tips",
+        Tips_1: "Users who pre-pay at 17:00 every day are expected to withdraw cash to the account on the same day.",
+        Tips_2: "Users who withdraw cash after 17:00 every day are expected to withdraw cash to the account by the next day at the latest.",
+        Tips_3: "Be sure to confirm the security of your computer and browser to prevent information from being tampered with or leaked.",
+        confirm: "confirm",
+        Withdraw: "Withdraw",
+        pen: "pen"
     },
     chooseCoins: {
         text_title: "Choose Currency"

@@ -1,12 +1,12 @@
 <template>
   <div id="funds">
 
-     <van-nav-bar title="提币" left-arrow fixed @click-left="goback()" />
+     <van-nav-bar :title="$t('wallet.withdraw.Withdraw')" left-arrow fixed @click-left="goback()" />
 
     <div class="item_box">
 
       <div class="remind-box">
-        <p class="remind">您的提币操作完成后对应的资产所有权将转移，请谨慎操作！</p>
+        <p class="remind">{{$t('wallet.withdraw.Toast_prompt')}}</p>
       </div>
 
       <div class="currency-select" @click="popup = true" v-if="currCoin">
@@ -26,7 +26,7 @@
         <!-- 可用数量 -->
         <div class="available-quantity" v-if="currCoin">
           <p>
-            <span>可用数量</span>
+            <span>{{$t('wallet.withdraw.text_able')}}</span>
             <span>{{currCoin.amount}} {{currCoin.coin.coinName}}</span>
           </p>
         </div>
@@ -34,32 +34,32 @@
         <div class="withdraw_form">
 
           <div class="input_group">
-            <input type="text" placeholder="请输入提币地址" v-model="withrawInfo.address" @blur="blur_event()">
+            <input type="text" :placeholder="$t('wallet.withdraw.input_addr')" v-model="withrawInfo.address" @blur="blur_event()">
           </div>
 
           <div class="input_group">
-            <input type="text" placeholder="请输入提币数量" v-model="withrawInfo.amount" @blur="blur_event()">
+            <input type="text" :placeholder="$t('wallet.withdraw.input_num')" v-model="withrawInfo.amount" @blur="blur_event()">
           </div>
 
           <div class="extract-state" v-if="currCoin">
             <div>
-              <span>手续费：{{serviceNumber}} {{currCoin.coin.coinName}}</span>
+              <span>{{$t('wallet.withdraw.Toast_Handling')}}：{{serviceNumber}} {{currCoin.coin.coinName}}</span>
             </div>
-            <div @click="extractAll">提取全部</div>
+            <div @click="extractAll">{{$t('wallet.withdraw.text_allin')}}</div>
           </div>
 
           <ul class="withdraw-detail" v-if="currCoin">
-            <li>手续费:    2%/笔</li>
-            <li>实际到账：{{arrivalAmount}}&nbsp;&nbsp;{{currCoin.coin.coinName}}</li>
+            <li>{{$t('wallet.withdraw.Toast_Handling')}}:    2%/{{$t('wallet.withdraw.pen')}}</li>
+            <li>{{$t('wallet.withdraw.Actually_Arrived')}}：{{arrivalAmount}}&nbsp;&nbsp;{{currCoin.coin.coinName}}</li>
           </ul>
 
           <!-- 温馨提示 -->
           <div class="warm-prompt">
-            <p>温馨提示</p>
+            <p>{{$t('wallet.withdraw.Tips')}}</p>
             <ul>
-              <li>每日17:00前提现的用户，预计在当天提现到账。</li>
-              <li>每日17:00后提现的用户，预计最晚于次日提现到账。</li>
-              <li>请务必确认电脑及浏览器安全，防止信息被篡改或泄露。</li>
+              <li>{{$t('wallet.withdraw.Tips_1')}}</li>
+              <li>{{$t('wallet.withdraw.Tips_2')}}</li>
+              <li>{{$t('wallet.withdraw.Tips_3')}}</li>
             </ul>
           </div>
 
@@ -86,7 +86,7 @@
           </div> -->
 
           <div class="submit-box">
-            <van-button class="submit" @click="next()">确认</van-button>
+            <van-button class="submit" @click="next()">{{$t('wallet.withdraw.confirm')}}</van-button>
           </div>
 
         </div>
@@ -264,7 +264,6 @@ import { Toast } from 'vant'
         background: #FEF6F4;
         .remind {
           width: 100%;
-          height: 28px;
           line-height: 28px;
           font-size: 12px;
           font-weight: 500;

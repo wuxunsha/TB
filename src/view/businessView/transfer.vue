@@ -41,13 +41,13 @@
           <input type="number" :placeholder="`${$t('feature.transfer.input_number')}`" v-model="reqParams.number" @blur="blur_event()" @change="getFee()">
           <span class="money-type" v-if="currCoin">{{currCoin.coin.coinName}}</span>
           <span>|</span>
-          <span @click="allSum">全部</span>
+          <span @click="allSum">{{$t('feature.transfer.All')}}</span>
         </div>
         <div class="balance">
-          <span>可用余额：</span>
+          <span>{{$t('feature.transfer.text_able')}}：</span>
           <span v-if="currCoin">{{currCoin.amount}}&nbsp;{{currCoin.coin.coinName}}</span>
         </div>
-        <div class="info" v-if="fee" style="margin-top:10px;">手续费：{{fee}} {{currCoin.coin.coinName}}</div>
+        <div class="info" v-if="fee" style="margin-top:10px;">{{$t('wallet.withdraw.Toast_Handling')}}：{{fee}} {{currCoin.coin.coinName}}</div>
       </div>
 
       <div class="formGroup">
@@ -66,7 +66,7 @@
       </div>
 
       <div class="submit-box">
-        <van-button class="submit" @click="checkParams()" disabled>确认转账</van-button>
+        <van-button class="submit" @click="checkParams()" disabled>{{$t('feature.transfer.text_btn')}}</van-button>
       </div>
       {{this.reqParams.coin}}
 

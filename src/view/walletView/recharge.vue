@@ -20,7 +20,7 @@
              style="padding:0 20px">
 
             <div>
-                <div style="color:#AFAFAF;font-size:12px">111充值地址</div>
+                <div style="color:#AFAFAF;font-size:12px">{{$t('wallet.recharge.text_addr')}}</div>
                 <div class="addr font-bold font12 copy-address">
                     <div>{{addressInfo.address}}</div>
                     <van-button plain

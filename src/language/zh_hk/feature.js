@@ -198,7 +198,8 @@ const lang = {
         text_pickerTitle:"選擇轉賬幣種",
         text_balance:"余額",
         text_nameTitle:"收款帳號",
-        text_noName:"暫無此帳號!"
+        text_noName:"暫無此帳號!",
+        All: "全部"
     }
 }
 

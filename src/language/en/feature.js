@@ -198,7 +198,8 @@ const lang = {
     text_pickerTitle: "Select the currency of transfer",
     text_balance: "Balance",
     text_nameTitle: "Receiving Account Number",
-    text_noName: "No such account!"
+    text_noName: "No such account!",
+    All: "All"
   }
 }
 

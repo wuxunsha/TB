@@ -200,7 +200,8 @@ const lang = {
         text_pickerTitle: "选择转账币种",
         text_balance: "余额",
         text_nameTitle: "收款帐号",
-        text_noName: "暂无此帐号!"
+        text_noName: "暂无此帐号!",
+        All: "全部"
     }
 }
 
