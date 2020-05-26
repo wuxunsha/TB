@@ -123,7 +123,6 @@ export default {
             console.log(clipboard);
 
             clipboard.on('success', e => {
-                console.log(e);
 
                 Toast(this.$t('wallet.common.toast_copy_ok'))
                 clipboard.destroy()
