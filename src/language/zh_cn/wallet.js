@@ -136,7 +136,8 @@ const lang = {
         text_copy_addr: "复制充值地址",
         text_p: "向以上收款地址转入充值金额，等待区块打包完成后即可完成，这可能需要几分钟的时间，请耐心等候。",
         tip: '温馨提示',
-        list: '最近充值记录'
+        list: '最近充值记录',
+        text_recharge: '充值二维码'
     },
     share: {
         nav_title: "推荐分享",

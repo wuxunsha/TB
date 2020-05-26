@@ -136,7 +136,8 @@ const lang = {
         text_copy_addr: "復制充值地址",
         text_p: "向以上收款地址轉入充值金額，等待區塊打包完成後即可完成，這可能需要幾分鐘的時間，請耐心等候。",
         tip: '溫馨提示',
-        list: '最近充值記錄'
+        list: '最近充值記錄',
+        text_recharge: '充值二維碼'
     },
     share: {
         nav_title: "推薦分享",

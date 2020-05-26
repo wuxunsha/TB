@@ -34,7 +34,7 @@
             </div>
 
             <div class="code_box">
-                <div style="color:#AFAFAF;font-size:12px">充值二维码</div>
+                <div style="color:#AFAFAF;font-size:12px">{{$t('wallet.recharge.text_recharge')}}</div>
                 <div class="qr">
                     <div class="qr_box">
                         <div class="qrcode"
