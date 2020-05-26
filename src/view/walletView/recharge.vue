@@ -118,7 +118,6 @@ export default {
             })
         }, //qrcode
         copy() { //复制
-            console.log(1111);
 
             var clipboard = new Clipboard('.copycode')
             console.log(clipboard);
