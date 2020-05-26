@@ -19,11 +19,15 @@ const lang = {
     },
     //業務翻譯==================================、
     assets: {
-        nav_title: "資產",
+        nav_title: "總資產折合",
         text_balance: "余額",
-        text_withdraw: "轉出",
-        text_recharge: "轉入",
-        text_list: "資產列表"
+        text_transfer: "轉賬",
+        text_deposit: "充幣",
+        text_list: "資產列表",
+        text_withdraw: "提幣",
+        text_available: "可用",
+        text_freeze: "凍結",
+        text_crowdfunding: "眾籌"
     },
     bank: {
         nav_title: "余幣寶",

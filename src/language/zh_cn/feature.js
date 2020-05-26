@@ -21,11 +21,15 @@ const lang = {
     },
     //业务翻译==================================、
     assets: {
-        nav_title: "资产",
+        nav_title: "总资产折合",
         text_balance: "余额",
-        text_withdraw: "转出",
-        text_recharge: "转入",
+        text_transfer: "转账",
+        text_deposit: "充币",
         text_list: "资产列表",
+        text_withdraw: "提币",
+        text_available: "可用",
+        text_freeze: "冻结",
+        text_crowdfunding: "众筹"
     },
     bank: {
         nav_title: "余币宝",

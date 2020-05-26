@@ -2,7 +2,7 @@
 
   <div class="mylist">
 
-    <p class="asset-list-title">资产列表</p>
+    <p class="asset-list-title">{{$t('feature.assets.text_list')}}</p>
 
     <div class="asset-list">
       <ul>
@@ -12,9 +12,9 @@
             <span>USDT</span>
           </div>
           <div class="list-name">
-            <p>可用</p>
-            <p>冻结</p>
-            <p>众筹</p>
+            <p>{{$t('feature.assets.text_available')}}</p>
+            <p>{{$t('feature.assets.text_freeze')}}</p>
+            <p>{{$t('feature.assets.text_crowdfunding')}}</p>
           </div>
           <div class="asset-sum">
             <p>20.000</p>
@@ -25,12 +25,12 @@
         <li>
           <div class="asset-list-top">
             <img src="../../../assets/wallet/asstes/TB-币logo@2x.png" alt="">
-            <span>USDT</span>
+            <span>TB</span>
           </div>
           <div class="list-name">
-            <p>可用</p>
-            <p>冻结</p>
-            <p>众筹</p>
+            <p>{{$t('feature.assets.text_available')}}</p>
+            <p>{{$t('feature.assets.text_freeze')}}</p>
+            <p>{{$t('feature.assets.text_crowdfunding')}}</p>
           </div>
           <div class="asset-sum">
             <p>20.000</p>
@@ -41,12 +41,12 @@
         <li>
           <div class="asset-list-top">
             <img src="../../../assets/wallet/asstes/ＴＢＧ@2x.png" alt="">
-            <span>USDT</span>
+            <span>TBG</span>
           </div>
           <div class="list-name">
-            <p>可用</p>
-            <p>冻结</p>
-            <p>众筹</p>
+            <p>{{$t('feature.assets.text_available')}}</p>
+            <p>{{$t('feature.assets.text_freeze')}}</p>
+            <p>{{$t('feature.assets.text_crowdfunding')}}</p>
           </div>
           <div class="asset-sum">
             <p>20.000</p>
@@ -56,20 +56,6 @@
         </li>
       </ul>
     </div>
-      <!-- <div class="listTitle">{{$t('feature.assets.text_list')}}</div>
-
-       <div class="list_type1 flex align between animated fadeIn" v-for="(item,index) in userInfo.balanceModels" :key="index" @click="gopage(`/assetsDetail_v2?id=${item.coin.id}`)">
-
-         <div class="item flex align">
-           <i class="coin_icon">
-             <img :src="setImgUrl(item.coin.coinImg)" alt="" srcset="">
-           </i>
-           <span>{{item.coin.coinName}}</span>
-         </div>
-
-         <div class="amout">{{item.amount}}</div>
-
-       </div> -->
 
   </div>
 

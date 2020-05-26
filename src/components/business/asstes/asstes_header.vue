@@ -3,7 +3,7 @@
     <!-- 顶部 -->
     <div class="header">
       <p class="property-title">
-        <span>总资产折合</span>
+        <span>{{$t('feature.assets.nav_title')}}</span>
         <i :class="isHiddenFlag ? 'show' : 'hidden'" @click="isShowIcon"></i>
       </p>
 
@@ -14,13 +14,13 @@
 
       <div class="property-box">
         <div @click="gopage('/recharge')">
-          <span>充币</span>
+          <span>{{$t('feature.assets.text_deposit')}}</span>
         </div>
         <div @click="gopage('/withdraw')">
-          <span>提币</span>
+          <span>{{$t('feature.assets.text_withdraw')}}</span>
         </div>
         <div @click="gopage('/transfer')">
-          <span>转账</span>
+          <span>{{$t('feature.assets.text_transfer')}}</span>
         </div>
       </div>
     </div>

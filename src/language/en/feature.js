@@ -19,11 +19,15 @@ const lang = {
   },
   // Business translation ==================================== 、
   assets: {
-    nav_title: "Asset",
+    nav_title: "Total assets converted",
     text_balance: "Balance",
-    text_withdraw: "Roll Out",
-    text_recharge: "Go In",
-    text_list: "Asset List"
+    text_transfer: "Transfer",
+    text_deposit: "Deposit",
+    text_list: "Asset List",
+    text_withdraw: "Withdraw",
+    text_available: "Available",
+    text_freeze: "freeze",
+    text_crowdfunding: "Cowdfunding"
   },
   bank: {
     nav_title: "Yu Yuan Bao",
