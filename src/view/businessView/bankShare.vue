@@ -67,7 +67,7 @@
       qrcode() { //生成二维码
         this.$refs.qrCodeUrl.innerHTML="";//先移除
         // this.code_text = `${window.location.protocol}//${window.location.host}/#/register?invitation=${this.area=='left' ? this.userInfo.user.userInvitation : this.userInfo.user.userInvitationRight}`;
-        this.code_text = `https://xmtop.cn/#/register?invitation=${this.area=='left' ? this.userInfo.user.userInvitation : this.userInfo.user.userInvitationRight}`;
+        this.code_text = `http://tb.njmall.store/#/register?invitation=${this.area=='left' ? this.userInfo.user.userInvitation : this.userInfo.user.userInvitationRight}`;
         console.log(this.code_text);
         var qrcode = new QRCode(this.$refs.qrCodeUrl, {
           text: this.code_text,

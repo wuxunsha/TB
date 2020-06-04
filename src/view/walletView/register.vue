@@ -112,7 +112,7 @@
                 </div>
 
                 <a class="font14 font_link"
-                   href="https://www.gscapp.cn/ios/cAxn"
+                   href="https://www.gscapp.cn/app/tbnpools"
                    target="_bank">{{$t('feature.register.text_download')}}</a>
 
             </div>
