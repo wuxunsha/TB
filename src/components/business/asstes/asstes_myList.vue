@@ -16,7 +16,7 @@
             <p>{{$t('feature.assets.text_freeze')}}</p>
           </div>
           <div class="asset-sum">
-            <p>{{financial(item.amount)}}</p>
+            <p>{{item.amount}}</p>
             <p>00.000</p>
           </div>
         </li>
@@ -116,9 +116,8 @@
           font-weight: 500;
           color: rgba(200,205,211,1);
         }
-        p:nth-child(2),
-        p:nth-child(3)  {
-          text-align: left;
+        p:nth-child(2)  {
+          text-align: right;
         }
       }
       .asset-sum {
@@ -131,9 +130,8 @@
           font-weight: bold;
           color: rgba(53,53,53,1);
         }
-        p:nth-child(2),
-        p:nth-child(3)  {
-          text-align: left;
+        p:nth-child(2)  {
+          text-align: right;
         }
       }
     }
