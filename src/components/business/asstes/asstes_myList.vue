@@ -6,23 +6,21 @@
 
     <div class="asset-list">
       <ul>
-        <li>
+        <li v-for="(item, index) in balanceList" :key="index">
           <div class="asset-list-top">
-            <img src="../../../assets/wallet/asstes/USDT@2x.png" alt="">
-            <span>USDT</span>
+            <img :src="item.coin.coinName === 'USDT' ? require('./../../../assets/wallet/asstes/USDT@2x.png') : item.coin.coinName === 'TB' ? require('./../../../assets/wallet/asstes/TB-币logo@2x.png') : require('./../../../assets/wallet/asstes/ＴＢＧ@2x.png')" alt="">
+            <span>{{item.coin.coinName}}</span>
           </div>
           <div class="list-name">
             <p>{{$t('feature.assets.text_available')}}</p>
             <p>{{$t('feature.assets.text_freeze')}}</p>
-            <p>{{$t('feature.assets.text_crowdfunding')}}</p>
           </div>
           <div class="asset-sum">
-            <p>20.000</p>
+            <p>{{financial(item.amount)}}</p>
             <p>00.000</p>
-            <p>20.000</p>
           </div>
         </li>
-        <li>
+        <!-- <li>
           <div class="asset-list-top">
             <img src="../../../assets/wallet/asstes/TB-币logo@2x.png" alt="">
             <span>TB</span>
@@ -53,7 +51,7 @@
             <p>00.000</p>
             <p>20.000</p>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
 
@@ -70,14 +68,27 @@
     props: ['user'],
     data() {
       return {
-
+        // 资产列表
+        balanceList: null
       }
     },
     created() {
-      console.log(this.userInfo)
+      this.getBalanceAll()
     },
     methods: {
-      
+      // 获取资产列表信息
+      getBalanceAll() {
+        let res = this.userInfo.balanceModels.map(v=>{
+            v.text = `${v.coin.coinName}(${this.$t('feature.transfer.text_balance')}${v.amount})`
+            return v;
+        }).filter(v=>v.coin.transfer=='Y');
+        this.balanceList = res
+        console.log(this.balanceList)
+      },
+      // 保留小数点
+      financial(x) {
+        return Number.parseFloat(x).toFixed(3)
+      }
     },
     computed: {
       ...mapState(['userInfo'])
@@ -117,7 +128,10 @@
         width: 100%;
         height: 24px;
         img {
-          height: 100%;
+          display: inline-block;
+          height: 24px;
+          width: 24px;
+          vertical-align: bottom;
         }
         span {
           font-size: 14px;
