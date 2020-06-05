@@ -20,38 +20,6 @@
             <p>00.000</p>
           </div>
         </li>
-        <!-- <li>
-          <div class="asset-list-top">
-            <img src="../../../assets/wallet/asstes/TB-币logo@2x.png" alt="">
-            <span>TB</span>
-          </div>
-          <div class="list-name">
-            <p>{{$t('feature.assets.text_available')}}</p>
-            <p>{{$t('feature.assets.text_freeze')}}</p>
-            <p>{{$t('feature.assets.text_crowdfunding')}}</p>
-          </div>
-          <div class="asset-sum">
-            <p>20.000</p>
-            <p>00.000</p>
-            <p>20.000</p>
-          </div>
-        </li>
-        <li>
-          <div class="asset-list-top">
-            <img src="../../../assets/wallet/asstes/ＴＢＧ@2x.png" alt="">
-            <span>TBG</span>
-          </div>
-          <div class="list-name">
-            <p>{{$t('feature.assets.text_available')}}</p>
-            <p>{{$t('feature.assets.text_freeze')}}</p>
-            <p>{{$t('feature.assets.text_crowdfunding')}}</p>
-          </div>
-          <div class="asset-sum">
-            <p>20.000</p>
-            <p>00.000</p>
-            <p>20.000</p>
-          </div>
-        </li> -->
       </ul>
     </div>
 
@@ -114,7 +82,6 @@
     }
     .asset-list {
       width: 100%;
-      // min-height: 427px;
       background: #fff;
       margin-top: 6px;
       padding: 0 15px 8px;
