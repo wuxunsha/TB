@@ -210,3 +210,13 @@ export function child_detail(params) { //推荐概览数据
         params: params
     })
 } //child_detail'
+
+
+const quanPath = isProduction ? 'http://39.99.215.137' : 'quanProxy'; //线上路由
+
+export function quan_detail(params) { //推荐概览数据
+    return get({
+        url: `${quanPath}/qmlcg/selectForDT`,
+        params: params
+    })
+} //child_detail'

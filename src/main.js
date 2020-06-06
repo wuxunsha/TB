@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store/index';
+import Lib from '@/data/index'
+import axios from 'axios'
 import {
     Check_browser,
     timerExchange,
@@ -67,6 +69,8 @@ window.Dialog = Dialog;
 import 'vant/lib/index.css';
 import './styles/index.scss';
 
+Vue.prototype.$lib = Lib;
+Vue.prototype.$http = axios;
 Vue.prototype.goback = () => {
     router.go(-1);
 }

@@ -10,14 +10,14 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             '/proxyUrl': {
-                target: 'http://tb.njmall.store/proxyUrl',//'http://api.tb.object.cool:8022',//'http://web.tb.object.cool/proxyUrl',
+                target: 'http://tb.njmall.store/proxyUrl', //'http://api.tb.object.cool:8022',//'http://web.tb.object.cool/proxyUrl',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/proxyUrl': '/'
                 }
             },
             '/proxyPoolUrl': {
-                target: 'http://api2.njmall.store',//'http://api.tb.object.cool:8022',//'http://web.tb.object.cool/proxyUrl',
+                target: 'http://api2.njmall.store', //'http://api.tb.object.cool:8022',//'http://web.tb.object.cool/proxyUrl',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/proxyPoolUrl': '/'
@@ -35,6 +35,13 @@ module.exports = {
                 changeOrigin: true,
                 pathRewrite: {
                     '^/mallProxy': '/'
+                }
+            },
+            '/quanProxy': {
+                target: 'http://39.99.215.137:8080', //'http://192.168.0.121:9523', //'http://122.51.200.81:9523', //商城接口
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/quanProxy': '/'
                 }
             },
         },

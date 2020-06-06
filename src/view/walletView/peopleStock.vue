@@ -14,13 +14,15 @@
             </div>
         </div>
         <div class="main"
-             @click="goDetail()">
+             @click="goDetail()"
+             v-for="(item,index) in getList"
+             :key="index">
             <div class="people-main">
                 <div class="left-main">
                     <img src="../../assets/wallet/people/left-main.png">
                 </div>
                 <div class="right-main">
-                    <h3>农业</h3>
+                    <h3>{{item.creater}}</h3>
                     <p>
                         <span>产业价值(USDT)</span>
                         <span>50-10</span>
@@ -44,79 +46,35 @@
             </div>
             <div class="line"></div>
         </div>
-        <div class="main">
-            <div class="people-main">
-                <div class="left-main">
-                    <img src="../../assets/wallet/people/left-main.png">
-                </div>
-                <div class="right-main">
-                    <h3>农业</h3>
-                    <p>
-                        <span>产业价值(USDT)</span>
-                        <span>50-10</span>
-                    </p>
-                    <p>
-                        <span>持股时间</span>
-                        <span>14:00</span>
-                    </p>
-                    <p>
-                        <span>产业收益</span>
-                        <span>1天/5%</span>
-                    </p>
-                    <p>
-                        <span>产业数量</span>
-                        <span>0</span>
-                    </p>
-                    <div class="btn">
-                        股权交接中
-                    </div>
-                </div>
-            </div>
-            <div class="line"></div>
-        </div>
-        <div class="main">
-            <div class="people-main">
-                <div class="left-main">
-                    <img src="../../assets/wallet/people/left-main.png">
-                </div>
-                <div class="right-main">
-                    <h3>农业</h3>
-                    <p>
-                        <span>产业价值(USDT)</span>
-                        <span>50-10</span>
-                    </p>
-                    <p>
-                        <span>持股时间</span>
-                        <span>14:00</span>
-                    </p>
-                    <p>
-                        <span>产业收益</span>
-                        <span>1天/5%</span>
-                    </p>
-                    <p>
-                        <span>产业数量</span>
-                        <span>0</span>
-                    </p>
-                    <div class="btn">
-                        股权交接中
-                    </div>
-                </div>
-            </div>
-            <div class="line"></div>
-        </div>
+
     </div>
 </template>
 
 <script>
+import {
+    quan_detail
+} from '../../data/wallet';
 export default {
     data() {
         return {
         }
     },
-
+    mounted() {
+        this.getList()
+    },
     methods: {
         goDetail() {
             this.$router.push('/peopleDetail')
+        },
+        getList() {
+            console.log(this.$lib);
+
+            // 'http://39.99.215.137:8080/qmlcg/listConfig'
+            this.$http.get(this.$lib.host + '/qmlcg/selectForDT').then(res => {
+                if (res.code == 200) {
+                    this.getList = res.data
+                }
+            })
         }
     }
 }
