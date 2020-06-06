@@ -132,7 +132,7 @@
   }
 
   .item.active .icon.assets {
-    background: url(../../assets/business/nav_assets_active.png);
+    background: url(../../assets/business/钱包-选中@2x.png);
   }
 
 

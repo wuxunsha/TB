@@ -14,12 +14,9 @@
     <div class="notes border-bottom" v-show="noticeArr.length">
 
       <van-swipe :autoplay="3000" vertical style="height: 25px;" :show-indicators="false">
-        <van-swipe-item v-for="(item,index) in noticeArr" :key="index" class=" animated fadeIn">
+         <van-swipe-item v-for="(item,index) in noticeArr" :key="index" class=" animated fadeIn">
           <div class="flex align"  @click="gopage(`/newsDetail?id=${item.id}`)">
             <!-- <div class="title">{{$t('feature.home.text_notes')}}</div> -->
-            <div class="title">
-              <img src="../../../assets/wallet/home/首页－公告@2x.png" alt="">
-            </div>
             <div class="note_item ellipse">{{item.title}}</div>
           </div>
           <!-- note_item -->
@@ -99,53 +96,43 @@
 
   .notes {
     padding: 15px;
-    background: white;
 
-    .van-swipe {
-      overflow: unset!important;
-
-      .title {
-        color: $text_color_dark;
-        font-size: 12px;
-
-        > img {
-          width: 50%;
-        }
-
-      }
-
-      .note_item {
-        flex: 1;
-        padding: 8px 20px 8px 0;
-        position: relative;
-        font-size: 13px;
-        color: $them_color_gray;
-
-        // &::after {
-        //   content: '';
-        //   position: absolute;
-        //   width: 15px;
-        //   height: 100%;
-        //   left: 0;
-        //   top: 0;
-        //   background: url('../../../assets/net/liicon.png') no-repeat center;
-        //   background-size: 100%;
-        // }
-
-        // &::before {
-        //   content: '';
-        //   position: absolute;
-        //   width: 20px;
-        //   height: 100%;
-        //   right: 0;
-        //   top: 0;
-        //   background: url('../../../assets/net/row.png') no-repeat center;
-        //   background-size: 8px;
-        //   opacity: 0.5;
-        // }
-      }
+    .title {
+      color: $text_color_dark;
+      font-size: 12px;
+      margin-right: 10px;
     }
 
+    .note_item {
+      flex: 1;
+      padding: 8px 20px;
+      position: relative;
+      font-size: 13px;
+      color: $them_color_gray;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: url('../../../assets/wallet/home/首页－公告@2x.png') no-repeat center;
+        background-size: 100%;
+      }
+
+      // &::before {
+      //   content: '';
+      //   position: absolute;
+      //   width: 20px;
+      //   height: 100%;
+      //   right: 0;
+      //   top: 0;
+      //   background: url('../../../assets/net/row.png') no-repeat center;
+      //   background-size: 8px;
+      //   opacity: 0.5;
+      // }
+    }
   }
 
 </style>

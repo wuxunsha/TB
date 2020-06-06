@@ -167,6 +167,7 @@ import { Toast } from 'vant'
             return v;
         }).filter(v=>v.coin.transfer=='Y');
         this.currCoin = res[0];
+        console.log(res)
         return res;
       },
       // 手续费
