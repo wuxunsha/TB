@@ -14,37 +14,100 @@
             </div>
         </div>
         <div class="main"
-             @click="goDetail()"
-             v-for="(item,index) in getList"
+             @click="goDetail(item)"
+             v-for="(item,index) in list"
              :key="index">
             <div class="people-main">
                 <div class="left-main">
                     <img src="../../assets/wallet/people/left-main.png">
                 </div>
                 <div class="right-main">
-                    <h3>{{item.creater}}</h3>
+                    <h3>{{item.level}}</h3>
                     <p>
                         <span>产业价值(USDT)</span>
-                        <span>50-10</span>
+                        <span>{{item.maxAmount}}-{{item.minAmount}}</span>
                     </p>
                     <p>
                         <span>持股时间</span>
-                        <span>14:00</span>
+                        <span>{{item.cycle}}天</span>
                     </p>
                     <p>
                         <span>产业收益</span>
-                        <span>1天/5%</span>
+                        <span>1天/{{item.rate * 100}}%</span>
                     </p>
                     <p>
                         <span>产业数量</span>
-                        <span>0</span>
+                        <span>{{item.number}}</span>
                     </p>
-                    <div class="btn">
-                        股权交接中
+                    <div class="btn"
+                         @click.stop="goBuy(item)">
+                        {{item.number > 0 ? '股权转让中' : '预约持股'}}
                     </div>
                 </div>
             </div>
             <div class="line"></div>
+        </div>
+
+        <div class="pop">
+            <van-popup v-model="showPop"
+                       :class="'popPop'">
+                <div class="pop-main">
+                    <h3>支付产业押金</h3>
+                    <div class="pop-content">
+                        <div class="pop-left">
+                            <p>{{poType}}：<span style="color:#343B3A;margin: 0 0 0 15px">{{IndustryInformation.orderclass}}</span></p>
+                            <p>{{poNum}}：<span style="margin: 0 0 0 15px">{{IndustryInformation.amount * IndustryInformation.baozjl}}TB</span></p>
+                        </div>
+                    </div>
+                    <div class="input-focus">
+                        <input ref="newPsd"
+                               v-model="newPassword"
+                               type="text"
+                               maxlength="6"
+                               v-focus="true" />
+                    </div>
+
+                    <div class="box">
+                        <div class="pop-box"
+                             @click="passwordFocus">
+                            <p v-if="newPassword.length>0"
+                               class="dot"></p>
+                        </div>
+                        <div class="pop-box"
+                             @click="passwordFocus">
+                            <p v-if="newPassword.length>1"
+                               class="dot"></p>
+                        </div>
+                        <div class="pop-box"
+                             @click="passwordFocus">
+                            <p v-if="newPassword.length>2"
+                               class="dot"></p>
+                        </div>
+                        <div class="pop-box"
+                             @click="passwordFocus">
+                            <p v-if="newPassword.length>3"
+                               class="dot"></p>
+                        </div>
+                        <div class="pop-box"
+                             @click="passwordFocus">
+                            <p v-if="newPassword.length>4"
+                               class="dot"></p>
+                        </div>
+                        <div class="pop-box"
+                             @click="passwordFocus">
+                            <p v-if="newPassword.length>5"
+                               class="dot"></p>
+                        </div>
+                    </div>
+
+                    <div class="config">
+                        <div class="cancel"
+                             @click="showPop=false">取消</div>
+                        <div class="config-on"
+                             @click="config">确定</div>
+                    </div>
+                </div>
+            </van-popup>
         </div>
 
     </div>
@@ -54,28 +117,122 @@
 import {
     quan_detail
 } from '../../data/wallet';
+import { Popup } from 'vant';
 export default {
     data() {
         return {
+            list: [],
+            showPop: false,
+            password: '',
+            newPassword: '',
+            // 产业详情
+            IndustryInformation: {},
+            poType: '',
+            poNum: ''
         }
+    },
+    directives: {
+        focus: {
+            inserted: function (el, { value }) {
+                if (value) {
+                    el.focus();
+                }
+            }
+        }
+
     },
     mounted() {
         this.getList()
     },
     methods: {
-        goDetail() {
-            this.$router.push('/peopleDetail')
+        passwordFocus() {
+            this.$refs.newPsd.focus();
+        },
+        goDetail(item) {
+            this.$router.push({ path: 'peopleDetail', query: { item: item } })
+        },
+        goBuy(item) {
+            if (item.number > 0) {
+                this.poType = '持股者'
+                this.poNum = '转让金额'
+            } else {
+                this.poType = '类型'
+                this.poNum = '金额'
+            }
+
+            if (item.state == 0) {
+
+                this.$http.get(this.$lib.host + '/qmlcg/selectOrderById', {
+                    params: {
+                        orderId: item.id
+                    }
+                }).then(res => {
+                    if (res.code == 200) {
+                        this.showPop = true
+                        this.IndustryInformation = res.data[0]
+                    }
+                })
+            }
         },
         getList() {
-            console.log(this.$lib);
-
-            // 'http://39.99.215.137:8080/qmlcg/listConfig'
-            this.$http.get(this.$lib.host + '/qmlcg/selectForDT').then(res => {
+            this.$http.get(this.$lib.host + 'qmlcg/listConfig').then(res => {
                 if (res.code == 200) {
-                    this.getList = res.data
+                    this.list = res.data
                 }
             })
+        },
+        config() {
+            if (this.newPassword.length < 6) {
+                this.$layer.open({
+                    content: '请输入交易密码',
+                    skin: 'msg',
+                    time: 2 //2秒后自动关闭
+                })
+            }
+            let data = {
+                orderId: 4,
+                payPassWord: this.newPassword
+            }
+            this.$http.post(this.$lib.host + 'qmlcg/yuyue', this.qsParams(data)).then(res => {
+                if (res.code == 200) {
+                    this.showPop = false
+                    this.$layer.open({
+                        content: '预约成功',
+                        skin: 'msg',
+                        time: 2 //2秒后自动关闭
+                    })
+                } else {
+                    this.$layer.open({
+                        content: '预约失败',
+                        skin: 'msg',
+                        time: 2 //2秒后自动关闭
+                    })
+                }
+            })
+
+
         }
+    },
+    watch: {
+        newPassword: function (newV, oldV) {
+            if (newV.length > 6) {
+                this.$layer.open({
+                    content: '密码长度为6位',
+                    skin: 'msg',
+                    time: 2 //2秒后自动关闭
+                })
+                return
+            }
+        },
+        showPop: function (newV, oldV) {
+            if (newV == true) {
+                this.$nextTick(function () {
+                    this.$refs.newPsd.focus();
+                })
+            } else {
+                this.newPassword = ''
+            }
+        },
     }
 }
 
@@ -149,5 +306,96 @@ export default {
     width: 100%;
     height: 5px;
     background-color: #f7f6fb;
+}
+.popPop {
+    height: 38%;
+    width: 90%;
+    border-radius: 10px;
+}
+.pop-main {
+    h3 {
+        text-align: center;
+        color: #343b3a;
+        padding: 8px 0;
+        border-bottom: 1px solid #ebebeb;
+    }
+    .pop-content {
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        .pop-left {
+            p {
+                margin-bottom: 10px;
+                span {
+                    color: #de4d49;
+                }
+            }
+        }
+        .pop-right {
+            margin: -8px 0 0 0;
+            display: flex;
+            align-items: center;
+            img {
+                width: 18px;
+                height: 18px;
+                margin-right: 10px;
+            }
+            p {
+                color: #de4d49;
+            }
+        }
+    }
+    .input-focus {
+        margin: -33px 0 0 0;
+        input {
+            opacity: 0;
+        }
+    }
+    .box {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+        .pop-box {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            border: 1px solid #afafaf;
+            border-radius: 2px;
+        }
+        .dot {
+            margin: 10px auto 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #000;
+        }
+    }
+    .config {
+        border-top: 1px solid #ebebeb;
+        padding: 10px 0 0 0;
+        margin-top: 35px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        line-height: 33px;
+        .config-on {
+            width: 120px;
+            height: 33px;
+            background-color: #de4d49;
+            color: #fff;
+            border-radius: 2px;
+            margin: 0 8px;
+        }
+        .cancel {
+            width: 120px;
+            height: 33px;
+            background: #f7f6fb;
+            color: #343b3a;
+            border-radius: 2px;
+            margin: 0 8px;
+        }
+    }
 }
 </style>

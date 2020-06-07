@@ -12,18 +12,18 @@
                     <img src="../../assets/wallet/people/left-main.png">
                 </div>
                 <div class="right-main">
-                    <h3>农业</h3>
+                    <h3>{{list.level}}</h3>
                     <p>
                         <span>产业价值(USDT)</span>
-                        <span>50-10</span>
+                        <span>{{list.maxAmount}}-{{list.minAmount}}</span>
                     </p>
                     <p>
                         <span>持股时间</span>
-                        <span>14:00</span>
+                        <span>{{list.cycle}}</span>
                     </p>
                     <p>
                         <span>产业收益</span>
-                        <span>1天/5%</span>
+                        <span>1天/{{list.rate * 100}}%</span>
                     </p>
                     <p>
                         <span>产业数量</span>
@@ -655,7 +655,8 @@ export default {
             show: false,
             showPop: false,
             password: '',
-            newPassword: ''
+            newPassword: '',
+            list: []
         }
     },
     directives: {
@@ -675,6 +676,8 @@ export default {
 
     },
     mounted() {
+        this.list = this.$route.query.item
+        console.log(this.list);
 
     },
     methods: {

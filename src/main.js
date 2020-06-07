@@ -6,6 +6,7 @@ import router from './router'
 import store from './store/index';
 import Lib from '@/data/index'
 import axios from 'axios'
+import layer from 'layer-mobile'
 import {
     Check_browser,
     timerExchange,
@@ -71,6 +72,7 @@ import './styles/index.scss';
 
 Vue.prototype.$lib = Lib;
 Vue.prototype.$http = axios;
+Vue.prototype.$layer = layer;
 Vue.prototype.goback = () => {
     router.go(-1);
 }
