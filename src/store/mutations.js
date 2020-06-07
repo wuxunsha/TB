@@ -12,6 +12,9 @@ export const setToken = (state, params) => { //登陆获取当前用户信息
 export const setUser = (state, params) => {
     state.user = params;
 }
+export const setNewToken = (state, params) => {
+    state.newToken = params;
+}
 export const setUserInfo = (state, params) => { //设置详细用户信息
     state.userInfo = params;
 }
@@ -27,11 +30,10 @@ export const setLogTypeArr = (state, params) => { //设置流水类型
 }
 
 export const setPopup = (state, params) => { //设置弹出层
-    if(!params){
+    if (!params) {
         state.popup.type = false;
-    }else{
+    } else {
         state.popup = params;
     }
-    
-}
 
+}

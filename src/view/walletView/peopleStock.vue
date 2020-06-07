@@ -41,7 +41,7 @@
                     </p>
                     <div class="btn"
                          @click.stop="goBuy(item)">
-                        {{item.number > 0 ? '股权转让中' : '预约持股'}}
+                        预约持股
                     </div>
                 </div>
             </div>
@@ -55,8 +55,8 @@
                     <h3>支付产业押金</h3>
                     <div class="pop-content">
                         <div class="pop-left">
-                            <p>{{poType}}：<span style="color:#343B3A;margin: 0 0 0 15px">{{IndustryInformation.orderclass}}</span></p>
-                            <p>{{poNum}}：<span style="margin: 0 0 0 15px">{{IndustryInformation.amount * IndustryInformation.baozjl}}TB</span></p>
+                            <p>{{poType}}：<span style="color:#343B3A;margin: 0 0 0 15px">{{IndustryInformation.level}}</span></p>
+                            <p>{{poNum}}：<span style="margin: 0 0 0 15px">{{IndustryInformation.maxAmount * IndustryInformation.baozjl}}TB</span></p>
                         </div>
                     </div>
                     <div class="input-focus">
@@ -128,7 +128,8 @@ export default {
             // 产业详情
             IndustryInformation: {},
             poType: '',
-            poNum: ''
+            poNum: '',
+
         }
     },
     directives: {
@@ -142,9 +143,35 @@ export default {
 
     },
     mounted() {
+        this.getToken()
         this.getList()
     },
     methods: {
+        getToken() {
+            this.$http.get(this.$lib.host + 'util/gettoken', {
+                params: {
+                    token_: this.$store.state.newToken
+                }
+            }).then(res => {
+                if (res.code == 200) {
+                    this.getNewToken(res.data.token_)
+                }
+            })
+        },
+        getNewToken(token) {
+            // console.log(this.$store.state.user);
+
+            let data = {
+                account: this.$store.state.user.uid,
+                password: this.$store.state.user.password,
+                token_: token
+            }
+            this.$http.post(this.$lib.host + 'otc/login', this.qsParams(data)).then(res => {
+                if (res.code == 200) {
+                    this.$store.commit('setNewToken', res.data.token_)
+                }
+            })
+        },
         passwordFocus() {
             this.$refs.newPsd.focus();
         },
@@ -161,26 +188,33 @@ export default {
             }
 
             if (item.state == 0) {
-
-                this.$http.get(this.$lib.host + '/qmlcg/selectOrderById', {
+                this.$http.get(this.$lib.host + 'qmlcg/selectConfigById', {
                     params: {
-                        orderId: item.id
+                        id: item.id,
+                        token_: this.$store.state.newToken
                     }
                 }).then(res => {
+                    console.log(res);
                     if (res.code == 200) {
                         this.showPop = true
-                        this.IndustryInformation = res.data[0]
+                        this.IndustryInformation = res.data
                     }
                 })
             }
         },
+        //产业列表
         getList() {
-            this.$http.get(this.$lib.host + 'qmlcg/listConfig').then(res => {
+            this.$http.get(this.$lib.host + 'qmlcg/listConfig', {
+                params: {
+                    token_: this.$store.state.newToken
+                }
+            }).then(res => {
                 if (res.code == 200) {
                     this.list = res.data
                 }
             })
         },
+        // 支付弹窗
         config() {
             if (this.newPassword.length < 6) {
                 this.$layer.open({
@@ -191,7 +225,8 @@ export default {
             }
             let data = {
                 orderId: 4,
-                payPassWord: this.newPassword
+                payPassWord: this.newPassword,
+                token_: this.$store.state.newToken
             }
             this.$http.post(this.$lib.host + 'qmlcg/yuyue', this.qsParams(data)).then(res => {
                 if (res.code == 200) {

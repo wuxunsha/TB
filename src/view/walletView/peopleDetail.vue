@@ -27,10 +27,10 @@
                     </p>
                     <p>
                         <span>产业数量</span>
-                        <span>0</span>
+                        <span>{{list.number}}</span>
                     </p>
                     <div class="btn">
-                        股权交接中
+                        预约持股
                     </div>
                 </div>
             </div>
@@ -48,10 +48,12 @@
         <!-- <div class="line"></div> -->
 
         <div v-if="tabNum == 0">
-            <div class="content-line">
+            <div class="content-line"
+                 v-for="(i,index) in  orderList"
+                 :key="index">
                 <div class="order"
                      @click="showPop =true">
-                    <h3>农业</h3>
+                    <h3>{{i.orderclass}}</h3>
                     <div class="order-walth">
                         <p>
                             <span>产业价值:</span>
@@ -64,53 +66,27 @@
                     </div>
                     <p>
                         <span>产业收益:</span>
-                        <span>1天/5%</span>
+                        <span>1天/{{i.rate * 100}}%</span>
                     </p>
                     <div class="order-walth">
                         <p>
                             <span>持股时间:</span>
-                            <span>14:00</span>
+                            <span>{{i.cycle}}天</span>
                         </p>
                         <p>
-                            <span>2020/04/09</span>
+                            <span>{{getLocalTime(i.createTime)}}</span>
                         </p>
                     </div>
 
                 </div>
             </div>
-            <div class="content-line">
-                <div class="order">
-                    <h3>农业</h3>
-                    <div class="order-walth">
-                        <p>
-                            <span>产业价值:</span>
-                            <span>50-10</span>
-                        </p>
-                        <p>
-                            <span>状态:</span>
-                            <span class="status">预约中</span>
-                        </p>
-                    </div>
-                    <p>
-                        <span>产业收益:</span>
-                        <span>1天/5%</span>
-                    </p>
-                    <div class="order-walth">
-                        <p>
-                            <span>持股时间:</span>
-                            <span>14:00</span>
-                        </p>
-                        <p>
-                            <span>2020/04/09</span>
-                        </p>
-                    </div>
 
-                </div>
-            </div>
         </div>
 
         <div v-if="tabNum== 1">
-            <div class="content-line">
+            <div class="content-line"
+                 v-for="(i,index) in  volumeList"
+                 :key="index">
                 <div class="order">
                     <h3>
                         <img src="../../assets/wallet/people/time.png">
@@ -119,11 +95,11 @@
                     <div class="order-center">
                         <p>
                             <span>股权编号:</span>
-                            <span>202000132456</span>
+                            <span>{{i.id}}</span>
                         </p>
                         <p>
                             <span>周期:</span>
-                            <span>1天</span>
+                            <span>{{i.cycle}}天</span>
                         </p>
                     </div>
                     <div class="order-center">
@@ -133,17 +109,17 @@
                         </p>
                         <p>
                             <span>股份金额:</span>
-                            <span>50U</span>
+                            <span>{{i.amount}}U</span>
                         </p>
                     </div>
                     <div class="order-center">
                         <p>
                             <span>产业收益:</span>
-                            <span>1天/5%</span>
+                            <span>1天/{{i.rate * 100}}%</span>
                         </p>
                         <p>
                             <span>到期收益:</span>
-                            <span>55U</span>
+                            <span>{{i.amount*(1+i.cycle*i.rate)}}U</span>
                         </p>
                     </div>
                     <div class="order-center">
@@ -158,74 +134,12 @@
                     </div>
                 </div>
             </div>
-            <div class="pop">
-                <van-popup v-model="show"
-                           :class="'popPop'">
-                    <div class="pop-main">
-                        <h3>支付产业股权转入费</h3>
-                        <div class="pop-content">
-                            <div class="pop-left">
-                                <p>持股者：</p>
-                                <p>转让金额：
-                                    <span>50USDT</span>
-                                </p>
-                            </div>
-                            <div class="pop-right">
-                                <img src="../../assets/wallet/people/time.png">
-                                <p>付款倒计时56:30</p>
-                            </div>
-                        </div>
-                        <div class="input-focus">
-                            <input ref="setPsd"
-                                   v-model="password"
-                                   type="number"
-                                   v-focus="true" />
-                        </div>
 
-                        <div class="box">
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>0"
-                                   class="dot"></p>
-                            </div>
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>1"
-                                   class="dot"></p>
-                            </div>
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>2"
-                                   class="dot"></p>
-                            </div>
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>3"
-                                   class="dot"></p>
-                            </div>
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>4"
-                                   class="dot"></p>
-                            </div>
-                            <div class="pop-box"
-                                 @click="password1GetFocus">
-                                <p v-if="password.length>5"
-                                   class="dot"></p>
-                            </div>
-                        </div>
-
-                        <div class="config">
-                            <div class="cancel"
-                                 @click="show=false">取消</div>
-                            <div class="config-on">确定</div>
-                        </div>
-                    </div>
-                </van-popup>
-            </div>
         </div>
         <div v-if="tabNum== 2">
-            <div class="content-line">
+            <div class="content-line"
+                 v-for="(i,index) in  connectList"
+                 :key="index">
                 <div class="order">
                     <h3>
                         <img src="../../assets/wallet/people/time.png">
@@ -234,11 +148,11 @@
                     <div class="order-center">
                         <p>
                             <span>股权编号:</span>
-                            <span>202000132456</span>
+                            <span>{{i.id}}</span>
                         </p>
                         <p>
                             <span>周期:</span>
-                            <span>1天</span>
+                            <span>{{i.cycle}}天</span>
                         </p>
                     </div>
                     <div class="order-center">
@@ -248,17 +162,17 @@
                         </p>
                         <p>
                             <span>股份金额:</span>
-                            <span>50U</span>
+                            <span>{{i.amount}}U</span>
                         </p>
                     </div>
                     <div class="order-center">
                         <p>
                             <span>产业收益:</span>
-                            <span>1天/5%</span>
+                            <span>1天/{{i.rate * 100}}%</span>
                         </p>
                         <p>
                             <span>到期收益:</span>
-                            <span>55U</span>
+                            <span>{{i.amount*(1+i.cycle*i.rate)}}U</span>
                         </p>
                     </div>
                     <div class="order-center">
@@ -268,7 +182,7 @@
                         </p>
                         <p>
                             <span>到期时间:</span>
-                            <span>2020/04/12</span>
+                            <span>{{(getLocalTime(i.endTime)).substring(0,9)}}</span>
                         </p>
                     </div>
                     <div class="go-buy">
@@ -278,7 +192,10 @@
             </div>
         </div>
         <div v-if="tabNum == 3">
-            <div class="content-line">
+
+            <div class="content-line"
+                 v-for="(i,index) in crowdList"
+                 :key="index">
                 <div class="order"
                      style="margin:10px 0 0 0">
                     <h3>
@@ -288,11 +205,11 @@
                     <div class="order-center">
                         <p>
                             <span>股权编号:</span>
-                            <span>202000132456</span>
+                            <span>{{i.id}}</span>
                         </p>
                         <p>
                             <span>周期:</span>
-                            <span>1天</span>
+                            <span>{{i.cycle}}天</span>
                         </p>
                     </div>
                     <div class="order-center">
@@ -302,17 +219,17 @@
                         </p>
                         <p>
                             <span>股份金额:</span>
-                            <span>50U</span>
+                            <span>{{i.amount}}U</span>
                         </p>
                     </div>
                     <div class="order-center">
                         <p>
                             <span>产业收益:</span>
-                            <span>1天/5%</span>
+                            <span>1天/{{i.rate * 100}}%</span>
                         </p>
                         <p>
                             <span>到期收益:</span>
-                            <span>55U</span>
+                            <span>{{i.amount*(1+i.cycle*i.rate)}}U</span>
                         </p>
                     </div>
                     <div class="order-center">
@@ -322,114 +239,15 @@
                         </p>
                         <p>
                             <span>到期时间:</span>
-                            <span>2020/04/12</span>
+                            <span>{{(getLocalTime(i.endTime)).substring(0,9)}}</span>
                         </p>
                     </div>
 
                 </div>
             </div>
-            <div class="content-line">
-                <div class="order"
-                     style="margin:10px 0 0 0">
-                    <h3>
-                        <img src="../../assets/wallet/people/error.png">
-                        <span>付款倒计时56:30</span>
-                    </h3>
-                    <div class="order-center">
-                        <p>
-                            <span>股权编号:</span>
-                            <span>202000132456</span>
-                        </p>
-                        <p>
-                            <span>周期:</span>
-                            <span>1天</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>产业价值:</span>
-                            <span>50-100U</span>
-                        </p>
-                        <p>
-                            <span>股份金额:</span>
-                            <span>50U</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>产业收益:</span>
-                            <span>1天/5%</span>
-                        </p>
-                        <p>
-                            <span>到期收益:</span>
-                            <span>55U</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>TGB:</span>
-                            <span>5*1.1%=0.055</span>
-                        </p>
-                        <p>
-                            <span>到期时间:</span>
-                            <span>2020/04/12</span>
-                        </p>
-                    </div>
 
-                </div>
-            </div>
-            <div class="content-line">
-                <div class="order"
-                     style="margin:10px 0 0 0">
-                    <h3>
-                        <img src="../../assets/wallet/people/seccess.png">
-                        <span>付款倒计时56:30</span>
-                    </h3>
-                    <div class="order-center">
-                        <p>
-                            <span>股权编号:</span>
-                            <span>202000132456</span>
-                        </p>
-                        <p>
-                            <span>周期:</span>
-                            <span>1天</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>产业价值:</span>
-                            <span>50-100U</span>
-                        </p>
-                        <p>
-                            <span>股份金额:</span>
-                            <span>50U</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>产业收益:</span>
-                            <span>1天/5%</span>
-                        </p>
-                        <p>
-                            <span>到期收益:</span>
-                            <span>55U</span>
-                        </p>
-                    </div>
-                    <div class="order-center">
-                        <p>
-                            <span>TGB:</span>
-                            <span>5*1.1%=0.055</span>
-                        </p>
-                        <p>
-                            <span>到期时间:</span>
-                            <span>2020/04/12</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
         </div>
-        <div v-if="tabNum== 4">
+        <!-- <div v-if="tabNum== 4">
             <div class="content-line">
                 <div class="order"
                      style="margin:10px 0 0 0">
@@ -580,7 +398,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="pop">
             <van-popup v-model="showPop"
@@ -650,13 +468,19 @@ import { log } from '../../data/wallet';
 export default {
     data() {
         return {
-            tab: ["预约", "交接中", "量产中", "众筹", "转让"],
+            // tab: ["预约", "交接中", "量产中", "众筹", "转让"],
+            tab: ["预约", "交接中", "量产中", "众筹"],
             tabNum: 0,
             show: false,
             showPop: false,
             password: '',
             newPassword: '',
-            list: []
+            list: [],
+            // 预约列表
+            orderList: [],
+            volumeList: [],
+            connectList: [],
+            crowdList: []
         }
     },
     directives: {
@@ -677,8 +501,7 @@ export default {
     },
     mounted() {
         this.list = this.$route.query.item
-        console.log(this.list);
-
+        this.getNewList()
     },
     methods: {
         demoClick: function (index) {
@@ -696,6 +519,41 @@ export default {
         password1GetFocus() {
             this.$refs.setPsd.focus();
         },
+        getNewList() {
+            this.$http.get(this.$lib.host + 'qmlcg/selectForClass', {
+                params: {
+                    token_: this.$store.state.newToken,
+                    orderclass: this.list.level
+                }
+            }).then(res => {
+                if (res.code == 200) {
+                    //预约产业
+                    this.orderList = res.data.filter(e => {
+                        if (e.state == 0) {
+                            return e
+                        }
+                    })
+                    //0-预售状态 6-交接中 1-量产中 3-众筹中 4-众筹成功 5-众筹失败
+                    this.volumeList = res.data.filter(e => {
+                        if (e.state == 6) {
+                            return e
+                        }
+                    })
+                    this.connectList = res.data.filter(e => {
+                        if (e.state == 1) {
+                            return e
+                        }
+                    })
+                    this.crowdList = res.data.filter(e => {
+                        if (e.state == 3) {
+                            return e
+                        }
+                    })
+
+                }
+            })
+        }
+
     },
     watch: {
         password: function (newV, oldV) {
@@ -719,6 +577,16 @@ export default {
                 })
             } else {
                 this.newPassword = ''
+            }
+        },
+    },
+    computed: {
+        //时间戳转日期
+        getLocalTime() {
+            return function (nS) {
+                return new Date(parseInt(nS)).toLocaleString('zh', {
+                    hour12: false
+                });
             }
         },
     }
