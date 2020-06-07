@@ -188,6 +188,7 @@
                     <div class="go-buy">
                         收益增值,众筹
                     </div>
+
                 </div>
             </div>
         </div>
