@@ -9,6 +9,9 @@
 export const setToken = (state, params) => { //登陆获取当前用户信息
     state.token = params;
 }
+export const setUser = (state, params) => {
+    state.user = params;
+}
 export const setUserInfo = (state, params) => { //设置详细用户信息
     state.userInfo = params;
 }

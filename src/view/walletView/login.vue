@@ -88,7 +88,8 @@ import {
 } from '../../util';
 import {
     mapMutations,
-    mapActions
+    mapActions,
+    setUser
 } from 'vuex'
 import { PasswordInput, NumberKeyboard } from 'vant';
 export default {
@@ -125,6 +126,7 @@ export default {
                 uid: this.phone,
                 password: this.password
             }
+            this.$store.commit('setUser', params)
             this.disabled = true;
             login(params).then(res => {
                 let { message, data } = res;

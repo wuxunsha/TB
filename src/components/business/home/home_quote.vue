@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <div>
+      <!-- <div>
         <div class="game-image">
           <img src="../../../assets/wallet/home/全民猜涨跌@2x.png" alt="">
         </div>
@@ -28,7 +28,7 @@
             <img src="../../../assets/wallet/home/ＧＯ！按钮@2x.png" alt="">
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
