@@ -6,9 +6,9 @@
 
     <div class="asset-list">
       <ul>
-        <li v-for="(item, index) in balanceList" :key="index">
+        <li v-for="(item, index) in balanceList" :key="index" v-if="item.coin.coinName === 'USDT' || item.coin.coinName === 'CBK' || item.coin.coinName === 'CBG'">
           <div class="asset-list-top">
-            <img :src="item.coin.coinName === 'USDT' ? require('./../../../assets/wallet/asstes/USDT@2x.png') : item.coin.coinName === 'TB' ? require('./../../../assets/wallet/asstes/TB-币logo@2x.png') : require('./../../../assets/wallet/asstes/ＴＢＧ@2x.png')" alt="">
+            <img :src="item.coin.coinName === 'USDT' ? require('./../../../assets/wallet/asstes/USDT@2x.png') : item.coin.coinName === 'CBK' ? require('./../../../assets/wallet/asstes/CBK透明@2x.png') : require('./../../../assets/wallet/asstes/cbg@2x.png')" alt="">
             <span>{{item.coin.coinName}}</span>
           </div>
           <div class="list-name">
@@ -30,7 +30,8 @@
 <script>
   import {
     mapMutations,
-    mapState
+    mapState,
+    setUser
   } from 'vuex'
   export default {
     props: ['user'],
@@ -62,7 +63,7 @@
       ...mapState(['userInfo'])
     },
     mounted() {
-
+      // console.log(this.$store.state.user)
     }
   };
 
@@ -73,12 +74,12 @@
     .asset-list-title {
       width: 100%;
       height: 54px;
-      background: #fff;
       line-height: 54px;
       padding-left: 15px;
       font-size: 16px;
       font-weight: bold;
       color: rgba(53,53,53,1);
+      border-bottom: 8px solid #f3f4f6;
     }
     .asset-list {
       width: 100%;

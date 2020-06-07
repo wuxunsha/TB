@@ -1,5 +1,5 @@
 <template>
-  <div class="full-height bg_color_gray">
+  <div class="full-height">
 
     <!-- <div class="navBox">
       <van-nav-bar

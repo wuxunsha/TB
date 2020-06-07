@@ -113,8 +113,15 @@ export default {
         return {
         }
     },
-
+    created() {
+        // 获取工程token
+        this.getToken()
+    },
     methods: {
+        getToken() {
+            let userInfo = this.$store.state.user
+            console.log(userInfo)
+        },
         goDetail() {
             this.$router.push('/peopleDetail')
         }

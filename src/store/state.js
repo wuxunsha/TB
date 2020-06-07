@@ -8,6 +8,11 @@ const state = {
         data:null,
         type:null
     },
-    logTypeArr:null//流水类型
+    logTypeArr:null,//流水类型
+    // 用户登录名
+    user: {
+        uid: null,
+        password: null
+    }
 }
 export default state;
