@@ -97,7 +97,7 @@
     <!-- <div>
       <p class="info them_color_gray font12 bg_color_gray padding20 radius2" v-html="$t('feature.withdraw.text_p')">
       </p>
-    </div>
+    </div> -->
 
     <van-popup v-model="show_popup" closeable position="bottom">
       <div class="main">
@@ -117,7 +117,7 @@
         </div>
 
       </div>
-    </van-popup> -->
+    </van-popup>
 
     <!-- 币种选择弹窗 -->
     <van-popup v-model="popup" position="bottom" :style="{ height: '30%' }">
@@ -128,390 +128,381 @@
 </template>
 
 <script>
-  import {
-    mapMutations,
-    mapState
-  } from 'vuex'
-  import {
-    withdraw, log
-  } from '../../data/wallet';
-  import chooseCoins from '../../components/wallet/chooseCoins'
-  import getCode from '../../components/wallet/getCode'
+import {
+  mapMutations,
+  mapState
+} from 'vuex'
+import {
+  withdraw, log
+} from '../../data/wallet';
+import chooseCoins from '../../components/wallet/chooseCoins'
+import getCode from '../../components/wallet/getCode'
 import { Toast } from 'vant'
-  export default {
-    data() {
-      return {
-        currCoinInfo: null, //当前币种信息
-        currCoin: null, // 当前币种
-        inputCode:false, //显示验证码
-        withrawInfo:{
+export default {
+  data() {
+    return {
+      currCoinInfo: null, //当前币种信息
+      currCoin: null, // 当前币种
+      inputCode:false, //显示验证码
+      withrawInfo:{
+        address: null, // 收款地址
+        amount: null,  // 金额
+        code: null, // 验证码
+        coinId: null, // 币种id
+        transactionPwd:null //支付密码
+      },
+      popup: false, // 币种选择弹窗
+      show_popup:false //显示弹窗
+    }
+  },
+  components:{
+    chooseCoins,getCode
+  },
+  computed: {
+    ...mapState(['userInfo']),
+    // 设置周期
+    coins(){
+      let res = this.userInfo.balanceModels.map(v=>{
+        v.text = `${v.coin.coinName}(${this.$t('feature.transfer.text_balance')}${v.amount})`
+        return v;
+      }).filter(v=>v.coin.transfer=='Y');
+      this.currCoin = res[0];
+      this.withrawInfo.coinId = res[0].coin.id
+      return res;
+    },
+    // 手续费
+    serviceNumber() {
+      if (this.withrawInfo.amount) {
+        return this.withrawInfo.amount * 0.02
+      }
+      return '0.00'
+    },
+    arrivalAmount() {
+      if (this.withrawInfo.amount) {
+        return this.withrawInfo.amount - this.withrawInfo.amount * 0.02
+      }
+      return '0.00'
+    }
+  },
+  methods:{
+    ...mapMutations(['setUserInfo']),
+    //当前币种选择
+    chooseCoin(item){
+      this.currCoinInfo = item;
+    },
+    // 币种改变
+    currencyChange () {
+      this.currCoinInfo = null
+    },
+    onChange (value, index) {
+      console.log(value)
+      console.log(index)
+      this.currCoin = value
+      this.withrawInfo.amount = null
+      this.withrawInfo.coinId = value.coin.id
+      this.popup = false;
+    },
+    // 提取全部
+    extractAll() {
+      this.withrawInfo.amount = this.currCoin.amount
+    },
+    next(){
+      if(!this.withrawInfo.address){
+        Toast(this.$t('wallet.withdraw.Toast_address'));
+        return;
+      }
+      if(!this.withrawInfo.amount){
+        Toast(this.$t('wallet.withdraw.Toast_amount'));
+        return;
+      }    
+      this.show_popup = true;
+    },
+    // 申请提现
+    submitWithdraw(){ 
+      if(!this.withrawInfo.code){
+        Toast(this.$t('feature.cpopupCode.text_input'));
+        return;
+      }
+      if(!this.withrawInfo.transactionPwd){
+        Toast(this.$t('feature.transfer.input_pass'));
+        return;
+      }
+      withdraw(this.withrawInfo).then(v=>{
+        Toast(v.message);
+
+        this.currCoinInfo.balance.amount -= this.withrawInfo.amount;
+
+        this.show_popup = false;
+
+        this.withrawInfo = {
           address: null,
           amount: null,
-          code: null,
+          code:null,
           coinId: null,
-          transactionPwd:null //支付密码
-        },
-        popup: false, // 币种选择弹窗
-        show_popup:false //显示弹窗
-      }
-    },
-    components:{
-      chooseCoins,getCode
-    },
-    computed: {
-      ...mapState(['userInfo']),
-      // 设置周期
-      coins(){
-        let res = this.userInfo.balanceModels.map(v=>{
-            v.text = `${v.coin.coinName}(${this.$t('feature.transfer.text_balance')}${v.amount})`
-            return v;
-        }).filter(v=>v.coin.transfer=='Y');
-        this.currCoin = res[0];
-        console.log(res)
-        return res;
-      },
-      // 手续费
-      serviceNumber() {
-        if (this.withrawInfo.amount) {
-          return this.withrawInfo.amount * 0.02
+          transactionPwd:null
         }
-        return '0.00'
-      },
-      arrivalAmount() {
-        if (this.withrawInfo.amount) {
-          return this.withrawInfo.amount - this.withrawInfo.amount * 0.02
-        }
-        return '0.00'
-      }
-    },
-    methods:{
-      ...mapMutations(['setUserInfo']),
-      chooseCoin(item){//当前币种选择
-        // console.log(item)
-        this.currCoinInfo = item;
-      },//chooseCoin
-      // 币种改变
-      currencyChange () {
-        this.currCoinInfo = null
-      },
-      onChange (value, index) {
-        console.log(value)
-        console.log(index)
-        this.currCoin = value
-        this.withrawInfo.amount = null
-        this.popup = false;
-      },
-      // 提取全部
-      extractAll() {
-        this.withrawInfo.amount = this.currCoin.amount
-      },
-      next(){
-        console.log(this.withrawInfo.amount)
-        if(!this.withrawInfo.address){
-          Toast(this.$t('wallet.withdraw.Toast_address'));
-          return;
-        }
-        if(!this.withrawInfo.amount){
-          Toast(this.$t('wallet.withdraw.Toast_amount'));
-          return;
-        }
-        // this.withrawInfo.code = null; 
-        // this.withrawInfo.transactionPwd = null;       
-        // this.show_popup = true;
-      },
-      // 申请提现
-      submitWithdraw(){ 
-
-        if(!this.withrawInfo.code){
-          Toast(this.$t('feature.cpopupCode.text_input'));
-          return;
-        }
-        if(!this.withrawInfo.transactionPwd){
-          Toast(this.$t('feature.transfer.input_pass'));
-          return;
-        }
-        
-        this.withrawInfo.coinId = this.currCoinInfo.coin.id;
-        withdraw(this.withrawInfo).then(v=>{
-          // console.log(v);
-          Toast(v.message);
-
-          this.currCoinInfo.balance.amount -= this.withrawInfo.amount;
-
-          this.show_popup = false;
-
-          this.withrawInfo = {
-            address: null,
-            amount: null,
-            code:null
-          }
-
-        })
-      }//submitWithdraw
-    },
-    mounted() {
-      // setTimeout(this.currCoinInfo = this.userInfo.balances.find(x=>x.coins.coinName=='GSHT'), 50);
-    } //mounted
-  };
+      })
+    }
+  },
+  mounted() {
+    // setTimeout(this.currCoinInfo = this.userInfo.balances.find(x=>x.coins.coinName=='GSHT'), 50);
+  }
+};
 
 </script>
 <style rel="stylesheet/scss" scoped lang="scss">
-  @import "../../styles/walletVal";
+@import "../../styles/walletVal";
+#funds {
+  .item_box {
+    margin-top: 46px;
+    .remind-box {
+      background: #FEF6F4;
+      .remind {
+        width: 100%;
+        line-height: 28px;
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba(222,77,73,1);
+        padding: 0 20px;
+      }
+    }
 
-  #funds {
-    .item_box {
-      margin-top: 46px;
-      .remind-box {
-        background: #FEF6F4;
-        .remind {
-          width: 100%;
-          line-height: 28px;
+    .currency-select {
+      display: flex;
+      width: 100%;
+      height: 48px;
+      line-height: 48px;
+      background: #F7F6FB;
+      padding: 0 20px;
+      justify-content: space-between;
+      .currency-select-left {
+        img {
+          width: 24px;
+          vertical-align: sub;
+        }
+        span {
+          font-size: 16px;
+          font-weight:bold;
+          color:rgba(53,53,53,1);
+          margin-left: 6px;
+        }
+      }
+    }
+
+    .content-box {
+
+      .available-quantity {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: 1px solid #EBEBEB;
+        p {
+          padding: 0 20px;
           font-size: 12px;
           font-weight: 500;
-          color: rgba(222,77,73,1);
-          padding: 0 20px;
-        }
-      }
-
-      .currency-select {
-        display: flex;
-        width: 100%;
-        height: 48px;
-        line-height: 48px;
-        background: #F7F6FB;
-        padding: 0 20px;
-        justify-content: space-between;
-        .currency-select-left {
-          img {
-            width: 24px;
-            vertical-align: sub;
+          > span:nth-child(1) {
+            color: rgba(175,175,175,1);
           }
-          span {
-            font-size: 16px;
-            font-weight:bold;
-            color:rgba(53,53,53,1);
-            margin-left: 6px;
+          > span:nth-child(2) {
+            margin-left: 18px;
+            color: #DE4D49;
           }
         }
       }
+      .token_choose {
+        margin-bottom: 20px;
 
-      .content-box {
-
-        .available-quantity {
-          width: 100%;
-          height: 40px;
-          line-height: 40px;
-          border-bottom: 1px solid #EBEBEB;
-          p {
-            padding: 0 20px;
-            font-size: 12px;
-            font-weight: 500;
-            > span:nth-child(1) {
-              color: rgba(175,175,175,1);
-            }
-            > span:nth-child(2) {
-              margin-left: 18px;
-              color: #DE4D49;
-            }
-          }
-        }
-        .token_choose {
-          margin-bottom: 20px;
-
-          &>div {
-            background: $them_color_bgGray;
-            padding: 10px 10px;
-            border-radius: 2px;
-            -webkit-border-radius: 2px;
-            color: $text_color_dark;
-            font-size: 14px;
-            font-weight: bold;
-          }
-
-          .token_name {
-            flex: 1;
-            margin-left: 15px;
-
-            small {
-              .van-icon {
-                margin-top: -2px;
-                display: inline-block;
-                vertical-align: middle;
-              }
-            }
-          }
-        }
-
-        .code_box {
+        &>div {
           background: $them_color_bgGray;
-          padding: 20px;
+          padding: 10px 10px;
           border-radius: 2px;
+          -webkit-border-radius: 2px;
+          color: $text_color_dark;
+          font-size: 14px;
+          font-weight: bold;
+        }
 
-          .qrcode {
-            width: 180px;
-            margin: 10px auto;
-            background: white;
-            padding: 10px;
-          }
+        .token_name {
+          flex: 1;
+          margin-left: 15px;
 
-          .copy {
-            display: inline-block;
-            margin: 20px auto;
-            padding: 5px 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
+          small {
+            .van-icon {
+              margin-top: -2px;
+              display: inline-block;
+              vertical-align: middle;
+            }
           }
+        }
+      }
 
-          p {
-            font-size: 12px;
-            line-height: 1.8em;
-            text-align: center;
-          }
+      .code_box {
+        background: $them_color_bgGray;
+        padding: 20px;
+        border-radius: 2px;
+
+        .qrcode {
+          width: 180px;
+          margin: 10px auto;
+          background: white;
+          padding: 10px;
+        }
+
+        .copy {
+          display: inline-block;
+          margin: 20px auto;
+          padding: 5px 10px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 2px;
+        }
+
+        p {
+          font-size: 12px;
+          line-height: 1.8em;
+          text-align: center;
         }
       }
     }
   }
-
-  .withdraw_form {
-    .input_group {
-      width: 100%;
-      height: 40px;
-      line-height: 40px;
-      border-bottom: 1px solid #EBEBEB;
-      input {
-        flex: 1;
-        outline: none;
-        border-radius: 0;
-        background: none;
+}
+.withdraw_form {
+  .input_group {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #EBEBEB;
+    input {
+      flex: 1;
+      outline: none;
+      border-radius: 0;
+      background: none;
+      border: none;
+      padding: 15px 0 15px 20px;
+      font-size: 15px;
+      padding-right: 10px;
+      font-weight: bold;
+      color: $text_color_dark;
+      &:focus~hr {
         border: none;
-        padding: 15px 0 15px 20px;
-        font-size: 15px;
-        padding-right: 10px;
-        font-weight: bold;
-        color: $text_color_dark;
-        &:focus~hr {
-            border: none;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: $them_color;
-        }
-        &::-webkit-input-placeholder{
-          font-weight: normal;
-          font-size: 12px;
-          color: #AFAFAF;
-        }
-        &:disabled{
-          opacity: 1;
-          color:black;
-        }
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: $them_color;
+      }
+      &::-webkit-input-placeholder{
+        font-weight: normal;
+        font-size: 12px;
+        color: #AFAFAF;
+      }
+      &:disabled{
+        opacity: 1;
+        color:black;
       }
     }
+  }
 
-    .extract-state {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-      margin-top: 16px;
-      > div {
+  .extract-state {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 16px;
+    > div {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(175,175,175,1);
+    }
+    > div:nth-child(2) {
+      color: #DE4D49;
+    }
+  }
+
+  .withdraw-detail {
+    padding: 0 20px;
+    margin-top: 26px;
+    > li {
+      line-height: 28px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(52,59,58,1);
+    }
+    li::before {
+      content:"●";
+      margin-right: 10px;
+    }
+  }
+
+  .warm-prompt {
+    padding: 0 20px;
+    margin-top: 26px;
+    > p {
+      font-size: 14px;
+      font-weight: bold;
+      color: rgba(52,59,58,1);
+    }
+    > ul {
+      margin-top: 10px;
+      li {
         font-size: 12px;
         font-weight: 500;
         color: rgba(175,175,175,1);
       }
-      > div:nth-child(2) {
-        color: #DE4D49;
-      }
-    }
-
-    .withdraw-detail {
-      padding: 0 20px;
-      margin-top: 26px;
-      > li {
-        line-height: 28px;
-        font-size: 12px;
-        font-weight: 500;
-        color: rgba(52,59,58,1);
-      }
       li::before {
         content:"●";
         margin-right: 10px;
+        color: #AFAFAF;
       }
     }
-
-    .warm-prompt {
-      padding: 0 20px;
-      margin-top: 26px;
-      > p {
-        font-size: 14px;
-        font-weight: bold;
-        color: rgba(52,59,58,1);
-      }
-      > ul {
-        margin-top: 10px;
-        li {
-          font-size: 12px;
-          font-weight: 500;
-          color: rgba(175,175,175,1);
-        }
-        li::before {
-          content:"●";
-          margin-right: 10px;
-          color: #AFAFAF;
-        }
-      }
-    }
-
-    .submit-box {
-      padding: 0 20px;
-      margin-top: 40px;
-      .submit {
-        display: block;
-        margin: 20px auto;
-        width: 100%;
-        background: #DE4D49;
-        font-size: 14px;
-        font-weight: bold;
-        color: rgba(255,255,255,1);
-      }
-    }
-
   }
+
+  .submit-box {
+    padding: 0 20px;
+    margin-top: 40px;
+    .submit {
+      display: block;
+      margin: 20px auto;
+      width: 100%;
+      background: #DE4D49;
+      font-size: 14px;
+      font-weight: bold;
+      color: rgba(255,255,255,1);
+    }
+  }
+
+}
 .info{
   >>> span{
     display: block;
     margin-bottom:5px;
   }
 }
-
-
 .van-popup {
-    .popup_title {
-        text-align: center;
-        font-size: 16x;
-        font-weight: bold;
-        margin-bottom: 10px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        padding: 15px;
-        position: relative;
-        .close {
-            position: absolute;
-            right: 0;
-            height: 100%;
-            top: 0;
-            line-height: 40px;
-            padding: 0 20px;
-            font-size: 19px;
-            opacity: 0.6;
-        }
+  .popup_title {
+    text-align: center;
+    font-size: 16x;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    position: relative;
+    .close {
+      position: absolute;
+      right: 0;
+      height: 100%;
+      top: 0;
+      line-height: 40px;
+      padding: 0 20px;
+      font-size: 19px;
+      opacity: 0.6;
     }
-    .them_form {
-        padding: 20px;
-        input{
-          border: 1px solid red;
-        }
+  }
+  .them_form {
+    padding: 20px;
+    input{
+      border: 1px solid red;
     }
+  }
 }
 
 </style>

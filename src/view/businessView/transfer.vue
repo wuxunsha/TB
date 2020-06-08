@@ -66,14 +66,12 @@
       </div>
 
       <div class="submit-box">
-        <van-button class="submit" @click="checkParams()" disabled>{{$t('feature.transfer.text_btn')}}</van-button>
+        <van-button class="submit" @click="checkParams()">{{$t('feature.transfer.text_btn')}}</van-button>
       </div>
       {{this.reqParams.coin}}
-
   </div>
-  <!-- actionForm -->
 
-<van-popup position="bottom" v-model="show">
+  <van-popup position="bottom" v-model="show">
     <van-picker :columns="coins"
     show-toolbar @change="currencyChange"
     @cancel="show=false"
@@ -82,140 +80,146 @@
     :confirm-button-text="`${$t('feature.bankBuy.text_ok')}`"
     :cancel-button-text="`${$t('feature.bankBuy.text_cancel')}`"
     />
-</van-popup>
-
-   
+  </van-popup>
 
   </div>
-  <!-- index -->
 </template>
 
 <script>
-  import {
-    mapMutations,
-    mapState,
-    mapActions
-  } from 'vuex'
-  import {
-    transfer,idGetName,transferFee
-  } from '../../data/business';
-  import getCode from '../../components/wallet/getCode'
+import {
+  mapMutations,
+  mapState,
+  mapActions
+} from 'vuex'
+import {
+  transfer,idGetName,transferFee
+} from '../../data/business';
+import getCode from '../../components/wallet/getCode'
 import { Toast } from 'vant';
 import { log } from '../../data/wallet';
 
-  export default {
-    data() {
-      return {
-        show:false,
-        reqParams:{
-            number:null,
-            toId:null,
-            code:null,//验证码
-            transactionPwd:null,//支付密码
-            coinId:null
-        },
-        currCoin:null,//当前币种
-        idName:null,//帐号名称
-        fee:null,//手续费
-        scale:null,//手续费比例
-        submitFlag: false
+export default {
+  data() {
+    return {
+      show:false,
+      reqParams:{
+        number:null, // 金额
+        toId:null, // 收款人账号
+        code:null,//验证码
+        transactionPwd:null,//支付密码
+        coinId:null // 币种ID
+      },
+      currCoin:null,//当前币种
+      idName:null,//帐号名称
+      fee:null,//手续费
+      scale:null,//手续费比例
+      submitFlag: false
+    }
+  },
+  components:{getCode},
+  computed: {
+    ...mapState(['userInfo']),
+    //设置周期
+    coins(){
+      let res = this.userInfo.balanceModels.map(v=>{
+        v.text = `${v.coin.coinName}(${this.$t('feature.transfer.text_balance')}${v.amount})`
+        return v;
+      }).filter(v=>v.coin.transfer=='Y');
+      this.currCoin = res[0];
+      this.reqParams.coinId = res[0].coin.id
+      return res;
+    }
+  },
+  methods: {
+    //获取手续费
+    getFee(){
+      if(this.reqParams.number)
+        this.fee = this.scale<1 ? this.toFixed_4(this.reqParams.number * this.scale) : this.scale;
+      else
+        this.fee = null;
+    },
+    //获取比例
+    getScale(){
+      transferFee().then(v=>{
+        this.scale = v.data;
+      })
+    },
+    // 币种改变
+    currencyChange() {
+      this.reqParams.number = null
+    },
+    // 全部金额
+    allSum () {
+      this.reqParams.number = this.currCoin.amount
+    },
+    //确认转账
+    checkParams(){
+      if(!this.reqParams.toId){
+        Toast(this.$t('feature.transfer.text_id'))
+        return;
       }
+      if(!this.reqParams.number){
+        Toast(this.$t('feature.transfer.input_number'));
+        return;
+      }
+      if(!this.reqParams.code){
+        Toast(this.$t('feature.transfer.input_code'));
+        return;
+      }
+      if(!this.reqParams.transactionPwd){
+        Toast(this.$t('feature.transfer.input_pass'));
+        return;
+      }
+      console.log(this.reqParams)
+      // this.reqParams.coinId = this.currCoin.coin.id;
+      this.transfer();
     },
-    components:{getCode},
-    computed: {
-      ...mapState(['userInfo']),
-      coins(){//设置周期
-        let res = this.userInfo.balanceModels.map(v=>{
-            v.text = `${v.coin.coinName}(${this.$t('feature.transfer.text_balance')}${v.amount})`
-            return v;
-        }).filter(v=>v.coin.transfer=='Y');
-        this.currCoin = res[0];
-        return res;
-      }//cycles
+    transfer(){
+      transfer(this.reqParams).then(v=>{
+        console.log(v);
+        Toast.success(v.message);
+        setTimeout(() => {
+          this.goback();
+        }, 1000);
+      })
     },
-    methods: {
-        getFee(){//获取手续费
-          if(this.reqParams.number)
-            this.fee = this.scale<1 ? this.toFixed_4(this.reqParams.number * this.scale) : this.scale;
-          else
-            this.fee = null;
-        },//getFee
-        getScale(){//获取比例
-          transferFee().then(v=>{
-            this.scale = v.data;
-          })
-        },//getScale
-        // 币种改变
-        currencyChange() {
-          this.reqParams.number = null
-        },
-        // 全部金额
-        allSum () {
-          this.reqParams.number = this.currCoin.amount
-        },
-        checkParams(){//确认转账
-            if(!this.reqParams.toId){
-                Toast(this.$t('feature.transfer.text_id'))
-                return;
-            }
-            if(!this.reqParams.number){
-                Toast(this.$t('feature.transfer.input_number'));
-                return;
-            }
-            if(!this.reqParams.code){
-                Toast(this.$t('feature.transfer.input_code'));
-                return;
-            }
-            if(!this.reqParams.transactionPwd){
-                Toast(this.$t('feature.transfer.input_pass'));
-                return;
-            }
-            this.reqParams.coinId = this.currCoin.coin.id;
-            this.transfer();
-        },//transfer
-        transfer(){
-            transfer(this.reqParams).then(v=>{
-                console.log(v);
-                Toast.success(v.message);
-                setTimeout(() => {
-                    this.goback();
-                }, 1000);
-            })//transfer
-        },
-        getName(){//获取id名称
-          if(!this.reqParams.toId){
-            this.idName = null;
-            return;
-          }
-          idGetName({id:this.reqParams.toId}).then(v=>{
-            if(v.data)
-              this.idName  = v.data;
-            else
-              this.idName  = 'UIDNULL';
-          })
-        },//getName
-        onChange(value, index){//选择币种
-            console.log(value,index);
-            this.currCoin = value;
-            this.show = false;
-        },//onChange
+    //获取id名称
+    getName(){
+      if(!this.reqParams.toId){
+        this.idName = null;
+        return;
+      }
+      idGetName({id:this.reqParams.toId}).then(v=>{
+        if(v.data)
+          this.idName  = v.data;
+        else
+          this.idName  = 'UIDNULL';
+      })
     },
-    mounted() {
-      this.getScale();
-    } //mounted
-  };
+    //选择币种
+    onChange(value, index){
+      console.log(value,index);
+      this.currCoin = value;
+      this.reqParams.coinId = value.coin.id
+      this.show = false;
+    },
+  },
+  mounted() {
+    this.getScale();
+  }
+};
 
 </script>
 <style rel="stylesheet/scss" scoped lang="scss">
-  @import "../../styles/walletVal";
-  .formGroup{
-      margin-top: 20px;
-  }
-  >>>.getCode{
-      white-space: nowrap;
-      padding: 10px 5px;
-      border-radius: 4px;
-      color:#DE4D49;
-      margin-left: 10px;
-  }
+@import "../../styles/walletVal";
+.formGroup{
+  margin-top: 20px;
+}
+>>>.getCode{
+  white-space: nowrap;
+  padding: 10px 5px;
+  border-radius: 4px;
+  color:#DE4D49;
+  margin-left: 10px;
+}
 </style>
