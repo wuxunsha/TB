@@ -222,6 +222,7 @@ export default {
                     skin: 'msg',
                     time: 2 //2秒后自动关闭
                 })
+                return
             }
             let data = {
                 orderId: 4,
@@ -237,6 +238,7 @@ export default {
                         time: 2 //2秒后自动关闭
                     })
                 } else {
+                    this.showPop = false
                     this.$layer.open({
                         content: '预约失败',
                         skin: 'msg',

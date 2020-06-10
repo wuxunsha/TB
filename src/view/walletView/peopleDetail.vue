@@ -29,7 +29,8 @@
                         <span>产业数量</span>
                         <span>{{list.number}}</span>
                     </p>
-                    <div class="btn">
+                    <div class="btn"
+                         @click="goBuy(list)">
                         预约持股
                     </div>
                 </div>
@@ -52,7 +53,7 @@
                  v-for="(i,index) in  orderList"
                  :key="index">
                 <div class="order"
-                     @click="showPop =true">
+                     style="margin:10px 0 0 0">
                     <h3>{{i.orderclass}}</h3>
                     <div class="order-walth">
                         <p>
@@ -81,17 +82,22 @@
                 </div>
             </div>
 
+            <div class="no-data"
+                 v-if="orderList.length == 0">
+                暂无数据
+            </div>
         </div>
 
         <div v-if="tabNum== 1">
             <div class="content-line"
                  v-for="(i,index) in  volumeList"
                  :key="index">
-                <div class="order">
-                    <h3>
+                <div class="order"
+                     style="margin:10px 0 0 0">
+                    <!-- <h3>
                         <img src="../../assets/wallet/people/time.png">
                         <span>付款倒计时56:30</span>
-                    </h3>
+                    </h3> -->
                     <div class="order-center">
                         <p>
                             <span>股权编号:</span>
@@ -105,7 +111,7 @@
                     <div class="order-center">
                         <p>
                             <span>产业价值:</span>
-                            <span>50-100U</span>
+                            <span>{{i.cyFW}}</span>
                         </p>
                         <p>
                             <span>股份金额:</span>
@@ -125,26 +131,30 @@
                     <div class="order-center">
                         <p>
                             <span>TGB:</span>
-                            <span>5*1.1%=0.055</span>
+                            <span>{{i.amount*i.cycle*i.rate}}*{{(i.otherRate *100).toFixed(2)}}%={{i.amount*i.cycle*i.rate*i.otherRate *100}}</span>
                         </p>
                     </div>
-                    <div class="go-buy"
+                    <!-- <div class="go-buy"
                          @click="showPopup">
                         预约成功,去付款
-                    </div>
+                    </div> -->
                 </div>
             </div>
-
+            <div class="no-data"
+                 v-if="volumeList.length == 0">
+                暂无数据
+            </div>
         </div>
         <div v-if="tabNum== 2">
             <div class="content-line"
                  v-for="(i,index) in  connectList"
                  :key="index">
-                <div class="order">
-                    <h3>
+                <div class="order"
+                     style="margin:10px 0 0 0">
+                    <!-- <h3>
                         <img src="../../assets/wallet/people/time.png">
                         <span>付款倒计时56:30</span>
-                    </h3>
+                    </h3> -->
                     <div class="order-center">
                         <p>
                             <span>股权编号:</span>
@@ -158,7 +168,7 @@
                     <div class="order-center">
                         <p>
                             <span>产业价值:</span>
-                            <span>50-100U</span>
+                            <span>{{i.cyFW}}</span>
                         </p>
                         <p>
                             <span>股份金额:</span>
@@ -178,18 +188,18 @@
                     <div class="order-center">
                         <p>
                             <span>TGB:</span>
-                            <span>5*1.1%=0.055</span>
-                        </p>
-                        <p>
-                            <span>到期时间:</span>
-                            <span>{{(getLocalTime(i.endTime)).substring(0,9)}}</span>
+                            <span>{{i.amount*i.cycle*i.rate}}*{{(i.otherRate *100).toFixed(2)}}%={{i.amount*i.cycle*i.rate*i.otherRate *100}}</span>
                         </p>
                     </div>
-                    <div class="go-buy">
+                    <!-- <div class="go-buy">
                         收益增值,众筹
-                    </div>
+                    </div> -->
 
                 </div>
+            </div>
+            <div class="no-data"
+                 v-if="connectList.length == 0">
+                暂无数据
             </div>
         </div>
         <div v-if="tabNum == 3">
@@ -199,10 +209,10 @@
                  :key="index">
                 <div class="order"
                      style="margin:10px 0 0 0">
-                    <h3>
+                    <!-- <h3>
                         <img src="../../assets/wallet/people/time-lv.png">
                         <span>付款倒计时56:30</span>
-                    </h3>
+                    </h3> -->
                     <div class="order-center">
                         <p>
                             <span>股权编号:</span>
@@ -246,7 +256,10 @@
 
                 </div>
             </div>
-
+            <div class="no-data"
+                 v-if="crowdList.length == 0">
+                暂无数据
+            </div>
         </div>
         <!-- <div v-if="tabNum== 4">
             <div class="content-line">
@@ -408,14 +421,15 @@
                     <h3>支付产业押金</h3>
                     <div class="pop-content">
                         <div class="pop-left">
-                            <p>类型：<span style="color:#343B3A;margin: 0 0 0 15px">农业</span></p>
-                            <p>金额：<span style="margin: 0 0 0 15px">28TB(10U)</span></p>
+                            <p>类型：<span style="color:#343B3A;margin: 0 0 0 15px">{{IndustryInformation.level}}</span></p>
+                            <p>金额：<span style="margin: 0 0 0 15px">{{IndustryInformation.maxAmount * IndustryInformation.baozjl}}TB</span></p>
                         </div>
                     </div>
                     <div class="input-focus">
                         <input ref="newPsd"
                                v-model="newPassword"
-                               type="number"
+                               type="text"
+                               maxlength="6"
                                v-focus="true" />
                     </div>
 
@@ -455,7 +469,8 @@
                     <div class="config">
                         <div class="cancel"
                              @click="showPop=false">取消</div>
-                        <div class="config-on">确定</div>
+                        <div class="config-on"
+                             @click="config">确定</div>
                     </div>
                 </div>
             </van-popup>
@@ -481,22 +496,17 @@ export default {
             orderList: [],
             volumeList: [],
             connectList: [],
-            crowdList: []
+            crowdList: [],
+            IndustryInformation: {}
         }
     },
     directives: {
         focus: {
             inserted: function (el, { value }) {
-                console.log(el, { value })
-
                 if (value) {
-
                     el.focus();
-
                 }
-
             }
-
         }
 
     },
@@ -507,12 +517,6 @@ export default {
     methods: {
         demoClick: function (index) {
             this.tabNum = index;
-        },
-        goBuy() {
-
-        },
-        showPopup() {
-            this.show = true
         },
         passwordFocus() {
             this.$refs.newPsd.focus();
@@ -553,6 +557,57 @@ export default {
 
                 }
             })
+        },
+        goBuy(item) {
+            if (item.state == 0) {
+                this.$http.get(this.$lib.host + 'qmlcg/selectConfigById', {
+                    params: {
+                        id: item.id,
+                        token_: this.$store.state.newToken
+                    }
+                }).then(res => {
+                    console.log(res);
+                    if (res.code == 200) {
+                        this.showPop = true
+                        this.IndustryInformation = res.data
+                    }
+                })
+            }
+        },
+        // 支付弹窗
+        config() {
+            if (this.newPassword.length < 6) {
+                this.$layer.open({
+                    content: '请输入交易密码',
+                    skin: 'msg',
+                    time: 2 //2秒后自动关闭
+                })
+                return
+            }
+            let data = {
+                orderId: 4,
+                payPassWord: this.newPassword,
+                token_: this.$store.state.newToken
+            }
+            this.$http.post(this.$lib.host + 'qmlcg/yuyue', this.qsParams(data)).then(res => {
+                if (res.code == 200) {
+                    this.showPop = false
+                    this.$layer.open({
+                        content: '预约成功',
+                        skin: 'msg',
+                        time: 2 //2秒后自动关闭
+                    })
+                } else {
+                    this.showPop = false
+                    this.$layer.open({
+                        content: '预约失败',
+                        skin: 'msg',
+                        time: 2 //2秒后自动关闭
+                    })
+                }
+            })
+
+
         }
 
     },
@@ -580,6 +635,7 @@ export default {
                 this.newPassword = ''
             }
         },
+
     },
     computed: {
         //时间戳转日期
@@ -825,5 +881,9 @@ export default {
             margin: 0 8px;
         }
     }
+}
+.no-data {
+    margin-top: 25px;
+    text-align: center;
 }
 </style>
