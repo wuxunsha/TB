@@ -14,9 +14,11 @@
           <div class="list-name">
             <p>{{$t('feature.assets.text_available')}}</p>
             <p>{{$t('feature.assets.text_freeze')}}</p>
+            <p>{{$t('feature.assets.text_crowdfunding')}}</p>
           </div>
           <div class="asset-sum">
             <p>{{item.amount}}</p>
+            <p>00.000</p>
             <p>00.000</p>
           </div>
         </li>
@@ -30,8 +32,7 @@
 <script>
   import {
     mapMutations,
-    mapState,
-    setUser
+    mapState
   } from 'vuex'
   export default {
     props: ['user'],
@@ -52,7 +53,6 @@
             return v;
         }).filter(v=>v.coin.transfer=='Y');
         this.balanceList = res
-        console.log(this.balanceList)
       },
       // 保留小数点
       financial(x) {
@@ -118,6 +118,9 @@
           color: rgba(200,205,211,1);
         }
         p:nth-child(2)  {
+          text-align: center;
+        }
+        p:nth-child(3)  {
           text-align: right;
         }
       }
@@ -131,7 +134,10 @@
           font-weight: bold;
           color: rgba(53,53,53,1);
         }
-        p:nth-child(2)  {
+         p:nth-child(2)  {
+          text-align: center;
+        }
+        p:nth-child(3)  {
           text-align: right;
         }
       }
