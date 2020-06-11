@@ -247,6 +247,11 @@ export default {
             setTimeout(() => {
                 this.setUserInfo(null);
                 this.setToken(null);
+                this.$store.commit('setUser', {                    user: {
+                        uid: null,
+                        password: null
+                    }                })
+                this.$store.commit('setNewToken', '')
                 localStorage.removeItem('vuex');
                 location.reload();
             }, 500);
