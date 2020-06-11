@@ -6,7 +6,7 @@
 
         <div class="title flex align between">
             <div class="h2"
-                 style="font-size:28px">{{$t('wallet.login.title')}} <span style="color:rgba(52,59,58,1);background:linear-gradient(-61deg,rgba(214,52,79,1) 0%, rgba(238,124,61,1) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">GAME</span> </div>
+                 style="font-size:28px">{{$t('wallet.login.title')}} <span style="color:rgba(52,59,58,1);background:linear-gradient(-61deg,rgba(33,239,185,1) 0%, rgba(85,107,243,1) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">GAME</span> </div>
 
             <div class="change_lang"
                  @click="show = true"
@@ -46,22 +46,20 @@
             </div>
 
             <div class="space30"></div>
-            <van-button type="info"
-                        @click="submitLogin()"
-                        :disabled="disabled">{{$t('wallet.login.form_btn_login')}}</van-button>
+            <van-button @click="submitLogin()" :disabled="disabled" class="submitBtn">{{$t('wallet.login.form_btn_login')}}</van-button>
 
             <div class="space40"></div>
 
             <div class="info flex align between">
                 <span class=" font_link font14"
-                      style="color:#DE4D49"
+                      style="color:#556BF3"
                       @click="gopage('forgetPass')">{{$t('wallet.login.form_btn_forget')}}</span>
                 <div>
                     <span class="font14 them_color_gray"
                           style="color:#353535">{{$t('wallet.login.none_user')}}</span>&nbsp;
                     <a @click="gopage('register')"
                        class="font14 font_link"
-                       style="color:#DE4D49">{{$t('wallet.login.btn_register')}}</a>
+                       style="color:#556BF3">{{$t('wallet.login.btn_register')}}</a>
                 </div>
             </div>
 
@@ -224,5 +222,13 @@ export default {
             center;
         background-size: 100%;
     }
+}
+.submitBtn {
+    height: 34px;
+    line-height: 34px;
+    background:linear-gradient(-61deg,rgba(33,239,185,1),rgba(85,107,243,1));
+    box-shadow:0px 4px 9px 0px rgba(67,21,237,0.15);
+    border-radius:4px;
+    color: #fff;
 }
 </style>
