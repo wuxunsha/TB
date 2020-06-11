@@ -81,7 +81,7 @@ const lang = {
         text_right_number:"右區人數"
     },
     home: {
-        nav_title_home:"TB生態",
+        nav_title_home:"CB生態",
         nav_title: "我的團隊",
         text_notes: "系統公告",
         text_mining: "礦池",
@@ -96,7 +96,7 @@ const lang = {
         text_upsAndDowns: "全民猜漲跌"
     },
     mining: {
-        nav_title: "TB礦池",
+        nav_title: "CB礦池",
         text_allTotal: "總資產",
         text_btn: "立即投資",
         text_dayIncome: "今日礦池收益",
@@ -125,7 +125,7 @@ const lang = {
         nav_title: "礦池詳情",
         text_chooseTitle: "請選擇挖礦收益幣種",
         text_pTitle: "說明",
-        text_p: "在礦池系統中存入TB，其中10%閃電兌換成TB，90%按照金本位每天釋放選擇的收益幣種",
+        text_p: "在礦池系統中存入CB，其中10%閃電兌換成CB，90%按照金本位每天釋放選擇的收益幣種",
         text_subsmit: "確認投資",
         text_ok: "確認",
         text_cancel: "取消",

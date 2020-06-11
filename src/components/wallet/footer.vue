@@ -112,11 +112,11 @@
   }
 
   .item .icon.home {
-    background: url(../../assets/business/首页-常态@2x.png);
+    background: url(../../assets/business/首页@3x.png);
   }
 
   .item.active .icon.home {
-    background: url(../../assets/business/首页－选中@2x.png);
+    background: url(../../assets/business/首页－选中.png);
   }
 
   //  .item .icon.mining {
@@ -132,16 +132,16 @@
   }
 
   .item.active .icon.assets {
-    background: url(../../assets/business/钱包-选中@2x.png);
+    background: url(../../assets/business/钱包@3x.png);
   }
 
 
   .item .icon.user {
-    background: url(../../assets/business/我的-常态@2x.png);
+    background: url(../../assets/business/我的@2x.png);
   }
 
   .item.active .icon.user {
-    background: url(../../assets/business/我的－选中@2x.png);
+    background: url(../../assets/business/我的－选中@3x.png);
   }
 
 </style>

@@ -83,7 +83,7 @@ const lang = {
         text_right_number: "右区人数"
     },
     home: {
-        nav_title_home: "TB生态",
+        nav_title_home: "CB生态",
         nav_title: "我的团队",
         text_notes: "系统公告",
         text_mining: "矿池",
@@ -98,7 +98,7 @@ const lang = {
         text_upsAndDowns: "全民猜涨跌"
     },
     mining: {
-        nav_title: "TB矿池",
+        nav_title: "CB矿池",
         text_allTotal: "总资产",
         text_btn: "立即投资",
         text_dayIncome: "今日矿池收益",
@@ -127,7 +127,7 @@ const lang = {
         nav_title: "矿池详情",
         text_chooseTitle: "请选择挖矿收益币种",
         text_pTitle: "说明",
-        text_p: "在矿池系统中存入TB，其中10%闪电兑换成TB，90%按照金本位每天释放选择的收益币种",
+        text_p: "在矿池系统中存入CB，其中10%闪电兑换成CB，90%按照金本位每天释放选择的收益币种",
         text_subsmit: "确认投资",
         text_ok: "确认",
         text_cancel: "取消",

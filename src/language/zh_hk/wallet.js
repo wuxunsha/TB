@@ -1,7 +1,7 @@
 const lang = {
     login: {
         text_active: "當前帳號已被限制登錄,請聯系管理員",
-        title: "TB帳號登錄",
+        title: "CB帳號登錄",
         form_mail: "請輸入用戶ID",
         form_pass: "請輸入賬戶密碼",
         form_btn_login: "登錄帳號",
@@ -12,7 +12,7 @@ const lang = {
         toast_pass: "請輸入密碼"
     },
     register: {
-        title: "TB帳號註冊",
+        title: "CB帳號註冊",
         form_input_userName: "請輸入用戶名稱",
         form_input_email: "請輸入郵箱或手機號碼",
         form_input_second: "秒後重新發送",

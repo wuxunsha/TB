@@ -81,7 +81,7 @@ const lang = {
     text_right_number: "Number of Right Areas"
   },
   home: {
-    nav_title_home: "TB Ecology",
+    nav_title_home: "CB Ecology",
     nav_title: "My Team",
     text_notes: "System Notes",
     text_mining: "Mining Pool",
@@ -96,7 +96,7 @@ const lang = {
     text_upsAndDowns: "Everyone guesses"
   },
   mining: {
-    nav_title: "TB Mining Pool",
+    nav_title: "CB Mining Pool",
     text_allTotal: "Total Assets",
     text_btn: "Invest Now",
     text_dayIncome: "Mine Pool Revenue Today",
@@ -125,7 +125,7 @@ const lang = {
     nav_title: "Mining Pool Details",
     text_chooseTitle: "Please select a currency for mining revenue",
     text_pTitle: "Description",
-    text_p: "Deposit TB in the mining pool system, of which 10% are converted into TB lightning, 90% of the selected currency is released daily according to the gold standard",
+    text_p: "Deposit CB in the mining pool system, of which 10% are converted into CB lightning, 90% of the selected currency is released daily according to the gold standard",
     text_subsmit: "Confirm Investment",
     text_ok: "Confirm",
     text_cancel: "Cancel",

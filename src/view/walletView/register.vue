@@ -5,7 +5,7 @@
 
         <div class="title flex align between">
             <div class="h2 text_color_dark"
-                 style="font-size:28px">{{$t('wallet.register.title')}} <span style="color:rgba(52,59,58,1);background:linear-gradient(-61deg,rgba(214,52,79,1) 0%, rgba(238,124,61,1) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">GAME</span></div>
+                 style="font-size:28px">{{$t('wallet.register.title')}} <span style="color:rgba(52,59,58,1);background:linear-gradient(-61deg,rgba(33,239,185,1) 0%, rgba(85,107,243,1) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">GAME</span></div>
             <div class="change_lang"
                  @click="show = true"
                  v-if="$i18n.locale=='en'">English
@@ -100,7 +100,7 @@
       </div> -->
 
             <div class="space20"></div>
-            <van-button type="info"
+            <van-button class="register"
                         @click="submitRegister()">{{$t('wallet.register.form_btn')}}</van-button>
             <div class="space30"></div>
 
@@ -263,7 +263,16 @@ export default {
 </script>
 <style rel="stylesheet/scss" scoped scoped>
 .van-button {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
+}
+.register {
+  width: 100%;
+  height: 34px;
+  line-height: 34px;
+  background:linear-gradient(-61deg,rgba(34,239,185,1),rgba(86,107,243,1));
+  box-shadow:0px 4px 9px 0px rgba(68,22,238,0.15);
+  border-radius:4px;
+  color: #fff;
 }
 </style>

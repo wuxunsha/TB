@@ -1,18 +1,18 @@
 const lang = {
     login: {
         text_active: "The current account has been restricted to log in, please contact the administrator",
-        title: "Login TB",
+        title: "Login CB",
         form_mail: "email or mobile phone number",
         form_pass: "password",
         form_btn_login: "log in",
         form_btn_forget: "forget password",
-        none_user: "Don't have a TB GAME account yet?",
+        none_user: "Don't have a CB GAME account yet?",
         btn_register: "registered",
         toast_mail: "Please enter the correct mobile number",
         toast_pass: "Please enter the password"
     },
     register: {
-        title: "Register TB",
+        title: "Register CB",
         form_input_userName: "Please enter a user name",
         form_input_email: "Please enter your email or mobile number",
         form_input_second: "Resend in seconds",
