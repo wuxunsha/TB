@@ -108,6 +108,9 @@ const lang = {
         text_ing: "收益中",
         text_over: "已结束"
     },
+    deal: {
+        nav_title: "交易",
+    },
     bankUser: {
         nav_title: "我的",
         text_level: "会员等级",
@@ -164,6 +167,7 @@ const lang = {
     },
     footer: {
         text_home: "首页",
+        text_deal: "交易",
         text_assets: "钱包",
         text_user: "我的"
     },
