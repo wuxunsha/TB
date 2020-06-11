@@ -3,6 +3,7 @@
   */
 
  const home = resolve => require(['@/view/businessView/home'], resolve)
+ const deal = resolve => require(['@/view/businessView/deal'], resolve)
  const mining = resolve => require(['@/view/businessView/mining'], resolve)
  const assets = resolve => require(['@/view/businessView/assets'], resolve)
  const bankUser = resolve => require(['@/view/businessView/bankUser'], resolve)
@@ -19,6 +20,7 @@
 
  let business = {
      home,
+     deal,
      mining,
      assets,
      bankUser,

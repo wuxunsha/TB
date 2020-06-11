@@ -20,6 +20,7 @@ const news = resolve => require(['@/view/walletView/news'], resolve)
 const peopleStock = resolve => require(['@/view/walletView/peopleStock'], resolve)
 const peopleDetail = resolve => require(['@/view/walletView/peopleDetail'], resolve)
 const myProperty = resolve => require(['@/view/walletView/myProperty'], resolve)
+const issue = resolve => require(['@/view/walletView/issue'], resolve)
 
 
 // 自定义路由
@@ -49,6 +50,7 @@ let routerArr = {
     peopleStock: peopleStock,
     peopleDetail: peopleDetail,
     myProperty: myProperty,
+    issue: issue,
     ...business // 非通用路由
 }
 
