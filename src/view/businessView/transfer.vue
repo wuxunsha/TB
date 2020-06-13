@@ -219,7 +219,7 @@ export default {
   white-space: nowrap;
   padding: 10px 5px;
   border-radius: 4px;
-  color:#DE4D49;
+  color:#566BF3;
   margin-left: 10px;
 }
 </style>

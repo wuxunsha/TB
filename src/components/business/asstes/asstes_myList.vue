@@ -6,10 +6,11 @@
 
     <div class="asset-list">
       <ul>
-        <li v-for="(item, index) in balanceList" :key="index" v-if="item.coin.coinName === 'USDT' || item.coin.coinName === 'CBK' || item.coin.coinName === 'CBG'">
+        <li v-for="(item, index) in balanceList" :key="index" v-if="item.coin.coinName === 'USDT' || item.coin.coinName === 'CBK' || item.coin.coinName === 'CBG' || item.coin.coinName === 'BTC'">
           <div class="asset-list-top">
-            <img :src="item.coin.coinName === 'USDT' ? require('./../../../assets/wallet/asstes/USDT@2x.png') : item.coin.coinName === 'CBK' ? require('./../../../assets/wallet/asstes/CBK透明@2x.png') : require('./../../../assets/wallet/asstes/cbg@2x.png')" alt="">
+            <img :src="item.coin.coinName === 'USDT' ? require('./../../../assets/wallet/asstes/USDT.png') : item.coin.coinName === 'CBK' ? require('./../../../assets/wallet/asstes/CBK.png') : item.coin.coinName === 'CBG' ? require('./../../../assets/wallet/asstes/CBG.png') : require('./../../../assets/wallet/asstes/BTC.png')" alt="">
             <span>{{item.coin.coinName}}</span>
+            <span v-if="item.coin.coinName === 'USDT'">领取</span>
           </div>
           <div class="list-name">
             <p>{{$t('feature.assets.text_available')}}</p>
@@ -105,6 +106,17 @@
           font-size: 14px;
           font-weight: bold;
           color: rgba(53,53,53,1);
+        }
+        > span:nth-child(3) {
+          float: right;
+          display: inline-block;
+          padding: 4px 10px;
+          background:rgba(86,107,243,1);
+          box-shadow: 0px 4px 9px 0px rgba(68,22,238,0.15);
+          border-radius: 5px;
+          font-size: 12px;
+          font-weight: 400;
+          color: rgba(255,255,255,1);
         }
       }
       .list-name {

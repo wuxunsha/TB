@@ -4,7 +4,10 @@
         <div class="token_choose">
             <div class="token_name flex between align"
                  @click="showList = true">
-                <b class=" font16 font-bold">{{currCoin.coin.coinName}}</b>
+                <b class="font16 font-bold">
+                    <!-- <img :src="currCoin.coin.coinName === 'USDT' ? require('../../assets/wallet/asstes/USDT.png') : currCoin.coin.coinName === 'CBK' ? require('../../assets/wallet/asstes/CBK.png') : currCoin.coin.coinName === 'CBG' ? require('../../assets/wallet/asstes/CBG.png') : require('../../assets/wallet/asstes/BTC.png')" alt=""> -->
+                    {{currCoin.coin.coinName}}
+                </b>
                 <small class="them_color_gray">
                     <van-icon name="arrow" /></small>
             </div>
@@ -98,6 +101,7 @@ export default {
 
             } else {
                 this.currCoin = this.coinsArr[0];
+                console.log(this.currCoin)
             }
             this.$emit('chooseCoin', this.currCoin)
         },
@@ -149,7 +153,13 @@ export default {
 
     .token_name {
         flex: 1;
-
+        .font16 {
+            img {
+                width: 24px;
+                height: 24px;
+                vertical-align: top;
+            }
+        }
         small {
             .van-icon {
                 margin-top: -2px;

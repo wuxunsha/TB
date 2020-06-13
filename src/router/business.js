@@ -7,6 +7,7 @@
  const mining = resolve => require(['@/view/businessView/mining'], resolve)
  const assets = resolve => require(['@/view/businessView/assets'], resolve)
  const bankUser = resolve => require(['@/view/businessView/bankUser'], resolve)
+//  const bankUser = resolve => require(['@/view/businessView/bankUserCopy'], resolve)
  const bankShare = resolve => require(['@/view/businessView/bankShare'], resolve)
  const miningDetail = resolve => require(['@/view/businessView/miningDetail'], resolve)
  const miningPro = resolve => require(['@/view/businessView/miningPro'], resolve)

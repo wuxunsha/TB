@@ -66,8 +66,12 @@
         </div>
 
         <div style="height:10px;background:rgba(247,246,251,1);width:100%"></div>
-        <div style="padding:10px 20px 0">
+        <div class="rechargeList">
             <h3>{{$t('wallet.recharge.list')}}</h3>
+            <div>
+                <img src="../../assets/wallet/deal/数据暂无.png" alt="">
+                <p>暂无数据</p>
+            </div>
         </div>
 
         <div class="space20"></div>
@@ -235,6 +239,23 @@ export default {
     span {
         color: red;
         display: inline-block;
+    }
+}
+.rechargeList {
+    padding: 10px 20px 0;
+    > div {
+        margin-top: 20px;
+        text-align: center;
+        img {
+            width: 50%;
+        }
+        p {
+            margin-top: 20px;
+            font-size: 12px;
+            font-family: PingFang SC;
+            font-weight: 500;
+            color: rgba(200,205,211,1);
+        }
     }
 }
 </style>

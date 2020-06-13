@@ -45,7 +45,10 @@
             <div>
               <span>{{$t('wallet.withdraw.Toast_Handling')}}：{{serviceNumber}} {{currCoin.coin.coinName}}</span>
             </div>
-            <div @click="extractAll">{{$t('wallet.withdraw.text_allin')}}</div>
+            <div @click="extractAll">
+              <img src="../../assets/wallet/deal/提取全部.png" alt="">
+              {{$t('wallet.withdraw.text_allin')}}
+            </div>
           </div>
 
           <ul class="withdraw-detail" v-if="currCoin">
@@ -256,13 +259,13 @@ export default {
   .item_box {
     margin-top: 46px;
     .remind-box {
-      background: #FEF6F4;
+      background: #EEF0FF;
       .remind {
         width: 100%;
         line-height: 28px;
         font-size: 12px;
         font-weight: 500;
-        color: rgba(222,77,73,1);
+        color: #566BF3;
         padding: 0 20px;
       }
     }
@@ -305,7 +308,7 @@ export default {
           }
           > span:nth-child(2) {
             margin-left: 18px;
-            color: #DE4D49;
+            color: #566BF3;
           }
         }
       }
@@ -414,7 +417,12 @@ export default {
       color: rgba(175,175,175,1);
     }
     > div:nth-child(2) {
-      color: #DE4D49;
+      color: #566BF3;
+      img {
+        width: 13px;
+        height: 13px;
+        margin-right: 4px;
+      }
     }
   }
 
@@ -463,7 +471,7 @@ export default {
       display: block;
       margin: 20px auto;
       width: 100%;
-      background: #DE4D49;
+      background: #566BF3;
       font-size: 14px;
       font-weight: bold;
       color: rgba(255,255,255,1);
