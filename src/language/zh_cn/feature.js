@@ -69,7 +69,7 @@ const lang = {
     },
     bankShare: {
         text_code: "我的邀请码",
-        text_copy: "复制邀请链接",
+        text_copy: "复制",
         text_info: "提示：截屏分享二维码邀请好友下载APP"
     },
     bankShareList: {
@@ -122,9 +122,14 @@ const lang = {
         text_withdrawList: "提现明细",
         text_forgetPass: "修改登录密码",
         text_feedback: "在线客服",
-        text_news: "公告中心",
+        text_news: "公告消息",
         text_lang: "语言切换",
-        text_changePayPass: "重置交易密码"
+        text_changePayPass: "重置交易密码",
+        text_Authentication: "身份认证",
+        text_verified: "已认证",
+        text_payment_method: "收款方式",
+        text_account_security: "账户安全",
+        text_about_us: "关于我们"
     },
     miningBuy: {
         nav_title: "矿池详情",

@@ -1,44 +1,32 @@
 <template>
-  <div class="sharebg full-height">
+  <div>
 
-    <div class="navBox opacity">
+    <div>
       <van-nav-bar :title="$t('wallet.share.nav_title')"  left-arrow @click-left="goback()" />
     </div>
 
     <div class="codeBox">
-
-      <div class="padding20">
-        <div class="codeTitle flex align center">
-          <i></i><span>{{$t('feature.bankShare.text_code')}}</span><i></i>
+      <!-- 分享二维码 -->
+      <div class="codeimg">
+        <div class="qr_box">
+          <div class="qrcode" ref="qrCodeUrl"></div>
         </div>
-
-        <div class="space20"></div>
-
-        <!-- <van-tabs @click="changeType"  type="card">
-          <van-tab :title="`${$t('feature.register.text_left')}`" name="left"></van-tab>
-          <van-tab :title="`${$t('feature.register.text_right')}`" name="right"></van-tab>
-        </van-tabs> -->
-
-        <h2 v-if="area=='left'">{{userInfo.user.userInvitation}}</h2>
-        <h2 v-else>{{userInfo.user.userInvitationRight}}</h2>
-        
-        <div class="codeimg">
-          <div class="qr_box">
-            <div class="qrcode" ref="qrCodeUrl"></div>
-          </div>
-        </div>
-
-        <div class="them_btn copycode" :data-clipboard-text="code_text" @click="copy">{{$t('feature.bankShare.text_copy')}}</div>
       </div>
-      <!-- padding20 -->
-
-      <div class="info border-top font13 them_color_gray">{{$t('feature.bankShare.text_info')}}</div>
-
     </div>
-    <!-- codeBox -->
 
+    <!-- 邀请码 -->
+    <div class="invitation-code">
+      <h2 v-if="area=='left'">{{userInfo.user.userInvitation}}</h2>
+      <h2 v-else>{{userInfo.user.userInvitationRight}}</h2>
+    </div>
+
+    <!-- 复制按钮 -->
+    <div class="copycode" :data-clipboard-text="code_text">
+      <span @click="copy">
+        {{$t('feature.bankShare.text_copy')}}
+      </span>
+    </div>
   </div>
-  <!-- index -->
 </template>
 
 <script>
@@ -63,7 +51,7 @@
       changeType(name, title){//修改类型
         this.area = name;
         this.qrcode();
-      },//changeType
+      },
       qrcode() { //生成二维码
         this.$refs.qrCodeUrl.innerHTML="";//先移除
         // this.code_text = `${window.location.protocol}//${window.location.host}/#/register?invitation=${this.area=='left' ? this.userInfo.user.userInvitation : this.userInfo.user.userInvitationRight}`;
@@ -76,7 +64,7 @@
           height: 200,
           correctLevel: QRCode.CorrectLevel.H
         })
-      }, //qrcode
+      },
       copy() { //复制
         var clipboard = new Clipboard('.copycode')
         clipboard.on('success', e => {
@@ -87,72 +75,64 @@
           Toast(this.$t('wallet.common.toast_copy_fail'))
           clipboard.destroy()
         })
-      }, //copy
+      },
     },
     computed: {
       ...mapState(['userInfo'])
     },
     mounted() {
       this.qrcode();
-    } //mounted
+    }
   };
 
 </script>
 <style rel="stylesheet/scss" scoped lang="scss">
-  @import "../../styles/walletVal";
+@import "../../styles/walletVal";
 
-  .sharebg {
-    background: white url('../../assets/business/sharebg.jpg') no-repeat;
-    background-size: 100% 100%;
-  }
-
-  .codeBox {
-    border-radius: 8px;
-    background: white;
-    margin: 0 20px;
-    margin-top: 40%;
-    text-align: center;
-
-    .them_btn {
-      margin-top: 20px;
-    }
-
-    .codeimg {
-      border: 1px solid $them_color;
-      width: 150px;
-      height: 150px;
-      margin: 10px auto;
-      padding: 5px;
-      border-radius: 4px;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
+.codeBox {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: url('../../assets/business/sharebg.png') no-repeat;
+  background-size: 100% 100%;
+  .codeimg {
+    position: absolute;
+    bottom: -75px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
-
-  .codeTitle {
-    span {
-      font-size: 16px;
-    }
-
-    i {
-      height: 1px;
-      margin: 0 10px;
-      width: 30px;
-      background: $gray_text;
-    }
-  }
-
+}
+.invitation-code {
+  margin-top: 95px;
+      text-align: center;
   h2 {
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: 15px;
+    display: inline-block;
+    line-height: 25px;
+    padding: 4px 20px;
+    border: 1px solid rgba(235,235,235,1);
+    border-radius: 2px;
   }
-  .info{
-      padding: 20px;
+}
+.copycode {
+  margin-top: 15px;
+  text-align: center;
+  span {
+    display: inline-block;
+    padding: 6px 22px;
+    background: #566BF3;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 2px;
   }
-
+}
 </style>

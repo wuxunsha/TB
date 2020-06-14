@@ -67,7 +67,7 @@ const lang = {
   },
   bankShare: {
     text_code: "My Invitation Code",
-    text_copy: "Copy Invitation Link",
+    text_copy: "Copy",
     text_info: "Hint: Share QR code to invite friends to download APP"
   },
   bankShareList: {
@@ -117,9 +117,14 @@ const lang = {
     text_withdrawList: "Withdrawal Details",
     text_forgetPass: "Change Login Password",
     text_feedback: "Online Support",
-    text_news: "News Center",
+    text_news: "Announcement",
     text_lang: "Language Switch",
-    text_changePayPass: "Reset Transaction Password"
+    text_changePayPass: "Reset Transaction Password",
+    text_Authentication: "Authentication",
+    text_verified: "verified",
+    text_payment_method: "payment method",
+    text_account_security: "account security",
+    text_about_us: "about us"
   },
   miningBuy: {
     nav_title: "Mining Pool Details",

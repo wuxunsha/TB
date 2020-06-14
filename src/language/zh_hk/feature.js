@@ -67,7 +67,7 @@ const lang = {
     },
     bankShare: {
         text_code: "我的邀請碼",
-        text_copy: "復制邀請鏈接",
+        text_copy: "復制",
         text_info: "提示：截屏分享二維碼邀請好友下載APP"
     },
     bankShareList: {
@@ -117,9 +117,14 @@ const lang = {
         text_withdrawList: "提現明細",
         text_forgetPass: "修改登錄密碼",
         text_feedback: "在線客服",
-        text_news: "公告中心",
+        text_news: "公告消息",
         text_lang: "語言切換",
-        text_changePayPass:"重置交易密碼"
+        text_changePayPass:"重置交易密碼",
+        text_Authentication: "身份認證",
+        text_verified: "已認證",
+        text_payment_method: "收款方式",
+        text_account_security: "賬戶安全",
+        text_about_us: "關於我們"
     },
     miningBuy: {
         nav_title: "礦池詳情",

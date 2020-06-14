@@ -101,7 +101,6 @@ export default {
 
             } else {
                 this.currCoin = this.coinsArr[0];
-                console.log(this.currCoin)
             }
             this.$emit('chooseCoin', this.currCoin)
         },

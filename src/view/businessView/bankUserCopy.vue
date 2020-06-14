@@ -1,6 +1,5 @@
 <template>
     <div id="user" class="full-screen">
-
         <div>
             <van-nav-bar :title="`${$t('feature.bankUser.nav_title')}`" fixed>
                 <template #right>
@@ -9,134 +8,79 @@
             </van-nav-bar>
         </div>
 
-        <div class="user_info flex align">
-            <div class="header_text">
-                <img src="../../assets/business/user/我的－选中@2x.png" alt="">
+        <div class="user-box">
+            <div class="user-left">
+                <div class="user_info flex align">
+                    <div class="header_text">
+                        <img src="../../assets/business/user/我的－选中@2x.png" alt="">
+                    </div>
+                    <div class="info">
+                        <b>{{userInfo.user.userAccount || userInfo.user.id}}</b>
+                        <!-- <span>{{$t('feature.bankUser.text_level')}}：{{userRole}}</span> -->
+                        <span>{{userInfo.user.userPhone}}</span>
+                    </div>
+                </div>
             </div>
-            <div class="info">
-                <b>{{userInfo.user.userAccount || userInfo.user.id}}</b>
-                <!-- <span>{{$t('feature.bankUser.text_level')}}：{{userRole}}</span> -->
-                <span>{{userInfo.user.userPhone}}</span>
+            <div class="user-right">
+                <div class="VIP-level flex align">
+                    <div>
+                        <img src="../../assets/business/user/ＶＩＰ@2x.png" alt="">
+                    </div>
+                    <div>
+                        <img src="../../assets/business/user/图层 1 拷贝 5@2x.png" alt="">
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- <div class="menu_item_box">
-            <div class="iconMenu flex align">
-                <div class="item"
-                     @click="gopage('/bankShare')">
-                    <i class="menu_1"></i>
-                    <div class=" text_color_dark textCenter">{{$t('feature.bankUser.text_bankShare')}}</div>
-                </div>
-                <div class="item"
-                     @click="gopage('/bankShareList')">
-                    <i class="menu_2"></i>
-                    <div class=" text_color_dark textCenter">{{$t('feature.bankUser.text_shareList')}}</div>
-                </div>
+        <div class="bankShare">
+            <div @click="gopage('/bankShare')">
+                {{$t('feature.bankUser.text_bankShare')}}
             </div>
-            <div class="flex align menu_list right_row border-bottom"
-                 @click="gopage('/assetsDetail_v2')">
-                <div class="icon">
-                    <img src="../../assets/business/menu_mx.png"
-                         alt=""
-                         srcset="">
-                </div>
-                <div class="title font12 text_color_dark  font-bold">{{$t('feature.bankUser.text_assets')}}</div>
-                <van-icon name="arrow" />
+            <div @click="gopage('/bankShareList')">
+                {{$t('feature.bankUser.text_shareList')}}
             </div>
-            <div class="flex align menu_list right_row border-bottom"
-                 @click="gopage('/rechargeList')">
-                <div class="icon">
-                    <img src="../../assets/business/menu_cz.png"
-                         alt=""
-                         srcset="">
-                </div>
-                <div class="title font12 text_color_dark  font-bold">{{$t('feature.bankUser.text_rechargeList')}}</div>
-                <van-icon name="arrow" />
-            </div>
-            <div class="flex align menu_list right_row border-bottom"
-                 @click="gopage('/withdrawList')">
-                <div class="icon">
-                    <img src="../../assets/business/menu_tx.png"
-                         alt=""
-                         srcset="">
-                </div>
-                <div class="title font12 text_color_dark  font-bold">{{$t('feature.bankUser.text_withdrawList')}}</div>
-                <van-icon name="arrow" />
-            </div>
-            <div class="flex align menu_list right_row border-bottom"
-                 @click="gopage('/forgetPass')">
-                <div class="icon">
-                    <img src="../../assets/business/menu_dl.png"
-                         alt=""
-                         srcset="">
-                </div>
-                <div class="title font12 text_color_dark  font-bold">{{$t('feature.bankUser.text_forgetPass')}}</div>
-                <van-icon name="arrow" />
-            </div>
-            <div class="flex align menu_list right_row border-bottom"
-                 @click="gopage('/setPayPass')">
-                <div class="icon">
-                    <img src="../../assets/business/menu_zfmm.png"
-                         alt=""
-                         srcset="">
-                </div>
-                <div class="title font12 text_color_dark  font-bold">{{$t('feature.bankUser.text_changePayPass')}}</div>
-                <van-icon name="arrow" />
-            </div>
-            <div class="flex align menu_list right_row border-bottom"
-                 @click="gopage('/feedback')">
-                <div class="icon">
-                    <img src="../../assets/business/menu_kf.png"
-                         alt=""
-                         srcset="">
-                </div>
-                <div class="title font12 text_color_dark  font-bold">{{$t('feature.bankUser.text_feedback')}}</div>
-                <van-icon name="arrow" />
-            </div>
-            <div class="flex align menu_list right_row border-bottom"
-                 @click="gopage('/news')">
-                <div class="icon">
-                    <img src="../../assets/business/menu_gg.png"
-                         alt=""
-                         srcset="">
-                </div>
-                <div class="title font12 text_color_dark  font-bold">{{$t('feature.bankUser.text_news')}}</div>
-                <van-icon name="arrow" />
-            </div> -->
-            <!-- <div class="flex align menu_list right_row border-bottom" @click="gopage('/setPayPass')" v-if="false">
-                <div class="icon">
-                <img src="../../assets/business/menu_jy.png" alt="" srcset="">
-                </div>
-                <div class="title font12 text_color_dark  font-bold">修改交易密码</div>
-                <van-icon name="arrow" />
-            </div> -->
-            <!-- <div class="flex align menu_list right_row border-bottom"
-                 @click="showLang=true">
-                <div class="icon">
-                    <img src="../../assets/business/menu_yy.png"
-                         alt=""
-                         srcset="">
-                </div>
-                <div class="title font12 text_color_dark  font-bold">{{$t('feature.bankUser.text_lang')}}</div>
-                <van-icon name="arrow" />
-            </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="space20"></div>
-
-        <div class="login_out" @click="login_out()">{{$t('wallet.user.text_loginout')}}</div>
-
-        <div class="space20"></div>
-
-        <van-dialog v-model="showEdit" :title="$t('wallet.user.dialog_edit')" show-cancel-button :closeOnClickOverlay="true" :beforeClose="dialogConfirm">
-            <div class="dialogMain">
-                <van-field v-model="newName" border clickable :placeholder="$t('wallet.user.input_name')" />
+        <div class="news">
+            <div class="news-box" @click="gopage('/news')">
+                <img src="../../assets/business/user/公告消息@2x.png" alt="">
+                <span>{{$t('feature.bankUser.text_news')}}</span>
             </div>
-        </van-dialog> -->
+        </div>
 
-        <!-- <van-popup v-model="showEdit">内容</van-popup> -->
+        <div class="news">
+            <div class="news-box">
+                <img src="../../assets/business/user/身份认证@2x.png" alt="">
+                <span>{{$t('feature.bankUser.text_Authentication')}}</span>
+                <span>{{$t('feature.bankUser.text_verified')}}</span>
+            </div>
+        </div>
 
-        <van-action-sheet v-model="showLang" :title="$t('wallet.common.exchange_lang')" :actions="lang_actions" @select="onSelect" />
+        <div class="news">
+            <div class="news-box bottom">
+                <img src="../../assets/business/user/收款方式@2x.png" alt="">
+                <span>{{$t('feature.bankUser.text_payment_method')}}</span>
+            </div>
+        </div>
+
+        <div class="Partition"></div>
+
+        <div class="news">
+            <div class="news-box" @click="gopage('/news')">
+                <img src="../../assets/business/user/账户安全 @2x.png" alt="">
+                <span>{{$t('feature.bankUser.text_account_security')}}</span>
+            </div>
+        </div>
+
+        <div class="news">
+            <div class="news-box bottom">
+                <img src="../../assets/business/user/关于我们@2x.png" alt="">
+                <span>{{$t('feature.bankUser.text_about_us')}}</span>
+            </div>
+        </div>
+
+        <div class="Partition"></div>
 
         <myFooter :footerNavActive="activeType"></myFooter>
 
@@ -271,52 +215,145 @@ export default {
 }
 
 .full-screen {
-    .user_info {
+    .user-box {
+        display: flex;
         margin-top: 47px;
         height: 72px;
         padding: 0 20px;
         border-bottom: 1px solid #EBEBEB;
-        position: relative;
+        .user-left {
+            flex: 1;
+            .user_info {
+                position: relative;
+                height: 100%;
+                .header_text {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    margin-right: 15px;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .info {
+                    b {
+                        display: block;
+                        margin-bottom: 5px;
+                        font-size: 14px;
+                        font-family: PingFang SC;
+                        font-weight: bold;
+                        color: rgba(53,53,53,1);
+                    }
+                    span {
+                        display: block;
+                        font-size: 12px;
+                        font-family: PingFang SC;
+                        font-weight: bold;
+                        color: rgba(34,239,185,1);
+                    }
+                }
+            }
+        }
+        .user-right {
+            margin-right: 28px;
+            .VIP-level {
+                height: 72px;
+                >div:nth-child(1) {
+                    position: relative;
+                    width: 36px;
+                    height: 72px;
+                    img {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translateY(-8PX);
+                        width: 100%;
+                        height: 16px;
+                    }
+                }
+                >div:nth-child(2) {
+                    position: relative;
+                    width: 54px;
+                    height: 72px;
+                    img {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translateY(-24px);
+                        width: 100%;
+                        height: 49px;
+                    }
+                }
+            }
+            // img:nth-child(1) {
+            //     width: 36px;
+            //     height: 16px;
+            // }
+            // img:nth-child(2) {
+            //     width: 54px;
+            //     height: 49px;
+            // }
+        }
 
-        .header_text {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 15px;
-            img {
-                width: 100%;
-            }
-        }
-        .info {
-            b {
-                display: block;
-                margin-bottom: 5px;
-                font-size: 15px;
-            }
-            span {
-                display: block;
-                font-size: 12px;
-            }
-        }
+    }
 
-        .main,
-        .number-info,
-        .btn-row {
-            position: relative;
-            z-index: 11;
+    .bankShare {
+        display: flex;
+        width: 100%;
+        height: 47px;
+        line-height: 42px;
+        border-bottom: 5px solid #F7F6FB;
+        >div {
+            flex: 1;
+            height: 100%;
+            text-align: center;
+            font-size: 14px;
+            font-family: PingFang SC;
+            font-weight: 500;
+            color: rgba(53,53,53,1);
         }
-        .header {
-            margin-right: 10px;
-            img {
-                width: 50px;
-                height: 50px;
-                border-radius: 100px;
-                -webkit-border-radius: 100px;
-                overflow: hidden;
-                padding: 5px;
-            }
+        >div:nth-child(1) {
+            border-right: 1px solid #EBEBEB;
         }
     }
+
+    .news {
+        width: 100%;
+        height: 45px;
+        padding-left: 20px;
+        .news-box {
+            width: 100%;
+            height: 100%;
+            line-height: 45px;
+            border-bottom: 1px solid #EBEBEB;
+            padding-right: 20px;
+            span {
+                font-size: 14px;
+                font-family: PingFang SC;
+                font-weight: 500;
+                color: rgba(53,53,53,1);
+            }
+            >span:nth-child(3) {
+                float: right;
+                color: #566BF3;
+            }
+            img {
+                width: 16px;
+                margin-right: 10px;
+            }
+        }
+        .bottom {
+            border-bottom: none;
+        }
+    }
+
+
+    .Partition {
+        width: 100%;
+        height: 5px;
+        background: #F7F6FB;
+    }
+
 }
 
 .menu_item_box {

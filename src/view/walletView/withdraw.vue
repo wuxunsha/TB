@@ -1,7 +1,11 @@
 <template>
   <div id="funds">
 
-     <van-nav-bar :title="$t('wallet.withdraw.Withdraw')" left-arrow fixed @click-left="goback()" />
+    <van-nav-bar :title="$t('wallet.withdraw.Withdraw')" left-arrow fixed @click-left="goback()" @click-right="gopage('/assetsDetail_v2')">
+      <template #right>
+        <van-icon name="orders-o" size="18" />
+      </template>
+    </van-nav-bar>
 
     <div class="item_box">
 

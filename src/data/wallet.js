@@ -219,4 +219,18 @@ export function quan_detail(params) { //推荐概览数据
         url: `${quanPath}/qmlcg/selectForDT`,
         params: params
     })
-} //child_detail'
+}
+
+export function TBListfund(params) { //获取资产列表
+    return get({
+        url: 'http://39.99.215.137:8080/tb/listfund',
+        params: params
+    })
+}
+
+export function TBListCZinfo(params) { //获取充值记录
+    return get({
+        url: 'http://39.99.215.137:8080/tb/listCZinfo',
+        params: params
+    })
+}
