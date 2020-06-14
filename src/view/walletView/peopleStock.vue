@@ -159,7 +159,8 @@ export default {
             })
         },
         getNewToken(token) {
-            // console.log(this.$store.state.user)
+            // console.log(this.$store.state.user);
+
             let data = {
                 account: this.$store.state.user.uid,
                 password: this.$store.state.user.password,

@@ -9,10 +9,10 @@
 export const setToken = (state, params) => { //登陆获取当前用户信息
     state.token = params;
 }
-export const setUser = (state, params) => { // 保存登录用户信息
+export const setUser = (state, params) => {
     state.user = params;
 }
-export const setNewToken = (state, params) => { // 保存三方token
+export const setNewToken = (state, params) => {
     state.newToken = params;
 }
 export const setUserInfo = (state, params) => { //设置详细用户信息
