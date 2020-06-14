@@ -5,8 +5,11 @@
       <van-nav-bar
         :title="`${$t('feature.transfer.text_title')}`"
         fixed
-        left-arrow @click-left="goback()"
-      />
+        left-arrow @click-left="goback()" @click-right="gopage('/assetsDetail_v2')">
+        <template #right>
+          <van-icon name="orders-o" size="18" />
+        </template>
+      </van-nav-bar>
     </div>
 
     <div class="actionForm">

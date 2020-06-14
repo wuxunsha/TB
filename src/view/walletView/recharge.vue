@@ -2,10 +2,11 @@
     <div id="funds">
         <div class="navBox"
              style="padding:0 20px">
-            <van-nav-bar :title="$t('wallet.recharge.nav_title')"
-                         fixed
-                         left-arrow
-                         @click-left="goback()" />
+            <van-nav-bar :title="$t('wallet.recharge.nav_title')" fixed left-arrow @click-left="goback()" @click-right="gopage('/assetsDetail_v2')">
+                <template #right>
+                    <van-icon name="orders-o" size="18" />
+                </template>
+            </van-nav-bar>
         </div>
         <!-- <walletNav :title="$t('wallet.recharge.nav_title')"
                    left-arrow
@@ -68,10 +69,17 @@
         <div style="height:10px;background:rgba(247,246,251,1);width:100%"></div>
         <div class="rechargeList">
             <h3>{{$t('wallet.recharge.list')}}</h3>
-            <div>
+            <div v-if="rechargeList.length === 0">
                 <img src="../../assets/wallet/deal/数据暂无.png" alt="">
                 <p>暂无数据</p>
             </div>
+            <ul v-else>
+                <li v-for="(item, index) in rechargeList" :key="index">
+                    <div>{{item.coinId === 1 ? 'USDT' : item.coinId === 2 ? 'TB' : item.coinId === 3 ? 'OKB' : item.coinId === 4 ? 'BNB' : 'HT'}}</div>
+                    <div>{{item.amount}}</div>
+                    <div>{{item.addTime}}</div>
+                </li>
+            </ul>
         </div>
 
         <div class="space20"></div>
@@ -82,7 +90,8 @@
 
 <script>
 import {
-    checkTbAddress
+    checkTbAddress,
+    TBListCZinfo
 } from '../../data/wallet';
 import {
     mapMutations,
@@ -95,19 +104,60 @@ import chooseCoins from '../../components/wallet/chooseCoins'
 export default {
     data() {
         return {
+            token: null,
             currRechargeInfo: null,//当前币种信息
             copyText: null,
-            addressInfo: {}
+            addressInfo: {},
+            // 充值记录
+            rechargeList: []
         }
     },
     components: {
         chooseCoins
     },
     methods: {
+        getToken() {
+            this.$http.get(this.$lib.host + 'util/gettoken', {
+                params: {
+                    token_: this.$store.state.newToken
+                }
+            }).then(res => {
+                if (res.code == 200) {
+                    this.getNewToken(res.data.token_)
+                }
+            })
+        },
+        getNewToken(token) {
+            let data = {
+                account: this.$store.state.user.uid,
+                password: this.$store.state.user.password,
+                token_: token
+            }
+            this.$http.post(this.$lib.host + 'otc/login', this.qsParams(data)).then(res => {
+                if (res.code == 200) {
+                    this.token = res.data.token_
+                    if (this.currRechargeInfo) {
+                        this.getRechargeList()
+                    }
+                }
+            })
+        },
+        // 获取充值列表
+        getRechargeList () {
+            TBListCZinfo({token_: this.token,coinId: this.currRechargeInfo.coin.id}).then(res => {
+                if (res.code === '200') {
+                    res.data.forEach( item => {
+                        item.addTime = this.getDate(item.addTime)
+                    })
+                    this.rechargeList = res.data
+                }
+            })
+        },
         chooseCoin(item) {//当前币种选择
             // console.log(item)
             // this.qrcode(item.rechargeAddress.address);
             this.currRechargeInfo = item;
+            // console.log(this.currRechargeInfo)
             // this.copyText = item.rechargeAddress.address;
 
         },//chooseCoin
@@ -124,7 +174,6 @@ export default {
         copy() { //复制
 
             var clipboard = new Clipboard('.copycode')
-            console.log(clipboard);
 
             clipboard.on('success', e => {
 
@@ -135,7 +184,20 @@ export default {
                 Toast(this.$t('wallet.common.toast_copy_fail'))
                 clipboard.destroy()
             })
-        }//copy
+        },
+        // 时间戳转时间、
+        getDate (timeStamp) {
+            const dt = new Date(timeStamp)
+            const year = dt.getFullYear()
+            const month = (dt.getMonth() + 1 + '').padStart(2, '0')
+            const date = (dt.getDate() + '').padStart(2, '0')
+
+            const hours = (dt.getHours() + '').padStart(2, '0')
+            const minutes = (dt.getMinutes() + '').padStart(2, '0')
+            const second = (dt.getSeconds() + '').padStart(2, '0')
+            let resStr = year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + second
+            return resStr
+        }
     },
     computed: {
         ...mapState(['userInfo'])
@@ -149,6 +211,9 @@ export default {
         })
     },
     mounted() {
+        this.$nextTick(() => {
+            this.getToken()
+        })
         /*if(this.$route.query.coinName=='GSHT'){
           Dialog.confirm({
             title: this.$t('wallet.common.Dialog'),
@@ -255,6 +320,25 @@ export default {
             font-family: PingFang SC;
             font-weight: 500;
             color: rgba(200,205,211,1);
+        }
+    }
+    > ul {
+        margin-top: 18px;
+        li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            > div:nth-child(1) {
+                flex: 0.5;
+            }
+            > div:nth-child(2) {
+                flex: 1;
+                text-align: center;
+            }
+            > div:nth-child(3) {
+                flex: 1;
+                text-align: right;
+            }
         }
     }
 }
