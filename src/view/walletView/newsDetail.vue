@@ -20,7 +20,9 @@
             </div>
             <!-- header -->
             <div class="new-title">
-                <img src="../../assets/wallet/asstes/tb.png">
+                <img src="../../assets/wallet/asstes/CBG.CBK--2@2x.png">
+                <span>CB</span>
+                <span>GAME</span>
             </div>
             <div class="line"></div>
 
@@ -116,8 +118,24 @@ export default {
     padding: 0 16px;
     margin: 8px 0 22px 0;
     img {
-        width: 170px;
-        height: 32px;
+        // width: 120px;
+        // height: 18px;
+        width: 18%;
+        vertical-align: bottom;
+        margin-right: 10px;
+    }
+    span:nth-child(2) {
+        font-size:22px;
+        font-family:Swis721 Blk BT;
+        font-weight:900;
+        color:rgba(86,107,243,1);
+        margin-right: 6px;
+    }
+    span:nth-child(3) {
+        font-size:22px;
+        font-family:Swis721 Blk BT;
+        font-weight:900;
+        color:#22EFB9;
     }
 }
 .line {

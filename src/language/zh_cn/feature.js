@@ -69,11 +69,11 @@ const lang = {
     },
     bankShare: {
         text_code: "我的邀请码",
-        text_copy: "复制邀请链接",
+        text_copy: "复制",
         text_info: "提示：截屏分享二维码邀请好友下载APP"
     },
     bankShareList: {
-        nav_title: "我的团队",
+        nav_title: "收益提取",
         text_amount: "团队总业绩",
         text_number: "团队总人数",
         text_amount: "业绩",
@@ -83,7 +83,7 @@ const lang = {
         text_right_number: "右区人数"
     },
     home: {
-        nav_title_home: "TB生态",
+        nav_title_home: "CB生态",
         nav_title: "我的团队",
         text_notes: "系统公告",
         text_mining: "矿池",
@@ -98,7 +98,7 @@ const lang = {
         text_upsAndDowns: "全民猜涨跌"
     },
     mining: {
-        nav_title: "TB矿池",
+        nav_title: "CB矿池",
         text_allTotal: "总资产",
         text_btn: "立即投资",
         text_dayIncome: "今日矿池收益",
@@ -107,6 +107,9 @@ const lang = {
         text_addTime: "开启时间",
         text_ing: "收益中",
         text_over: "已结束"
+    },
+    deal: {
+        nav_title: "交易",
     },
     bankUser: {
         nav_title: "我的",
@@ -119,15 +122,20 @@ const lang = {
         text_withdrawList: "提现明细",
         text_forgetPass: "修改登录密码",
         text_feedback: "在线客服",
-        text_news: "公告中心",
+        text_news: "公告消息",
         text_lang: "语言切换",
-        text_changePayPass: "重置交易密码"
+        text_changePayPass: "重置交易密码",
+        text_Authentication: "身份认证",
+        text_verified: "已认证",
+        text_payment_method: "收款方式",
+        text_account_security: "账户安全",
+        text_about_us: "关于我们"
     },
     miningBuy: {
         nav_title: "矿池详情",
         text_chooseTitle: "请选择挖矿收益币种",
         text_pTitle: "说明",
-        text_p: "在矿池系统中存入TB，其中10%闪电兑换成TB，90%按照金本位每天释放选择的收益币种",
+        text_p: "在矿池系统中存入CB，其中10%闪电兑换成CB，90%按照金本位每天释放选择的收益币种",
         text_subsmit: "确认投资",
         text_ok: "确认",
         text_cancel: "取消",
@@ -164,6 +172,7 @@ const lang = {
     },
     footer: {
         text_home: "首页",
+        text_deal: "交易",
         text_assets: "钱包",
         text_user: "我的"
     },

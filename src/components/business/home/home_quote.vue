@@ -11,7 +11,8 @@
             <p>{{$t('feature.home.text_shareHolding')}}</p>
           </div>
           <div class="game-box-image">
-            <img src="../../../assets/wallet/home/ＧＯ！按钮@2x.png" alt="" @click="shareHolding">
+            <!-- <img src="../../../assets/wallet/home/ＧＯ！按钮@2x.png" alt="" @click="shareHolding"> -->
+            <span @click="shareHolding">GO !</span>
           </div>
         </div>
       </div>
@@ -125,8 +126,15 @@
             }
           }
           .game-box-image {
-            img {
-              width: 90px;
+            span {
+              padding: 4px 20px;
+              background: linear-gradient(-61deg,rgba(86,107,243,1),rgba(34,239,185,1));
+              box-shadow: 0px 4px 9px 0px rgba(68,22,238,0.15);
+              border-radius: 5px;
+              font-size: 13px;
+              font-family: PingFang SC;
+              font-weight: bold;
+              color: rgba(255,255,255,1);
             }
           }
         }

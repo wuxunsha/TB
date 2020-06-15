@@ -3,9 +3,11 @@
   */
 
  const home = resolve => require(['@/view/businessView/home'], resolve)
+ const deal = resolve => require(['@/view/businessView/deal'], resolve)
  const mining = resolve => require(['@/view/businessView/mining'], resolve)
  const assets = resolve => require(['@/view/businessView/assets'], resolve)
- const bankUser = resolve => require(['@/view/businessView/bankUser'], resolve)
+//  const bankUser = resolve => require(['@/view/businessView/bankUser'], resolve)
+ const bankUser = resolve => require(['@/view/businessView/bankUserCopy'], resolve)
  const bankShare = resolve => require(['@/view/businessView/bankShare'], resolve)
  const miningDetail = resolve => require(['@/view/businessView/miningDetail'], resolve)
  const miningPro = resolve => require(['@/view/businessView/miningPro'], resolve)
@@ -15,10 +17,12 @@
  const bankShareList = resolve => require(['@/view/businessView/bankShareList'], resolve)
  const bankOrder = resolve => require(['@/view/businessView/bankOrder'], resolve)
  const transfer = resolve => require(['@/view/businessView/transfer'], resolve)
+ const shareExtract = resolve => require(['@/view/businessView/shareExtract'], resolve)
 
 
  let business = {
      home,
+     deal,
      mining,
      assets,
      bankUser,
@@ -30,6 +34,7 @@
      miningBuy,
      bankShareList,
      bankOrder,
-     transfer
+     transfer,
+     shareExtract
  }
  export default business //res;

@@ -67,11 +67,11 @@ const lang = {
     },
     bankShare: {
         text_code: "我的邀請碼",
-        text_copy: "復制邀請鏈接",
+        text_copy: "復制",
         text_info: "提示：截屏分享二維碼邀請好友下載APP"
     },
     bankShareList: {
-        nav_title: "我的團隊",
+        nav_title: "收益提取",
         text_amount: "團隊總業績",
         text_number: "團隊總人數",
         text_amount: "業績",
@@ -81,7 +81,7 @@ const lang = {
         text_right_number:"右區人數"
     },
     home: {
-        nav_title_home:"TB生態",
+        nav_title_home:"CB生態",
         nav_title: "我的團隊",
         text_notes: "系統公告",
         text_mining: "礦池",
@@ -96,7 +96,7 @@ const lang = {
         text_upsAndDowns: "全民猜漲跌"
     },
     mining: {
-        nav_title: "TB礦池",
+        nav_title: "CB礦池",
         text_allTotal: "總資產",
         text_btn: "立即投資",
         text_dayIncome: "今日礦池收益",
@@ -117,15 +117,20 @@ const lang = {
         text_withdrawList: "提現明細",
         text_forgetPass: "修改登錄密碼",
         text_feedback: "在線客服",
-        text_news: "公告中心",
+        text_news: "公告消息",
         text_lang: "語言切換",
-        text_changePayPass:"重置交易密碼"
+        text_changePayPass:"重置交易密碼",
+        text_Authentication: "身份認證",
+        text_verified: "已認證",
+        text_payment_method: "收款方式",
+        text_account_security: "賬戶安全",
+        text_about_us: "關於我們"
     },
     miningBuy: {
         nav_title: "礦池詳情",
         text_chooseTitle: "請選擇挖礦收益幣種",
         text_pTitle: "說明",
-        text_p: "在礦池系統中存入TB，其中10%閃電兌換成TB，90%按照金本位每天釋放選擇的收益幣種",
+        text_p: "在礦池系統中存入CB，其中10%閃電兌換成CB，90%按照金本位每天釋放選擇的收益幣種",
         text_subsmit: "確認投資",
         text_ok: "確認",
         text_cancel: "取消",

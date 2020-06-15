@@ -1,5 +1,5 @@
 $them_color:#1b8db2; //#f06d54;
-$them_color_dark:#1b8db2;
+$them_color_dark:#566BF3;
 $bg_color:#f3f4f6;
 $text_color_dark:#333333;
 $them_color_gray:#999999;
@@ -8,6 +8,7 @@ $them_color_warning:#eb716e;
 $them_color_bgGray:#f3f4f6;
 $thme_color_link:#fbc025;
 $them_color_green:#030303;
+$them_color_LightGreen:#22EFB9;
 $them_color_pink:#ff4949;
 $them_color_yellow:#f06d54;
 $them_border_color_gray:#e7eaed;
@@ -16,6 +17,14 @@ $font_default: 14px;
 $font_small:12px;
 .them_color_yellow {
     color: $them_color_yellow;
+}
+
+.them_color_LightGreen {
+    color: $them_color_LightGreen;
+}
+
+.them_color_dark {
+    color: $them_color_dark;
 }
 
 .bg_color_gray {

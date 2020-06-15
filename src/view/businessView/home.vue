@@ -6,10 +6,11 @@
         :title="`${$t('feature.home.nav_title_home')}`"
         fixed=""
       /> -->
-      <van-nav-bar
-        title="TB GAME"
+      <!-- <van-nav-bar
+        title="CB GAME"
         fixed=""
-      />
+      /> -->
+      <img src="./../../assets/wallet/home/首页-TBGAME@2x.png" alt="">
     </div>
 
     <home_banner/>
@@ -61,5 +62,14 @@
 
 </script>
 <style rel="stylesheet/scss" scoped lang="scss">
-  @import "../../styles/walletVal";
+@import "../../styles/walletVal";
+.navBox {
+  background:linear-gradient(-61deg,rgba(34,239,185,1),rgba(86,107,243,1));
+  box-shadow:0px 4px 9px 0px rgba(68,22,238,0.15);
+  text-align: center;
+  line-height: 46px;
+  img {
+    width: 40%;
+  }
+}
 </style>

@@ -22,7 +22,7 @@
                 <div class="font12 them_color_gray">{{item.addTime}}</div>
             </div>
             <div class="item textRight">
-              <div class="them_color_yellow font-bold font16">{{item.amount>0?`+${item.amount}`:item.amount}} {{getCoinName(item.coinId)}}</div>
+              <div :class="item.type === 1 ? 'them_color_LightGreen font-bold font16' : item.type === 2 ? 'them_color_dark font-bold font16' : 'them_color_yellow font-bold font16'">{{item.amount>0?`+${item.amount}`:item.amount}} {{getCoinName(item.coinId)}}</div>
               <div class="font12" v-if="item.type==3 && item.amount>0" style="margin-top:10px;">{{$t('feature.assetsDetail_v2.text_out')}}: {{item.producer}}</div>
               <div class="font12" v-if="item.type==3 && item.amount<0" style="margin-top:10px;">
                 <div style="margin-bottom:5px;">{{$t('feature.assetsDetail_v2.text_in')}}: {{item.producer.split('|')[0]}}</div>

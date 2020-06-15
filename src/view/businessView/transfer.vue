@@ -5,8 +5,11 @@
       <van-nav-bar
         :title="`${$t('feature.transfer.text_title')}`"
         fixed
-        left-arrow @click-left="goback()"
-      />
+        left-arrow @click-left="goback()" @click-right="gopage('/assetsDetail_v2')">
+        <template #right>
+          <van-icon name="orders-o" size="18" />
+        </template>
+      </van-nav-bar>
     </div>
 
     <div class="actionForm">
@@ -219,7 +222,7 @@ export default {
   white-space: nowrap;
   padding: 10px 5px;
   border-radius: 4px;
-  color:#DE4D49;
+  color:#566BF3;
   margin-left: 10px;
 }
 </style>

@@ -1,18 +1,18 @@
 const lang = {
     login: {
         text_active: "当前帐号已被限制登录,请联系管理员",
-        title: "登录TB",
+        title: "登录CB",
         form_mail: "邮箱或手机号码",
         form_pass: "密码",
         form_btn_login: "登录",
         form_btn_forget: "忘记密码",
-        none_user: "还没有TB GAME账号？",
+        none_user: "还没有CB GAME账号？",
         btn_register: "注册",
         toast_mail: "请输入正确手机号码",
         toast_pass: "请输入密码"
     },
     register: {
-        title: "注册TB",
+        title: "注册CB",
         form_input_userName: "请输入用户名称",
         form_input_email: "请输入邮箱或手机号码",
         form_input_second: "秒后重新发送",

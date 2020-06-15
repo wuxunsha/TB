@@ -19,7 +19,7 @@
              :key="index">
             <div class="people-main">
                 <div class="left-main">
-                    <img src="../../assets/wallet/people/left-main.png">
+                    <img :src="item.level === '农业' ? require('../../assets/wallet/people/农业@2x.png') : item.level === '水产业' ? require('../../assets/wallet/people/水产业-未开启@2x.png') : item.level === '建筑业' ? require('../../assets/wallet/people/建筑业-未开启@2x.png') : require('../../assets/wallet/people/图@2x.png')">
                 </div>
                 <div class="right-main">
                     <h3>{{item.level}}</h3>
@@ -159,8 +159,7 @@ export default {
             })
         },
         getNewToken(token) {
-            // console.log(this.$store.state.user);
-
+            // console.log(this.$store.state.user)
             let data = {
                 account: this.$store.state.user.uid,
                 password: this.$store.state.user.password,
@@ -335,7 +334,7 @@ export default {
             display: inline;
             padding: 4px 22px;
             color: #fff;
-            background-color: #de4d49;
+            background-color: #566BF3;
         }
     }
 }
@@ -366,7 +365,7 @@ export default {
             p {
                 margin-bottom: 10px;
                 span {
-                    color: #de4d49;
+                    color: #566BF3;
                 }
             }
         }
@@ -380,7 +379,7 @@ export default {
                 margin-right: 10px;
             }
             p {
-                color: #de4d49;
+                color: #566BF3;
             }
         }
     }
@@ -420,7 +419,7 @@ export default {
         .config-on {
             width: 120px;
             height: 33px;
-            background-color: #de4d49;
+            background-color: #566BF3;
             color: #fff;
             border-radius: 2px;
             margin: 0 8px;

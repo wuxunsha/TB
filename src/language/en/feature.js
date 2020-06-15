@@ -67,11 +67,11 @@ const lang = {
   },
   bankShare: {
     text_code: "My Invitation Code",
-    text_copy: "Copy Invitation Link",
+    text_copy: "Copy",
     text_info: "Hint: Share QR code to invite friends to download APP"
   },
   bankShareList: {
-    nav_title: "My Team",
+    nav_title: "Income withdrawal",
     text_amount: "Total Team Performance",
     text_number: "Total number of teams",
     text_amount: "Performance",
@@ -81,7 +81,7 @@ const lang = {
     text_right_number: "Number of Right Areas"
   },
   home: {
-    nav_title_home: "TB Ecology",
+    nav_title_home: "CB Ecology",
     nav_title: "My Team",
     text_notes: "System Notes",
     text_mining: "Mining Pool",
@@ -96,7 +96,7 @@ const lang = {
     text_upsAndDowns: "Everyone guesses"
   },
   mining: {
-    nav_title: "TB Mining Pool",
+    nav_title: "CB Mining Pool",
     text_allTotal: "Total Assets",
     text_btn: "Invest Now",
     text_dayIncome: "Mine Pool Revenue Today",
@@ -117,15 +117,20 @@ const lang = {
     text_withdrawList: "Withdrawal Details",
     text_forgetPass: "Change Login Password",
     text_feedback: "Online Support",
-    text_news: "News Center",
+    text_news: "Announcement",
     text_lang: "Language Switch",
-    text_changePayPass: "Reset Transaction Password"
+    text_changePayPass: "Reset Transaction Password",
+    text_Authentication: "Authentication",
+    text_verified: "verified",
+    text_payment_method: "payment method",
+    text_account_security: "account security",
+    text_about_us: "about us"
   },
   miningBuy: {
     nav_title: "Mining Pool Details",
     text_chooseTitle: "Please select a currency for mining revenue",
     text_pTitle: "Description",
-    text_p: "Deposit TB in the mining pool system, of which 10% are converted into TB lightning, 90% of the selected currency is released daily according to the gold standard",
+    text_p: "Deposit CB in the mining pool system, of which 10% are converted into CB lightning, 90% of the selected currency is released daily according to the gold standard",
     text_subsmit: "Confirm Investment",
     text_ok: "Confirm",
     text_cancel: "Cancel",
