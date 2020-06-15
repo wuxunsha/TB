@@ -17,6 +17,7 @@
  const bankShareList = resolve => require(['@/view/businessView/bankShareList'], resolve)
  const bankOrder = resolve => require(['@/view/businessView/bankOrder'], resolve)
  const transfer = resolve => require(['@/view/businessView/transfer'], resolve)
+ const shareExtract = resolve => require(['@/view/businessView/shareExtract'], resolve)
 
 
  let business = {
@@ -33,6 +34,7 @@
      miningBuy,
      bankShareList,
      bankOrder,
-     transfer
+     transfer,
+     shareExtract
  }
  export default business //res;

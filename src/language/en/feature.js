@@ -52,6 +52,7 @@ const lang = {
     text_cycle_s: "Cycle",
     text_mini: "Start Casting",
     text_header: "Available balance:",
+    text_popup_title: "Sell property"
   },
   bankOrder: {
     nav_title: "My Order",
@@ -71,7 +72,7 @@ const lang = {
     text_info: "Hint: Share QR code to invite friends to download APP"
   },
   bankShareList: {
-    nav_title: "My Team",
+    nav_title: "Income withdrawal",
     text_amount: "Total Team Performance",
     text_number: "Total number of teams",
     text_amount: "Performance",

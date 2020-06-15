@@ -52,6 +52,7 @@ const lang = {
         text_cycle_s: "周期",
         text_mini: "起投",
         text_header: "可用余額：",
+        text_popup_title: "選擇賣出產業"
     },
     bankOrder: {
         nav_title: "我的訂單",
@@ -71,7 +72,7 @@ const lang = {
         text_info: "提示：截屏分享二維碼邀請好友下載APP"
     },
     bankShareList: {
-        nav_title: "我的團隊",
+        nav_title: "收益提取",
         text_amount: "團隊總業績",
         text_number: "團隊總人數",
         text_amount: "業績",

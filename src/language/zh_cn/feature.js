@@ -54,6 +54,7 @@ const lang = {
         text_cycle_s: "周期",
         text_mini: "起投",
         text_header: "可用余额：",
+        text_popup_title: "选择卖出产业"
     },
     bankOrder: {
         nav_title: "我的订单",
@@ -73,7 +74,7 @@ const lang = {
         text_info: "提示：截屏分享二维码邀请好友下载APP"
     },
     bankShareList: {
-        nav_title: "我的团队",
+        nav_title: "收益提取",
         text_amount: "团队总业绩",
         text_number: "团队总人数",
         text_amount: "业绩",

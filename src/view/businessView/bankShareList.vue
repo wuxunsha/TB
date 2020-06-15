@@ -4,7 +4,7 @@
     <div class="navBox opacity">
       <van-nav-bar
         :title="`${$t('feature.bankShareList.nav_title')}`"
-        left-arrow @click-left="goback()"
+        left-arrow @click-left="goback()" fixed
       />
     </div>
 
@@ -12,7 +12,7 @@
       <div>
         <p>总收益</p>
         <p>4531.00</p>
-        <p>提取</p>
+        <p @click="gopage(`/shareExtract`)">提取</p>
       </div>
       <div>
         <div>
@@ -55,10 +55,15 @@
       </div>
       <ul>
         <li>
-          
+          <p>阿凡达</p>
+          <p>1000000</p>
+          <p>200000</p>
         </li>
-        <li></li>
-        <li></li>
+        <li>
+          <p>阿凡达</p>
+          <p>1000000</p>
+          <p>200000</p>
+        </li>
       </ul>
 
     </div>
@@ -306,6 +311,27 @@ import load_statueController from "../../components/common/load_statueController
     }
     > div:nth-child(3) {
       text-align: right;
+    }
+  }
+  ul {
+    > li {
+      padding: 0 15px;
+      display: flex;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 1px solid #EBEBEB;
+      > p {
+        flex: 1;
+        font-size: 12px;
+        font-weight:500;
+        color:rgba(53,53,53,1);
+      }
+      > p:nth-child(2) {
+        text-align: center;
+      }
+      > p:nth-child(3) {
+        text-align: right;
+      }
     }
   }
 }

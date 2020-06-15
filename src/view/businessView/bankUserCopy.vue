@@ -1,5 +1,5 @@
 <template>
-    <div id="user" class="full-screen">
+    <div class="full">
         <div>
             <van-nav-bar :title="`${$t('feature.bankUser.nav_title')}`" fixed>
                 <template #right>
@@ -214,7 +214,7 @@ export default {
     }
 }
 
-.full-screen {
+.full {
     .user-box {
         display: flex;
         margin-top: 47px;

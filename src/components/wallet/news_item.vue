@@ -5,11 +5,14 @@
             <img :src="item.imgUrl" alt="" srcset="">
           </div>
           <div class="text ellipse">
-              <div class="title ellipse">{{item.title}}</div>
+              <div class="title ellipse">
+                <span>{{item.title}}</span>
+                <span @click="gopage(`/newsDetail?id=${item.id}`)">点击查看</span>
+              </div>
               <div class="sub_title ellipse">{{item.subtitle}}</div>
               <div class="info flex align">
                   <!-- <div><van-icon name="manager-o" />user</div> -->
-                  <div><van-icon name="underway-o" />{{item.addTime}}</div>
+                  <div>{{item.addTime}}</div>
               </div>
           </div>
       </div>
@@ -36,7 +39,10 @@
   .newsList{
       background: white;
         padding: 10px;
-        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #E8E8E8;
+        border-radius:4px;
+        width: 100%;
         .img{
             min-width: 120px;
             width: 120px;
@@ -56,28 +62,33 @@
           }
         }
         .text{
+          width: 100%;
             >div{
+              width: 100%;
                 margin-bottom: 5px;
                 &.title{
-                    font-size: 16px;
+                  width: 100%;
+                  font-size: 16px;
+                  span:nth-child(2) {
+                    float: right;
+                    font-size: 14px;
+                    font-family: PingFang SC;
+                    font-weight: 500;
+                    color: rgba(86,107,243,1);
+                  }
                 }
                 &.sub_title{
-                    font-size: 12px;
-                    opacity: .7;
-                    margin: 10px 0;
+                  margin: 10px 0;
+                  font-size: 12px;
+                  font-weight: 500;
+                  color: rgba(165,172,174,1);
                 }
                 &.info{
                     >div{
-                        margin-right: 20px;
-                        font-weight: normal;
-                        font-size: 11px;
-                        opacity: .5;
-                    }
-                    i{
-                        display: inline-block;
-                        margin-right: 5px;
-                        position: relative;
-                        top: 2px;
+                      margin-right: 20px;
+                      font-weight: normal;
+                      font-size: 11px;
+                      color:rgba(86,107,243,1);
                     }
                 }
             }
