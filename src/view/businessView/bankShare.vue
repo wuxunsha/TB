@@ -92,7 +92,7 @@
 .codeBox {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 400px;
   background: url('../../assets/business/sharebg.png') no-repeat;
   background-size: 100% 100%;
   .codeimg {

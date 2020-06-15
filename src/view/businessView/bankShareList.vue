@@ -8,7 +8,20 @@
       />
     </div>
 
-    <div class="user_info flex align between animated fadeIn" v-if="topInfo" style="padding-top:60px;">
+    <div class="earnings">
+      <div>
+        <p>总收益</p>
+        <p>4531.00</p>
+        <p>提取</p>
+      </div>
+      <div>
+        2
+      </div>
+    </div>
+
+    <div class="separate"></div>
+
+    <!-- <div class="user_info flex align between animated fadeIn" v-if="topInfo" style="padding-top:60px;">
         <div class="item">
           <div class=" font18">{{team.myYeJi || '--'}}</div>
           <div class=" font12">{{$t('feature.bankShareList.text_amount')}}</div>
@@ -17,33 +30,7 @@
           <div class=" font18">{{team.total || '--'}}</div>
           <div class=" font12">{{$t('feature.bankShareList.text_number')}}</div>
         </div>
-
-        <!-- <div class="item">
-          <div class="data">
-            <div class=" font18">{{topInfo.left.totalNumber}}</div>
-            <div class=" font12">{{$t('feature.bankShareList.text_left_amout')}}</div>
-          </div>
-          <div class="data">
-            <div class=" font18">{{topInfo.left.totalUser}}</div>
-            <div class=" font12">{{$t('feature.bankShareList.text_left_number')}}</div>
-        </div>
-
-        </div> -->
-        <!-- item -->
-        <!-- <div class="item">
-          <div class="data">
-            <div class=" font18">{{topInfo.right.totalNumber}}</div>
-            <div class=" font12">{{$t('feature.bankShareList.text_right_amout')}}</div>
-          </div>
-          <div class="data">
-            <div class=" font18">{{topInfo.right.totalUser}}</div>
-            <div class=" font12">{{$t('feature.bankShareList.text_right_number')}}</div>
-          </div>
-        </div> -->
-        <!-- item -->
-
     </div>
-    <!-- user_info -->
 
     <div class="shareList" v-if="teamList.length">
 
@@ -52,39 +39,29 @@
           <div class="icon">
             <img src="../../assets/business/nav_user.png" alt="">
           </div>
-          <!-- icon -->
 
           <div class="info">
             <div class=" font12" style="margin-bottom:5px;">{{item.userName}}
-              <!-- <van-tag :type="item.area=='L'?'primary':'success'">
-                {{item.area=='L'?$t('feature.register.text_left'):$t('feature.register.text_right')}}
-              </van-tag> -->
             </div>
             <div class=" font12 color-gray2">{{item.addTime}}</div>
           </div>
-          <!-- info -->
 
           <div class="amout font12">{{$t('feature.bankShareList.text_amount')}}：{{item.userYeji}}</div>
-          <!-- amout -->
 
         </div>
-        <!-- flex -->
 
-    </div>
-    <!-- shareList -->
+    </div> -->
 
-    <load_statueController 
+    <!-- <load_statueController 
       :dataLength="teamList.length" 
       :pageSize="query.pageSize"
       v-on:loadData="loadmore" 
       :pageNum="currentPage"
       ref="load_statueController"
       class="loadController"
-    />
-
+    /> -->
 
   </div>
-  <!-- index -->
 </template>
 <script>
 import load_statueController from "../../components/common/load_statueController.vue";
@@ -125,7 +102,7 @@ import load_statueController from "../../components/common/load_statueController
             this.child.push(v);
           });
           setTimeout(() => {
-            this.$refs.load_statueController.listen()
+            // this.$refs.load_statueController.listen()
           }, 10);
         })
       },//getChild
@@ -168,49 +145,89 @@ import load_statueController from "../../components/common/load_statueController
     box-sizing: border-box;
   }
 
-  .user_info {
-    margin-top: 0;
-    padding: 20px 10px;
-    position: relative;
-    background: $them_color_dark;
-    padding-bottom: 60px;
+.earnings {
+  display: flex;
+  width: 100%;
+  height: 150px;
+  margin-top: 46px;
+  > div {
+    flex: 1;
+  }
+  > div:nth-child(1) {
+    padding: 25px 15px;
+    > p:nth-child(1) {
+      font-size: 12px;
+      font-family: PingFang SC;
+      font-weight: bold;
+      color: rgba(53,53,53,1);
+      margin-bottom: 18px;
+    }
+    > p:nth-child(2) {
+      font-size: 25px;
+      font-family: PingFang SC;
+      font-weight: bold;
+      color: rgba(86,107,243,1);
+      margin-bottom: 22px;
+    }
+    > p:nth-child(3) {
+      width:226px;
+      height:56px;
+      background:linear-gradient(-61deg,rgba(34,239,185,1),rgba(86,107,243,1));
+      box-shadow:0px 4px 9px 0px rgba(68,22,238,0.15);
+      border-radius:4px;
+    }
+  }
+}
 
-    * {
-      color: white;
-    }
-    >div{
-      width: 50%;
-      text-align: center;
-      .data{
-        margin-bottom: 10px;
-      }
-    }
-  }
-  .shareList{
-    padding: 20px;
-    position: relative;
-    margin-top: -50px;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    background: white;
-    >.flex{
-      padding: 15px 0;
-    }
-    .icon{
-      width: 45px;
-      height: 45px;
-      border-radius: 100px;
-      margin-right: 10px;
-      overflow: hidden;
-      background: rgba(0,0,0,0.1);
-      img{
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
-    }
-    .info{
-      flex: 1;
-    }
-  }
+.separate {
+  width: 100%;
+  height: 5px;
+  background: rgba(247,246,251,1);
+}
+
+  // .user_info {
+  //   margin-top: 0;
+  //   padding: 20px 10px;
+  //   position: relative;
+  //   background: $them_color_dark;
+  //   padding-bottom: 60px;
+
+  //   * {
+  //     color: white;
+  //   }
+  //   >div{
+  //     width: 50%;
+  //     text-align: center;
+  //     .data{
+  //       margin-bottom: 10px;
+  //     }
+  //   }
+  // }
+  // .shareList{
+  //   padding: 20px;
+  //   position: relative;
+  //   margin-top: -50px;
+  //   border-top-right-radius: 20px;
+  //   border-top-left-radius: 20px;
+  //   background: white;
+  //   >.flex{
+  //     padding: 15px 0;
+  //   }
+  //   .icon{
+  //     width: 45px;
+  //     height: 45px;
+  //     border-radius: 100px;
+  //     margin-right: 10px;
+  //     overflow: hidden;
+  //     background: rgba(0,0,0,0.1);
+  //     img{
+  //       display: block;
+  //       width: 100%;
+  //       height: 100%;
+  //     }
+  //   }
+  //   .info{
+  //     flex: 1;
+  //   }
+  // }
 </style>
