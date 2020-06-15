@@ -2,9 +2,14 @@
     <div id="funds">
         <div class="navBox"
              style="padding:0 20px">
-            <van-nav-bar :title="$t('wallet.recharge.nav_title')" fixed left-arrow @click-left="goback()" @click-right="gopage('/assetsDetail_v2')">
+            <van-nav-bar :title="$t('wallet.recharge.nav_title')"
+                         fixed
+                         left-arrow
+                         @click-left="goback()"
+                         @click-right="gopage('/assetsDetail_v2')">
                 <template #right>
-                    <van-icon name="orders-o" size="18" />
+                    <van-icon name="orders-o"
+                              size="18" />
                 </template>
             </van-nav-bar>
         </div>
@@ -70,11 +75,13 @@
         <div class="rechargeList">
             <h3>{{$t('wallet.recharge.list')}}</h3>
             <div v-if="rechargeList.length === 0">
-                <img src="../../assets/wallet/deal/数据暂无.png" alt="">
+                <img src="../../assets/wallet/deal/数据暂无.png"
+                     alt="">
                 <p>暂无数据</p>
             </div>
             <ul v-else>
-                <li v-for="(item, index) in rechargeList" :key="index">
+                <li v-for="(item, index) in rechargeList"
+                    :key="index">
                     <div>{{item.coinId === 1 ? 'USDT' : item.coinId === 2 ? 'TB' : item.coinId === 3 ? 'OKB' : item.coinId === 4 ? 'BNB' : 'HT'}}</div>
                     <div>{{item.amount}}</div>
                     <div>{{item.addTime}}</div>
@@ -143,10 +150,10 @@ export default {
             })
         },
         // 获取充值列表
-        getRechargeList () {
-            TBListCZinfo({token_: this.token,coinId: this.currRechargeInfo.coin.id}).then(res => {
+        getRechargeList() {
+            TBListCZinfo({ token_: this.token, coinId: this.currRechargeInfo.coin.id }).then(res => {
                 if (res.code === '200') {
-                    res.data.forEach( item => {
+                    res.data.forEach(item => {
                         item.addTime = this.getDate(item.addTime)
                     })
                     this.rechargeList = res.data
@@ -186,7 +193,7 @@ export default {
             })
         },
         // 时间戳转时间、
-        getDate (timeStamp) {
+        getDate(timeStamp) {
             const dt = new Date(timeStamp)
             const year = dt.getFullYear()
             const month = (dt.getMonth() + 1 + '').padStart(2, '0')
@@ -319,7 +326,7 @@ export default {
             font-size: 12px;
             font-family: PingFang SC;
             font-weight: 500;
-            color: rgba(200,205,211,1);
+            color: rgba(200, 205, 211, 1);
         }
     }
     > ul {
