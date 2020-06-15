@@ -24,6 +24,7 @@ const issue = resolve => require(['@/view/walletView/issue'], resolve)
 const identity = resolve => require(['@/view/walletView/identity'], resolve)
 const identityTwo = resolve => require(['@/view/walletView/identityTwo'], resolve)
 
+
 // 自定义路由
 
 import business from './business';

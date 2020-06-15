@@ -235,7 +235,7 @@ const lang = {
         text_none_data: "暫無數據"
     },
     news: {
-        nav_title: "公告中心",
+        nav_title: "公告",
         nav_title_detial: "詳情"
     }
 }

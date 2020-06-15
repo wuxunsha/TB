@@ -52,6 +52,7 @@ const lang = {
     text_cycle_s: "Cycle",
     text_mini: "Start Casting",
     text_header: "Available balance:",
+    text_popup_title: "Sell property"
   },
   bankOrder: {
     nav_title: "My Order",

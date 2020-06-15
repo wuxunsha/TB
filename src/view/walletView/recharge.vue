@@ -2,16 +2,28 @@
     <div id="funds">
         <div class="navBox"
              style="padding:0 20px">
-            <van-nav-bar :title="$t('wallet.recharge.nav_title')"
-                         fixed
-                         left-arrow
-                         @click-left="goback()"
-                         @click-right="gopage('/assetsDetail_v2')">
+            <<<<<<< HEAD
+                    <van-nav-bar
+                    :title="$t('wallet.recharge.nav_title')"
+                    fixed
+                    left-arrow
+                    @click-left="goback()"
+                    @click-right="gopage('/assetsDetail_v2')">
                 <template #right>
                     <van-icon name="orders-o"
                               size="18" />
-                </template>
-            </van-nav-bar>
+                    =======
+                    <van-nav-bar :title="$t('wallet.recharge.nav_title')"
+                                 fixed
+                                 left-arrow
+                                 @click-left="goback()"
+                                 @click-right="gopage('/assetsDetail_v2')">
+                        <template #right>
+                            <van-icon name="orders-o"
+                                      size="18" />
+                            >>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
+                        </template>
+                    </van-nav-bar>
         </div>
         <!-- <walletNav :title="$t('wallet.recharge.nav_title')"
                    left-arrow
@@ -75,21 +87,32 @@
         <div class="rechargeList">
             <h3>{{$t('wallet.recharge.list')}}</h3>
             <div v-if="rechargeList.length === 0">
-                <img src="../../assets/wallet/deal/数据暂无.png"
-                     alt="">
-                <p>暂无数据</p>
+                <<<<<<< HEAD
+                        <img
+                        src="../../assets/wallet/deal/数据暂无.png"
+                        alt="">
+                    <p>暂无数据</p>
             </div>
             <ul v-else>
                 <li v-for="(item, index) in rechargeList"
                     :key="index">
-                    <div>{{item.coinId === 1 ? 'USDT' : item.coinId === 2 ? 'TB' : item.coinId === 3 ? 'OKB' : item.coinId === 4 ? 'BNB' : 'HT'}}</div>
-                    <div>{{item.amount}}</div>
-                    <div>{{item.addTime}}</div>
-                </li>
-            </ul>
+                    =======
+                    <img src="../../assets/wallet/deal/数据暂无.png"
+                         alt="">
+                    <p>暂无数据</p>
         </div>
+        <ul v-else>
+            <li v-for="(item, index) in rechargeList"
+                :key="index">
+                >>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
+                <div>{{item.coinId === 1 ? 'USDT' : item.coinId === 2 ? 'TB' : item.coinId === 3 ? 'OKB' : item.coinId === 4 ? 'BNB' : 'HT'}}</div>
+                <div>{{item.amount}}</div>
+                <div>{{item.addTime}}</div>
+            </li>
+        </ul>
+    </div>
 
-        <div class="space20"></div>
+    <div class="space20"></div>
 
     </div>
     <!-- index -->
@@ -193,7 +216,11 @@ export default {
             })
         },
         // 时间戳转时间、
+<<<<<<< HEAD
         getDate(timeStamp) {
+=======
+        getDate (timeStamp) {
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
             const dt = new Date(timeStamp)
             const year = dt.getFullYear()
             const month = (dt.getMonth() + 1 + '').padStart(2, '0')
@@ -326,7 +353,11 @@ export default {
             font-size: 12px;
             font-family: PingFang SC;
             font-weight: 500;
+<<<<<<< HEAD
             color: rgba(200, 205, 211, 1);
+=======
+            color: rgba(200,205,211,1);
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
         }
     }
     > ul {

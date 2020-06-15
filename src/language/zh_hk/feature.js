@@ -52,6 +52,7 @@ const lang = {
         text_cycle_s: "周期",
         text_mini: "起投",
         text_header: "可用余額：",
+        text_popup_title: "選擇賣出產業"
     },
     bankOrder: {
         nav_title: "我的訂單",
