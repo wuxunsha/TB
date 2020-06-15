@@ -234,7 +234,7 @@ const lang = {
         text_none_data: "No data"
     },
     news: {
-        nav_title: "Announcement Center",
+        nav_title: "Announcement",
         nav_title_detial: "Details"
     }
 }

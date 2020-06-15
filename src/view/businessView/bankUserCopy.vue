@@ -1,9 +1,12 @@
 <template>
-    <div id="user" class="full-screen">
+    <div id="user"
+         class="full-screen">
         <div>
-            <van-nav-bar :title="`${$t('feature.bankUser.nav_title')}`" fixed>
+            <van-nav-bar :title="`${$t('feature.bankUser.nav_title')}`"
+                         fixed>
                 <template #right>
-                    <img src="../../assets/business/user/设置@2x.png" alt="">
+                    <img src="../../assets/business/user/设置@2x.png"
+                         alt="">
                 </template>
             </van-nav-bar>
         </div>
@@ -12,7 +15,8 @@
             <div class="user-left">
                 <div class="user_info flex align">
                     <div class="header_text">
-                        <img src="../../assets/business/user/我的－选中@2x.png" alt="">
+                        <img src="../../assets/business/user/我的－选中@2x.png"
+                             alt="">
                     </div>
                     <div class="info">
                         <b>{{userInfo.user.userAccount || userInfo.user.id}}</b>
@@ -24,10 +28,12 @@
             <div class="user-right">
                 <div class="VIP-level flex align">
                     <div>
-                        <img src="../../assets/business/user/ＶＩＰ@2x.png" alt="">
+                        <img src="../../assets/business/user/ＶＩＰ@2x.png"
+                             alt="">
                     </div>
                     <div>
-                        <img src="../../assets/business/user/图层 1 拷贝 5@2x.png" alt="">
+                        <img src="../../assets/business/user/图层 1 拷贝 5@2x.png"
+                             alt="">
                     </div>
                 </div>
             </div>
@@ -43,15 +49,19 @@
         </div>
 
         <div class="news">
-            <div class="news-box" @click="gopage('/news')">
-                <img src="../../assets/business/user/公告消息@2x.png" alt="">
+            <div class="news-box"
+                 @click="gopage('/news')">
+                <img src="../../assets/business/user/公告消息@2x.png"
+                     alt="">
                 <span>{{$t('feature.bankUser.text_news')}}</span>
             </div>
         </div>
 
         <div class="news">
-            <div class="news-box">
-                <img src="../../assets/business/user/身份认证@2x.png" alt="">
+            <div class="news-box"
+                 @click="$router.push('/identity')">
+                <img src="../../assets/business/user/身份认证@2x.png"
+                     alt="">
                 <span>{{$t('feature.bankUser.text_Authentication')}}</span>
                 <span>{{$t('feature.bankUser.text_verified')}}</span>
             </div>
@@ -59,7 +69,8 @@
 
         <div class="news">
             <div class="news-box bottom">
-                <img src="../../assets/business/user/收款方式@2x.png" alt="">
+                <img src="../../assets/business/user/收款方式@2x.png"
+                     alt="">
                 <span>{{$t('feature.bankUser.text_payment_method')}}</span>
             </div>
         </div>
@@ -67,15 +78,18 @@
         <div class="Partition"></div>
 
         <div class="news">
-            <div class="news-box" @click="gopage('/news')">
-                <img src="../../assets/business/user/账户安全 @2x.png" alt="">
+            <div class="news-box"
+                 @click="gopage('/news')">
+                <img src="../../assets/business/user/账户安全 @2x.png"
+                     alt="">
                 <span>{{$t('feature.bankUser.text_account_security')}}</span>
             </div>
         </div>
 
         <div class="news">
             <div class="news-box bottom">
-                <img src="../../assets/business/user/关于我们@2x.png" alt="">
+                <img src="../../assets/business/user/关于我们@2x.png"
+                     alt="">
                 <span>{{$t('feature.bankUser.text_about_us')}}</span>
             </div>
         </div>
@@ -201,12 +215,20 @@ export default {
 }
 
 .van-nav-bar {
+<<<<<<< HEAD
+    border-bottom: 1px solid #ebebeb;
+=======
     border-bottom: 1px solid #EBEBEB;
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
     .van-nav-bar__title {
         font-size: 16px;
         font-family: PingFang SC;
         font-weight: bold;
+<<<<<<< HEAD
+        color: rgba(53, 53, 53, 1);
+=======
         color: rgba(53,53,53,1);
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
     }
     img {
         width: 18px;
@@ -214,13 +236,21 @@ export default {
     }
 }
 
+<<<<<<< HEAD
 .full-screen {
+=======
+.full {
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
     .user-box {
         display: flex;
         margin-top: 47px;
         height: 72px;
         padding: 0 20px;
+<<<<<<< HEAD
+        border-bottom: 1px solid #ebebeb;
+=======
         border-bottom: 1px solid #EBEBEB;
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
         .user-left {
             flex: 1;
             .user_info {
@@ -242,14 +272,22 @@ export default {
                         font-size: 14px;
                         font-family: PingFang SC;
                         font-weight: bold;
+<<<<<<< HEAD
+                        color: rgba(53, 53, 53, 1);
+=======
                         color: rgba(53,53,53,1);
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
                     }
                     span {
                         display: block;
                         font-size: 12px;
                         font-family: PingFang SC;
                         font-weight: bold;
+<<<<<<< HEAD
+                        color: rgba(34, 239, 185, 1);
+=======
                         color: rgba(34,239,185,1);
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
                     }
                 }
             }
@@ -258,7 +296,11 @@ export default {
             margin-right: 28px;
             .VIP-level {
                 height: 72px;
+<<<<<<< HEAD
+                > div:nth-child(1) {
+=======
                 >div:nth-child(1) {
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
                     position: relative;
                     width: 36px;
                     height: 72px;
@@ -266,12 +308,20 @@ export default {
                         position: absolute;
                         top: 50%;
                         left: 50%;
+<<<<<<< HEAD
+                        transform: translateY(-8px);
+=======
                         transform: translateY(-8PX);
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
                         width: 100%;
                         height: 16px;
                     }
                 }
+<<<<<<< HEAD
+                > div:nth-child(2) {
+=======
                 >div:nth-child(2) {
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
                     position: relative;
                     width: 54px;
                     height: 72px;
@@ -294,7 +344,10 @@ export default {
             //     height: 49px;
             // }
         }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
     }
 
     .bankShare {
@@ -302,18 +355,30 @@ export default {
         width: 100%;
         height: 47px;
         line-height: 42px;
+<<<<<<< HEAD
+        border-bottom: 5px solid #f7f6fb;
+        > div {
+=======
         border-bottom: 5px solid #F7F6FB;
         >div {
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
             flex: 1;
             height: 100%;
             text-align: center;
             font-size: 14px;
             font-family: PingFang SC;
             font-weight: 500;
+<<<<<<< HEAD
+            color: rgba(53, 53, 53, 1);
+        }
+        > div:nth-child(1) {
+            border-right: 1px solid #ebebeb;
+=======
             color: rgba(53,53,53,1);
         }
         >div:nth-child(1) {
             border-right: 1px solid #EBEBEB;
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
         }
     }
 
@@ -325,17 +390,29 @@ export default {
             width: 100%;
             height: 100%;
             line-height: 45px;
+<<<<<<< HEAD
+            border-bottom: 1px solid #ebebeb;
+=======
             border-bottom: 1px solid #EBEBEB;
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
             padding-right: 20px;
             span {
                 font-size: 14px;
                 font-family: PingFang SC;
                 font-weight: 500;
+<<<<<<< HEAD
+                color: rgba(53, 53, 53, 1);
+            }
+            > span:nth-child(3) {
+                float: right;
+                color: #566bf3;
+=======
                 color: rgba(53,53,53,1);
             }
             >span:nth-child(3) {
                 float: right;
                 color: #566BF3;
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
             }
             img {
                 width: 16px;
@@ -347,6 +424,13 @@ export default {
         }
     }
 
+<<<<<<< HEAD
+    .Partition {
+        width: 100%;
+        height: 5px;
+        background: #f7f6fb;
+    }
+=======
 
     .Partition {
         width: 100%;
@@ -354,6 +438,7 @@ export default {
         background: #F7F6FB;
     }
 
+>>>>>>> 321e6c39eccf915be44de520e9509462574ca7af
 }
 
 .menu_item_box {

@@ -1,5 +1,5 @@
 <template>
-  <div class="new full-height bg_color_gray">
+  <div class="new full-height">
 
     <div class="navBox">
       <van-nav-bar
@@ -11,6 +11,9 @@
     </div>
 
     <div class="listBox">
+      <div class="search">
+        <van-search v-model="searchValue" placeholder="搜索" />
+      </div>
       <newsItem  v-for="(item,index) in newData" :key="index" :item="item"/>
     </div>
 
@@ -46,6 +49,7 @@
   export default {
     data() {
       return {
+        searchValue: null,
         query:{
           pageSize:20,
           pageNum:1,
@@ -80,6 +84,20 @@
 </script>
 <style rel="stylesheet/scss" scoped lang="scss">
   @import "../../styles/walletVal";
+  .listBox {
+    padding: 0 15px;
+    .search {
+      .van-search {
+        padding: 15px 0;
+        .van-search__content {
+          background: none;
+          border: 1px solid #E8E8E8;
+          border-radius:4px;
+        }
+      }
+
+    }
+  }
   .loadController{
     margin-top: 40px;
   }
